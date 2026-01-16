@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxgivpk3eary6"]
+
+[ext_resource type="Texture2D" uid="uid://18g11pd5c721" path="res://icon.svg" id="1_7ylkl"]
+[ext_resource type="Script" uid="uid://babfxfgnrcwaa" path="res://Scripts/attack.gd" id="1_jbxk5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jbxk5"]
+size = Vector2(56, 56)
+
+[node name="Punch" type="Area2D"]
+show_behind_parent = true
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_jbxk5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+scale = Vector2(0.4375, 0.4375)
+texture = ExtResource("1_7ylkl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jbxk5")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
