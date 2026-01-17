@@ -1,8 +1,9 @@
-[gd_scene load_steps=30 format=3 uid="uid://crn3fw2rb4s8i"]
+[gd_scene load_steps=31 format=3 uid="uid://crn3fw2rb4s8i"]
 
 [ext_resource type="Script" uid="uid://c7f533jd3dx" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://ctvjr0t77hpnc" path="res://Sprites/Knight.png" id="2_6t5aa"]
 [ext_resource type="AudioStream" uid="uid://brtx0djon3oc4" path="res://Audios/Dodgeroll.wav" id="3_6t5aa"]
+[ext_resource type="Texture2D" uid="uid://18g11pd5c721" path="res://icon.svg" id="3_nmmoa"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x3wgy"]
 
@@ -209,6 +210,11 @@ texture_filter = 1
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_fkybt")
 animation = &"idle"
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimatedSprite2D"]
+visible = false
+position = Vector2(-120.5, 0)
+texture = ExtResource("3_nmmoa")
 
 [node name="IFrames" type="Timer" parent="."]
 wait_time = 0.75

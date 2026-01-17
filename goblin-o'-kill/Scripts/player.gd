@@ -5,6 +5,7 @@ enum STATES {IDLE,ROLLING,DEAD}
 var state : STATES = STATES.IDLE
 
 @export_group("Stats")
+var gold : int
 @export var max_hp = 15
 @export var hp = 15
 @export_subgroup("Combat")
@@ -27,6 +28,7 @@ var speed = 350
 @onready var hitbox = $CollisionShape2D
 @onready var anim = $AnimatedSprite2D
 @onready var hpbar = $CanvasLayer/Control/ProgressBar
+@onready var key_tip = $AnimatedSprite2D/Sprite2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -60,7 +62,8 @@ func _process(delta: float) -> void:
 	if Input.is_action_pressed("shift") and state == STATES.IDLE:
 		if rollDirection:
 			state = STATES.ROLLING
-			velocity = rollDirection.normalized() * (speed - 50)
+			canAttack = false
+			velocity = rollDirection.normalized() * 300
 			set_collision_layer_value(2,false)
 			anim.play("roll")
 			$RollAudio.play()
@@ -77,6 +80,7 @@ func _process(delta: float) -> void:
 func _on_i_frames_timeout() -> void:
 	set_collision_layer_value(2,true)
 	state = STATES.IDLE
+	canAttack = true
 
 func receive_damage(dmg):
 	hp -= dmg
@@ -114,4 +118,4 @@ func get_dmg() -> Vector2:
 	return Vector2(dmg,float(crit))
 
 func _on_world_new_wave() -> void:
-	$CanvasLayer/Control/Wave.text = var_to_str(GlobalVariables.wave)
+	$CanvasLayer/Control/Wave.text = var_to_str(get_parent().wave)

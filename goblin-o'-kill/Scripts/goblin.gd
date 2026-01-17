@@ -86,7 +86,7 @@ func _on_delay_timeout() -> void:
 	if attackAtLocation:
 		attack.position = projectilePos
 	else:
-		attack.position = direction.normalized() * chaseRange
+		attack.position = direction.normalized() * 75
 	attack.look_at(direction * 60)
 	attack.set_collision_mask(2)
 	attack.damage = get_damage()
@@ -98,5 +98,5 @@ func _on_delay_timeout() -> void:
 
 func get_damage() -> int:
 	var dmg : int
-	dmg = round(strength * GlobalVariables.wave_dmg_mod * (float(buffed) + 1) )
+	dmg = round(strength * GlobalVariables.wave_dmg_mod)
 	return dmg

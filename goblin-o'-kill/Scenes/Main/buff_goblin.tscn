@@ -1,57 +1,57 @@
-[gd_scene load_steps=17 format=3 uid="uid://b1cymn7dg72ea"]
+[gd_scene load_steps=17 format=3 uid="uid://dfq3ffq6hhsk8"]
 
-[ext_resource type="Script" uid="uid://btuf0vwmpr25a" path="res://Scripts/goblin.gd" id="1_ax1lh"]
-[ext_resource type="Texture2D" uid="uid://cienmm55sw87u" path="res://Sprites/Goblin.png" id="2_potlr"]
+[ext_resource type="Script" uid="uid://btuf0vwmpr25a" path="res://Scripts/goblin.gd" id="1_72gkk"]
+[ext_resource type="Texture2D" uid="uid://cienmm55sw87u" path="res://Sprites/Goblin.png" id="2_h3pm0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xcvi8"]
 size = Vector2(60, 60)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7w5cp"]
-atlas = ExtResource("2_potlr")
+atlas = ExtResource("2_h3pm0")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6n10i"]
-atlas = ExtResource("2_potlr")
+atlas = ExtResource("2_h3pm0")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gbw3e"]
-atlas = ExtResource("2_potlr")
+atlas = ExtResource("2_h3pm0")
 region = Rect2(0, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fkbyy"]
-atlas = ExtResource("2_potlr")
+atlas = ExtResource("2_h3pm0")
 region = Rect2(32, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2gt0r"]
-atlas = ExtResource("2_potlr")
+atlas = ExtResource("2_h3pm0")
 region = Rect2(0, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o6mmh"]
-atlas = ExtResource("2_potlr")
+atlas = ExtResource("2_h3pm0")
 region = Rect2(32, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ep384"]
-atlas = ExtResource("2_potlr")
+atlas = ExtResource("2_h3pm0")
 region = Rect2(64, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ajbjq"]
-atlas = ExtResource("2_potlr")
+atlas = ExtResource("2_h3pm0")
 region = Rect2(96, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p60ou"]
-atlas = ExtResource("2_potlr")
+atlas = ExtResource("2_h3pm0")
 region = Rect2(0, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wpiyv"]
-atlas = ExtResource("2_potlr")
+atlas = ExtResource("2_h3pm0")
 region = Rect2(32, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m25tm"]
-atlas = ExtResource("2_potlr")
+atlas = ExtResource("2_h3pm0")
 region = Rect2(64, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hfpgn"]
-atlas = ExtResource("2_potlr")
+atlas = ExtResource("2_h3pm0")
 region = Rect2(96, 64, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_deoj1"]
@@ -114,10 +114,17 @@ animations = [{
 }]
 
 [node name="Goblin" type="CharacterBody2D" groups=["Goblins"]]
+modulate = Color(1, 0.631373, 0.619608, 1)
+scale = Vector2(2, 2)
 collision_layer = 4
 collision_mask = 13
-script = ExtResource("1_ax1lh")
-delay = 0.7
+script = ExtResource("1_72gkk")
+hp = 6
+speed = 150
+strength = 4
+delay = 0.8
+buffed = true
+chaseRange = 125.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_xcvi8")
@@ -126,7 +133,8 @@ shape = SubResource("RectangleShape2D_xcvi8")
 texture_filter = 1
 scale = Vector2(1.875, 1.875)
 sprite_frames = SubResource("SpriteFrames_deoj1")
-animation = &"top_idle"
+animation = &"idle"
+frame_progress = 0.717701
 
 [node name="CD" type="Timer" parent="."]
 one_shot = true

@@ -5,7 +5,6 @@ extends Resource
 @export var texture : Texture2D = preload("res://icon.svg")
 @export var name : StringName = "Placeholder"
 @export_category("Bonuses")
-@export var speed : int
 @export_subgroup("Health")
 @export var max_health : int
 @export var health : int

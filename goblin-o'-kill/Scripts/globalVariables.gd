@@ -1,7 +1,7 @@
 extends Node
 
 #Game
-var wave = 1
+var record : int
 var wave_dmg_mod : float = 1.0
 var difficulty = 2
 

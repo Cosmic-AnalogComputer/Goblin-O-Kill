@@ -1,4 +1,4 @@
-extends Area2D
+extends Node2D
 
 @export var UPGRADE : Upgrade = preload("res://Scripts/Upgrades/dumbell.tres")
 var usage = 0
@@ -7,12 +7,9 @@ func _ready() -> void:
 	$Sprite2D.texture = UPGRADE.texture
 	$Label.text = UPGRADE.name
 
-func _on_body_entered(body: Node2D) -> void:
+func _upgrade(player):
 	usage += 1
-	if body is Player and usage == 1:
-		print("picked up: ", UPGRADE.name)
-		var player = body # easier writing lol
-		player.speed += UPGRADE.speed
+	if usage == 1:
 		player.max_hp += UPGRADE.max_health
 		if player.hp < player.max_hp:
 			player.receive_damage(-UPGRADE.health)
@@ -28,3 +25,6 @@ func _on_body_entered(body: Node2D) -> void:
 		player.hpbar.max_value = player.max_hp
 		
 		queue_free()
+
+func _on_interaction_component_interacted(user: Player) -> void:
+	_upgrade(user)
