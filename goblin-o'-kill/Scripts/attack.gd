@@ -10,17 +10,14 @@ func _ready() -> void:
 	$Sprite2D.play(play)
 	var hit_audio = load(hit_sounds[randi_range(0,3)])
 	$Audio.stream = hit_audio
-	$Timer.start($Audio.stream.get_length())
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 func _on_body_entered(body: Node2D) -> void:
+	$Timer.stop()
 	$Audio.play()
 	body.receive_damage(damage)
 	call_deferred("set_monitoring", false)
+	await get_tree().create_timer($Audio.stream.get_length()).timeout
+	queue_free()
 
 func _on_timer_timeout() -> void:
 	queue_free()

@@ -217,18 +217,19 @@ corner_radius_bottom_right = 10
 [sub_resource type="AtlasTexture" id="AtlasTexture_knxm8"]
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
+z_index = 1
 collision_layer = 2
 collision_mask = 13
 script = ExtResource("1_cvnsp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(2, 2)
+scale = Vector2(2.5, 2.5)
 shape = SubResource("CapsuleShape2D_x3wgy")
 debug_color = Color(0, 1, 0.235294, 0.419608)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(2, 2)
+scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_fkybt")
 animation = &"idle"
 
@@ -263,14 +264,12 @@ grow_vertical = 2
 
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Control"]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -130.0
-offset_top = -27.0
-offset_right = 130.0
+anchors_preset = -1
+anchor_left = 0.4
+anchor_top = 0.9
+anchor_right = 0.6
+anchor_bottom = 0.95
+offset_top = -1.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/background = SubResource("StyleBoxFlat_cvnsp")
@@ -326,15 +325,65 @@ theme_override_constants/margin_bottom = 5
 layout_mode = 2
 alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/Panel/MarginContainer/VBoxContainer"]
+[node name="GOLDDD" type="HBoxContainer" parent="CanvasLayer/Control/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/Panel/MarginContainer/VBoxContainer/GOLDDD"]
 layout_mode = 2
 texture = SubResource("AtlasTexture_knxm8")
 
-[node name="Label" type="Label" parent="CanvasLayer/Control/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/Control/Panel/MarginContainer/VBoxContainer/GOLDDD"]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.913725, 0, 1)
+text = "20 $"
+
+[node name="DMG" type="HBoxContainer" parent="CanvasLayer/Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/Panel/MarginContainer/VBoxContainer/DMG"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_knxm8")
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/Panel/MarginContainer/VBoxContainer/DMG"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.415686, 0, 1)
+text = "12"
+
+[node name="dmgspeed" type="HBoxContainer" parent="CanvasLayer/Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/Panel/MarginContainer/VBoxContainer/dmgspeed"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_knxm8")
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/Panel/MarginContainer/VBoxContainer/dmgspeed"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.529412, 1, 1)
+text = "0.5s"
+
+[node name="CritC" type="HBoxContainer" parent="CanvasLayer/Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/Panel/MarginContainer/VBoxContainer/CritC"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_knxm8")
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/Panel/MarginContainer/VBoxContainer/CritC"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.682353, 1, 0, 1)
+text = "1%"
+
+[node name="CritM" type="HBoxContainer" parent="CanvasLayer/Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/Panel/MarginContainer/VBoxContainer/CritM"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_knxm8")
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/Panel/MarginContainer/VBoxContainer/CritM"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "x3"
 
 [node name="AudioListener2D" type="AudioListener2D" parent="."]
 

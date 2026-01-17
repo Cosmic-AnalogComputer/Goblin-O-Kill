@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cienmm55sw87u" path="res://Sprites/Goblin.png" id="2_potlr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xcvi8"]
-size = Vector2(60, 60)
+size = Vector2(76, 82)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ax1lh"]
 atlas = ExtResource("2_potlr")
@@ -212,13 +212,14 @@ collision_layer = 4
 collision_mask = 13
 script = ExtResource("1_ax1lh")
 delay = 0.7
+chaseRange = 80.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_xcvi8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(1.875, 1.875)
+scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_deoj1")
 animation = &"attack"
 frame = 4

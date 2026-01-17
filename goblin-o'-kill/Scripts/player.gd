@@ -37,7 +37,6 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	$CanvasLayer/Control/RichTextLabel.text = "damage " + var_to_str(strength)
 	var direction = Input.get_vector("a","d","w","s")
 	if direction and state == STATES.IDLE:
 		velocity = direction.normalized() * speed
