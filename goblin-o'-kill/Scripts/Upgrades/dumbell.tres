@@ -10,8 +10,9 @@ region = Rect2(0, 0, 16, 16)
 [resource]
 script = ExtResource("1_jdcq8")
 texture = SubResource("AtlasTexture_uwamr")
-name = &"dumbell"
-price = 10
+name = &"Dumbell"
+description = "+2 Damage"
+price = 3
 max_health = 0
 health = 0
 damage = 2

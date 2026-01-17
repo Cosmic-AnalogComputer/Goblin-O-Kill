@@ -1021,6 +1021,7 @@ radius = 24.0208
 
 [node name="World" type="Node"]
 script = ExtResource("1_6w0a8")
+canKillAll = true
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 z_index = -2
@@ -1031,6 +1032,7 @@ tile_set = SubResource("TileSet_fo5ed")
 
 [node name="Player" parent="." instance=ExtResource("3_kxy5q")]
 position = Vector2(498, 217)
+cooldown = 1.0
 
 [node name="Wave" type="Node" parent="."]
 
@@ -1056,7 +1058,7 @@ position = Vector2(860, 450)
 position = Vector2(605, 278)
 
 [node name="Wave Button" type="StaticBody2D" parent="Victory"]
-position = Vector2(605, 1000)
+position = Vector2(605, 1099)
 
 [node name="Sprite2D" type="Sprite2D" parent="Victory/Wave Button"]
 scale = Vector2(0.375, 0.375)

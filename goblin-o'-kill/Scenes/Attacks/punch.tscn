@@ -53,10 +53,13 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ilg0c")
+}, {
+"duration": 1.0,
+"texture": null
 }],
 "loop": false,
 "name": &"slash",
-"speed": 10.0
+"speed": 40.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jbxk5"]
@@ -76,7 +79,7 @@ script = ExtResource("1_jbxk5")
 texture_filter = 1
 scale = Vector2(3.625, 3.625)
 sprite_frames = SubResource("SpriteFrames_xwvri")
-animation = &"slash"
+animation = &"null"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_jbxk5")

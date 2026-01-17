@@ -209,10 +209,11 @@ animations = [{
 
 [node name="Goblin" type="CharacterBody2D" groups=["Goblins"]]
 collision_layer = 4
-collision_mask = 13
+collision_mask = 9
 script = ExtResource("1_ax1lh")
+speed = 375
 delay = 0.7
-chaseRange = 80.0
+chaseRange = 90.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_xcvi8")

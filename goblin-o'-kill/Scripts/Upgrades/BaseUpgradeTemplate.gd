@@ -3,7 +3,8 @@ extends Resource
 
 @export_category("Item")
 @export var texture : AtlasTexture
-@export var name : StringName = "Placeholder"
+@export var name : StringName = ""
+@export var description : String = ""
 @export var price : int = 10
 @export_category("Bonuses")
 @export_subgroup("Health")

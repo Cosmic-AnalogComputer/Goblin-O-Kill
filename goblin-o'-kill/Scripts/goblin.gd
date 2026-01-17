@@ -74,7 +74,7 @@ func receive_damage(dmg):
 	if hp <= 0:
 		emit_signal("death")
 		target.gold += goldValue
-		target.updateUI()
+		target.updateUI(false)
 		queue_free()
 
 func _on_cd_timeout() -> void:

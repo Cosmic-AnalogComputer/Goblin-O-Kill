@@ -13,6 +13,7 @@ var gold = 0
 @export var crit_chance : float = 0.10 # x 100
 @export var crit_mod : float = 3.0
 @export var cooldown : float = 0.5
+var too_fast = false
 @export var attackScene = preload("res://Scenes/Attacks/punch.tscn")
 
 var rollDirection : Vector2
@@ -21,18 +22,26 @@ var walk = "walk"
 var roll = "roll"
 var canAttack := true
 var currentAttack = 1
-var speed = 350
+var speed = 375
 
 
 @onready var startingSpeed = speed
 @onready var hitbox = $CollisionShape2D
 @onready var anim = $AnimatedSprite2D
-@onready var hpbar = $CanvasLayer/Control/ProgressBar
+
 @onready var key_tip = $AnimatedSprite2D/Sprite2D
+
+#UI References
+@onready var hpbar = $CanvasLayer/Control/ProgressBar
+@onready var gold_text = $CanvasLayer/Control/Panel/MarginContainer/VBoxContainer/GOLDDD/Label
+@onready var dmg_text = $CanvasLayer/Control/Panel/MarginContainer/VBoxContainer/DMG/Label
+@onready var attack_speed_text = $CanvasLayer/Control/Panel/MarginContainer/VBoxContainer/dmgspeed/Label
+@onready var crit_chance_text = $CanvasLayer/Control/Panel/MarginContainer/VBoxContainer/CritC/Label
+@onready var crit_mod_text = $CanvasLayer/Control/Panel/MarginContainer/VBoxContainer/CritM/Label
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	hpbar.max_value = max_hp
+	updateUI(true)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -62,7 +71,7 @@ func _process(delta: float) -> void:
 		if rollDirection:
 			state = STATES.ROLLING
 			canAttack = false
-			velocity = rollDirection.normalized() * 300
+			velocity = rollDirection.normalized() * 325
 			set_collision_layer_value(2,false)
 			anim.play("roll")
 			$RollAudio.play()
@@ -116,8 +125,19 @@ func get_dmg() -> Vector2:
 	
 	return Vector2(dmg,float(crit))
 
-func updateUI():
-	$CanvasLayer/Control/PanelContainer/RichTextLabel.text = "Wave " + var_to_str(get_parent().wave)
+func updateUI(new_wave = false):
+	if new_wave:
+		$CanvasLayer/Control/PanelContainer/RichTextLabel.text = "Wave " + var_to_str(GlobalVariables.current_wave)
+	hpbar.value = hp
+	hpbar.max_value = max_hp
+	gold_text.text = "$" + var_to_str(gold)
+	dmg_text.text = var_to_str(strength)
+	if too_fast:
+		attack_speed_text.text = "Too fast!"
+	else:
+		attack_speed_text.text = var_to_str(cooldown) + "s"
+	crit_chance_text.text = var_to_str(crit_chance * 100) + "%"
+	crit_mod_text.text = "x" + var_to_str(crit_mod)
 
 func _on_world_new_wave() -> void:
-	updateUI()
+	updateUI(true)

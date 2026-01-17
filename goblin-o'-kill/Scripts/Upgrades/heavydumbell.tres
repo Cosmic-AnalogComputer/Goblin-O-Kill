@@ -10,8 +10,9 @@ region = Rect2(0, 16, 16, 16)
 [resource]
 script = ExtResource("1_kgvrk")
 texture = SubResource("AtlasTexture_iigoy")
-name = &"Heavier dumbell"
-price = 20
+name = &"Heavier Dumbell"
+description = "+5 Damage"
+price = 7
 max_health = 0
 health = 0
 damage = 5
