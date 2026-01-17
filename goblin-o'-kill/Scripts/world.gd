@@ -48,6 +48,7 @@ func make_new_wave(num):
 		for i in amounts[g]:
 			var goblin = goblinScene[g].instantiate()
 			goblin.position = Vector2(randi_range(50,1150),randi_range(50,1150))
+			goblin.goldValue = _get_gold(goblinScene[g], g)
 			goblin.connect("death",timedCheck.start)
 			wave_container.add_child(goblin)
 	
@@ -67,8 +68,6 @@ func buy_goblins(num, amounts) -> Array:
 		while num >= prices[i]:
 			num -= prices[i]
 			amounts[i] += 1
-		
-	
 	#print(amounts, " num: ", num)
 	return amounts
 
@@ -86,3 +85,8 @@ func _on_checker_timeout() -> void:
 
 func _on_interaction_component_interacted(user: Player) -> void:
 	make_new_wave(wave)
+
+func _get_gold(goblino, i) -> int:
+	var gold : int
+	gold = prices[i] + (wave * 0.5)
+	return gold

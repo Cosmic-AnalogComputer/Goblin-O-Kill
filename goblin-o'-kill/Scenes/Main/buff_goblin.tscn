@@ -1,10 +1,30 @@
-[gd_scene load_steps=17 format=3 uid="uid://dfq3ffq6hhsk8"]
+[gd_scene load_steps=29 format=3 uid="uid://dfq3ffq6hhsk8"]
 
 [ext_resource type="Script" uid="uid://btuf0vwmpr25a" path="res://Scripts/goblin.gd" id="1_72gkk"]
 [ext_resource type="Texture2D" uid="uid://cienmm55sw87u" path="res://Sprites/Goblin.png" id="2_h3pm0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xcvi8"]
 size = Vector2(60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ax1lh"]
+atlas = ExtResource("2_h3pm0")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_potlr"]
+atlas = ExtResource("2_h3pm0")
+region = Rect2(32, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vy261"]
+atlas = ExtResource("2_h3pm0")
+region = Rect2(64, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n32am"]
+atlas = ExtResource("2_h3pm0")
+region = Rect2(96, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ls7af"]
+atlas = ExtResource("2_h3pm0")
+region = Rect2(128, 128, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7w5cp"]
 atlas = ExtResource("2_h3pm0")
@@ -13,6 +33,34 @@ region = Rect2(0, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_6n10i"]
 atlas = ExtResource("2_h3pm0")
 region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_04ovc"]
+atlas = ExtResource("2_h3pm0")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxbq4"]
+atlas = ExtResource("2_h3pm0")
+region = Rect2(32, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jb4mm"]
+atlas = ExtResource("2_h3pm0")
+region = Rect2(64, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pfq8f"]
+atlas = ExtResource("2_h3pm0")
+region = Rect2(96, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fxvr3"]
+atlas = ExtResource("2_h3pm0")
+region = Rect2(128, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qghrd"]
+atlas = ExtResource("2_h3pm0")
+region = Rect2(160, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_owpkx"]
+atlas = ExtResource("2_h3pm0")
+region = Rect2(192, 160, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gbw3e"]
 atlas = ExtResource("2_h3pm0")
@@ -54,8 +102,28 @@ region = Rect2(64, 64, 32, 32)
 atlas = ExtResource("2_h3pm0")
 region = Rect2(96, 64, 32, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_deoj1"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_72gkk"]
 animations = [{
+"frames": [{
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_ax1lh")
+}, {
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_potlr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vy261")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n32am")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ls7af")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 10.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7w5cp")
@@ -66,6 +134,32 @@ animations = [{
 "loop": true,
 "name": &"idle",
 "speed": 2.0
+}, {
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_04ovc")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_mxbq4")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_jb4mm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pfq8f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fxvr3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qghrd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_owpkx")
+}],
+"loop": false,
+"name": &"top_attack",
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -129,18 +223,17 @@ chaseRange = 125.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_xcvi8")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
-scale = Vector2(1.875, 1.875)
-sprite_frames = SubResource("SpriteFrames_deoj1")
-animation = &"idle"
-frame_progress = 0.717701
-
 [node name="CD" type="Timer" parent="."]
 one_shot = true
 
 [node name="Delay" type="Timer" parent="."]
 one_shot = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(1.875, 1.875)
+sprite_frames = SubResource("SpriteFrames_72gkk")
+animation = &"attack"
 
 [connection signal="timeout" from="CD" to="." method="_on_cd_timeout"]
 [connection signal="timeout" from="Delay" to="." method="_on_delay_timeout"]

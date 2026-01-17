@@ -5,7 +5,7 @@ enum STATES {IDLE,ROLLING,DEAD}
 var state : STATES = STATES.IDLE
 
 @export_group("Stats")
-var gold : int
+var gold = 0
 @export var max_hp = 15
 @export var hp = 15
 @export_subgroup("Combat")
@@ -117,5 +117,8 @@ func get_dmg() -> Vector2:
 	
 	return Vector2(dmg,float(crit))
 
+func updateUI():
+	$CanvasLayer/Control/PanelContainer/RichTextLabel.text = "Wave " + var_to_str(get_parent().wave)
+
 func _on_world_new_wave() -> void:
-	$CanvasLayer/Control/Wave.text = var_to_str(get_parent().wave)
+	updateUI()

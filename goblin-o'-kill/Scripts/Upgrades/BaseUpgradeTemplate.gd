@@ -2,8 +2,9 @@ class_name Upgrade
 extends Resource
 
 @export_category("Item")
-@export var texture : Texture2D = preload("res://icon.svg")
+@export var texture : AtlasTexture
 @export var name : StringName = "Placeholder"
+@export var price : int = 10
 @export_category("Bonuses")
 @export_subgroup("Health")
 @export var max_health : int

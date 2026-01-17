@@ -1,13 +1,17 @@
-[gd_resource type="Resource" script_class="Upgrade" load_steps=3 format=3 uid="uid://dqd3pysm7vugr"]
+[gd_resource type="Resource" script_class="Upgrade" load_steps=4 format=3 uid="uid://dqd3pysm7vugr"]
 
 [ext_resource type="Script" uid="uid://c2wxw55rruo72" path="res://Scripts/Upgrades/BaseUpgradeTemplate.gd" id="1_jdcq8"]
-[ext_resource type="Texture2D" uid="uid://18g11pd5c721" path="res://icon.svg" id="2_uwamr"]
+[ext_resource type="Texture2D" uid="uid://bgnk58vy4ir8f" path="res://Sprites/Upgrades.png" id="2_jdcq8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uwamr"]
+atlas = ExtResource("2_jdcq8")
+region = Rect2(0, 0, 16, 16)
 
 [resource]
 script = ExtResource("1_jdcq8")
-texture = ExtResource("2_uwamr")
+texture = SubResource("AtlasTexture_uwamr")
 name = &"dumbell"
-speed = 0
+price = 10
 max_health = 0
 health = 0
 damage = 2
