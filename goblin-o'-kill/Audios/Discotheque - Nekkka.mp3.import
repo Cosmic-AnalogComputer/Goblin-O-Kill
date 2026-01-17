@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cbn4gp4c2jy56"
+path="res://.godot/imported/Discotheque - Nekkka.mp3-7e704e2ecbaa0dc070893d0ffba5e81d.mp3str"
+
+[deps]
+
+source_file="res://Audios/Discotheque - Nekkka.mp3"
+dest_files=["res://.godot/imported/Discotheque - Nekkka.mp3-7e704e2ecbaa0dc070893d0ffba5e81d.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

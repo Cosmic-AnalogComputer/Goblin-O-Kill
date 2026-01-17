@@ -1,20 +1,27 @@
+class_name Player
 extends CharacterBody2D
 
 enum STATES {IDLE,ROLLING,DEAD}
 var state : STATES = STATES.IDLE
 
-@export var speed = 350
+@export_group("Stats")
 @export var max_hp = 15
 @export var hp = 15
+@export_subgroup("Combat")
+@export var strength = 1
+@export var crit_chance : float = 0.10 # x 100
+@export var crit_mod : float = 3.0
+@export var cooldown : float = 0.5
 @export var attackScene = preload("res://Scenes/Attacks/punch.tscn")
-@export var attackIsChild := true
 
 var rollDirection : Vector2
 var idle = "idle"
 var walk = "walk"
 var roll = "roll"
-var goblinScene = preload("res://Scenes/goblin.tscn")
 var canAttack := true
+var currentAttack = 1
+var speed = 350
+
 
 @onready var startingSpeed = speed
 @onready var hitbox = $CollisionShape2D
@@ -28,6 +35,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	$CanvasLayer/Control/RichTextLabel.text = "damage " + var_to_str(strength)
 	var direction = Input.get_vector("a","d","w","s")
 	if direction and state == STATES.IDLE:
 		velocity = direction.normalized() * speed
@@ -52,9 +60,10 @@ func _process(delta: float) -> void:
 	if Input.is_action_pressed("shift") and state == STATES.IDLE:
 		if rollDirection:
 			state = STATES.ROLLING
-			velocity = rollDirection.normalized() * 300
-			hitbox.disabled = true
+			velocity = rollDirection.normalized() * (speed - 50)
+			set_collision_layer_value(2,false)
 			anim.play("roll")
+			$RollAudio.play()
 			$IFrames.start()
 	
 	move_and_slide()
@@ -62,34 +71,47 @@ func _process(delta: float) -> void:
 	# ATTACK
 	if Input.is_action_pressed("C1") and canAttack:
 		attack()
+		speed = 250
 	
-	
-	
-	if Input.is_action_just_pressed("ui_accept"):
-		var goblin = goblinScene.instantiate()
-		goblin.position = Vector2(0,0)
-		get_parent().add_child(goblin)
 
 func _on_i_frames_timeout() -> void:
-	hitbox.disabled = false
+	set_collision_layer_value(2,true)
 	state = STATES.IDLE
 
 func receive_damage(dmg):
 	hp -= dmg
 	if hp <= 0:
+		state = STATES.DEAD
 		queue_free()
 	hpbar.value = hp
 
 func attack():
 	canAttack = false
-	$CD.start()
+	$CD.start(cooldown)
 	var attack = attackScene.instantiate()
 	attack.position = get_local_mouse_position().normalized() * 75
+	attack.look_at(get_local_mouse_position() * 75)
 	attack.set_collision_mask(4)
-	if attackIsChild:
-		add_child(attack)
-	else:
-		get_tree().add_child(attack)
+	var hurt = get_dmg()
+	attack.damage = hurt.x
+	if hurt.y == 1.0:
+		attack.modulate = Color.DEEP_SKY_BLUE
+	add_child(attack)
+
 
 func _on_cd_timeout() -> void:
 	canAttack = true
+	speed = startingSpeed
+
+func get_dmg() -> Vector2:
+	var dmg : int
+	var crit : bool
+	dmg = strength
+	if randf() <= crit_chance:
+		dmg * crit_mod
+		crit = true
+	
+	return Vector2(dmg,float(crit))
+
+func _on_world_new_wave() -> void:
+	$CanvasLayer/Control/Wave.text = var_to_str(GlobalVariables.wave)

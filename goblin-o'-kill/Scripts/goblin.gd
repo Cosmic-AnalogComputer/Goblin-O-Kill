@@ -1,11 +1,15 @@
 extends CharacterBody2D
 
+signal death()
+
 @export_group("Stats")
 @export var hp = 3
 @export var speed = 200
 @export_group("Combat")
+@export var strength = 1
 @export var delay : float = 1.0
 @export var cooldown : float = 1.0
+@export var buffed := false
 @export var chaseRange : float = 75
 @export var attackAtLocation := false
 @export var attackScene = preload("res://Scenes/Attacks/punch.tscn")
@@ -18,7 +22,9 @@ var canAttack := true
 var idle = "idle"
 var walk = "walk"
 
+@onready var startingSpeed = speed
 @onready var anim = $AnimatedSprite2D
+@onready var startingColor = modulate
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -46,7 +52,7 @@ func _process(delta: float) -> void:
 	if velocity.y < 0:
 		walk = "top_walk"
 		idle = "top_idle"
-	elif velocity.y > 0:
+	if velocity.y > 0:
 		walk = "walk"
 		idle = "idle"
 	
@@ -58,6 +64,7 @@ func _process(delta: float) -> void:
 	move_and_slide()
 
 func attack():
+	speed = 0
 	canAttack = false
 	modulate = Color.RED
 	$Delay.start(delay)
@@ -65,21 +72,31 @@ func attack():
 func receive_damage(dmg):
 	hp -= dmg
 	if hp <= 0:
+		emit_signal("death")
 		queue_free()
 
 func _on_cd_timeout() -> void:
 	canAttack = true
+	speed = startingSpeed
 
 func _on_delay_timeout() -> void:
-	modulate = Color.WHITE
+	modulate = startingColor
 	$CD.start(cooldown)
 	var attack = attackScene.instantiate()
 	if attackAtLocation:
 		attack.position = projectilePos
 	else:
 		attack.position = direction.normalized() * chaseRange
+	attack.look_at(direction * 60)
 	attack.set_collision_mask(2)
+	attack.damage = get_damage()
+	attack.play = "dagger"
 	if attackIsChild:
 		add_child(attack)
 	else:
 		get_tree().add_child(attack)
+
+func get_damage() -> int:
+	var dmg : int
+	dmg = round(strength * GlobalVariables.wave_dmg_mod * (float(buffed) + 1) )
+	return dmg
