@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=4 uid="uid://bhkyobjeljr7i"]
+[gd_scene load_steps=50 format=4 uid="uid://bhkyobjeljr7i"]
 
 [ext_resource type="Script" uid="uid://djnsrw0beuq3m" path="res://Scripts/world.gd" id="1_6w0a8"]
 [ext_resource type="Texture2D" uid="uid://bkexd0hd5l4ap" path="res://Sprites/TestTiles0.png" id="2_mkl45"]
@@ -8,10 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://evb4gsey03rd" path="res://Scenes/Items/bggoblinm_2.tscn" id="4_16r8v"]
 [ext_resource type="AudioStream" uid="uid://cbn4gp4c2jy56" path="res://Audios/Discotheque - Nekkka.mp3" id="4_b4tvn"]
 [ext_resource type="Texture2D" uid="uid://b7ptuqv2gt2mn" path="res://Sprites/Shop_keeper.png" id="5_b4tvn"]
-[ext_resource type="Texture2D" uid="uid://18g11pd5c721" path="res://icon.svg" id="5_kxy5q"]
 [ext_resource type="PackedScene" uid="uid://5a56w426b3c2" path="res://Scenes/Items/bgbolin_3.tscn" id="5_wwef5"]
 [ext_resource type="PackedScene" uid="uid://c0ltolgyfraym" path="res://Scenes/Items/interaction_component.tscn" id="6_b4tvn"]
 [ext_resource type="PackedScene" uid="uid://b4pxd2dou17tb" path="res://Scenes/Items/bggoblinm_4.tscn" id="6_wwef5"]
+[ext_resource type="Texture2D" uid="uid://d273j2bneec16" path="res://Sprites/Altar.png" id="10_wwef5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8j60k"]
 texture = ExtResource("2_mkl45")
@@ -1242,8 +1242,14 @@ border_width_right = 3
 border_width_bottom = 3
 border_color = Color(1, 1, 1, 1)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_6ki3h"]
-radius = 24.0208
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3id6w"]
+size = Vector2(59, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vnfxb"]
+size = Vector2(44, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ihuw"]
+size = Vector2(34, 4)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_51068"]
 texture = ExtResource("2_mkl45")
@@ -3287,7 +3293,7 @@ position = Vector2(860, 514)
 y_sort_enabled = true
 position = Vector2(605, 151)
 script = ExtResource("3_6ki3h")
-Dialogues = Array[String](["Buy me some items, ya?", "Wha you look at me like that?", "Come on now, giv me ya gold!", "aye, buddy. It ain wrong to help out an ol' folk like me", "Take a look at these", "We both know u got some gold with ya, ain' tha righ?", "Maybe i'll take you gold ma self. Maybe", "U ain' dying if u donate som. Are ya?"])
+Dialogues = Array[String](["Buy me some items, ya?", "Wha you look at me like that?", "Come on now, giv me ya gold!", "aye, buddy. It ain wrong to help out an ol' folk like me", "Take a look at these", "We both know u got some gold with ya, ain' tha righ?", "Maybe i'll take you gold ma self...Maybe", "U ain' dying if u donate som. Are ya?"])
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Shop" groups=["On Victory"]]
 y_sort_enabled = true
@@ -3387,14 +3393,36 @@ tip_position = 4
 position = Vector2(605, 1300)
 
 [node name="Sprite2D" type="Sprite2D" parent="Wave Button"]
-scale = Vector2(0.375, 0.375)
-texture = ExtResource("5_kxy5q")
+y_sort_enabled = true
+texture_filter = 1
+scale = Vector2(5, 5)
+texture = ExtResource("10_wwef5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wave Button"]
-shape = SubResource("CircleShape2D_6ki3h")
+position = Vector2(0, 12)
+shape = SubResource("RectangleShape2D_3id6w")
+one_way_collision = true
 
 [node name="Interaction Component" parent="Wave Button" instance=ExtResource("6_b4tvn")]
-scale = Vector2(1.5, 1.5)
+scale = Vector2(1.98, 1.98)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Wave Button"]
+position = Vector2(0, -28)
+rotation = -3.14159
+shape = SubResource("RectangleShape2D_vnfxb")
+one_way_collision = true
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Wave Button"]
+position = Vector2(20, -12)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_4ihuw")
+one_way_collision = true
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Wave Button"]
+position = Vector2(-20, -12)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_4ihuw")
+one_way_collision = true
 
 [node name="Walls" type="StaticBody2D" parent="."]
 z_index = -1
@@ -3435,14 +3463,14 @@ parameters/looping = true
 one_shot = true
 
 [node name="Player" parent="." instance=ExtResource("3_kxy5q")]
-position = Vector2(591, 871)
+position = Vector2(600, 1017)
 cooldown = 1.0
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="."]
 z_index = 1
 texture_filter = 1
 scale = Vector2(4, 4)
-tile_map_data = PackedByteArray("AAAPAPz/AAAZAAAAAAAQAPz/AAAZAAAAAAARAPz/AAAZAAAAAAASAPz/AAAZAAAAAADZ//X/AAAZAAAAAAAAAPz/AAAZAAAAAAABAPz/AAAZAAAAAAACAPz/AAAZAAAAAAADAPz/AAAZAAAAAAAEAPz/AAAZAAAAAAAFAPz/AAAZAAAAAAAGAPz/AAAZAAAAAAAHAPz/AAAZAAAAAAAIAPz/AAAZAAAAAAAJAPz/AAAZAAAAAAAKAPz/AAAZAAAAAAALAPz/AAAZAAAAAAAMAPz/AAAZAAAAAAANAPz/AAAZAAAAAAAOAPz/AAAZAAAAAAA=")
+tile_map_data = PackedByteArray("AAAPAPz/AAAZAAAAAAAQAPz/AAAZAAAAAAARAPz/AAAZAAAAAAASAPz/AAAZAAAAAADZ//X/AAAZAAAAAAAAAPz/AAAZAAAAAAABAPz/AAAZAAAAAAACAPz/AAAZAAAAAAADAPz/AAAZAAAAAAAEAPz/AAAZAAAAAAAFAPz/AAAZAAAAAAAGAPz/AAAZAAAAAAAHAPz/AAAZAAAAAAAIAPz/AAAZAAAAAAAJAPz/AAAZAAAAAAAKAPz/AAAZAAAAAAALAPz/AAAZAAAAAAAMAPz/AAAZAAAAAAANAPz/AAAZAAAAAAAOAPz/AAAZAAAAAAAAAP//AAAVAAkAADAGAP//AAAYAAkAADADAP//AAAWAAkAADARAP//AAAWAAkAADASAP//AAAXAAkAADACAP//AAAXAAkAADA=")
 tile_set = SubResource("TileSet_51068")
 occlusion_enabled = false
 metadata/_edit_lock_ = true

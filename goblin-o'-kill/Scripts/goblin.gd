@@ -13,6 +13,7 @@ var goldValue : int
 @export var buffed := false
 @export var chaseRange : float = 75
 @export var attackAtLocation := false
+@export var attackAtPosition := false
 @export var attackScene = preload("res://Scenes/Attacks/punch.tscn")
 @export var attackIsChild := true
 
@@ -86,17 +87,21 @@ func _on_delay_timeout() -> void:
 	$CD.start(cooldown)
 	var attack = attackScene.instantiate()
 	if attackAtLocation:
-		attack.position = projectilePos
+		attack.position = target.position
+	elif attackAtPosition:
+		attack.global_position = position
 	else:
 		attack.position = direction.normalized() * 30
 	attack.look_at(direction * 60)
-	attack.set_collision_mask(2)
+	if attack is Punch:
+		attack.set_collision_mask(2)
 	attack.damage = get_damage()
-	attack.play = "null"
+	if attack is Punch:
+		attack.play = "null"
 	if attackIsChild:
 		add_child(attack)
 	else:
-		get_tree().add_child(attack)
+		get_parent().get_parent().add_child(attack)
 
 func get_damage() -> int:
 	var dmg : int

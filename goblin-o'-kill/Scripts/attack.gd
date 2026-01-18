@@ -1,3 +1,4 @@
+class_name Punch
 extends Area2D
 
 var damage : int

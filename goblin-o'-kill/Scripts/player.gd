@@ -1,7 +1,7 @@
 class_name Player
 extends CharacterBody2D
 
-enum STATES {IDLE,ROLLING,DEAD}
+enum STATES {IDLE,ROLLING,DEAD,ATTACKING}
 var state : STATES = STATES.IDLE
 
 @export_group("Stats")
@@ -19,8 +19,7 @@ var too_fast = false
 var rollDirection : Vector2
 var idle = "idle"
 var walk = "walk"
-var roll = "roll"
-var canAttack := true
+var attack_anim = "attack"
 var currentAttack = 1
 var speed = 375
 
@@ -47,9 +46,10 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	var direction = Input.get_vector("a","d","w","s")
-	if direction and state == STATES.IDLE:
+	if direction and not state == STATES.ROLLING:
 		velocity = direction.normalized() * speed
-		anim.play(walk)
+		if state == STATES.IDLE:
+			anim.play(walk)
 		rollDirection = direction
 		
 		if direction.x < 0:
@@ -59,28 +59,31 @@ func _process(delta: float) -> void:
 		if direction.y < 0:
 			walk = "top_walk"
 			idle = "top_idle"
+			attack_anim = "top_attack"
 		else:
 			walk = "walk"
 			idle = "idle"
-	elif state == STATES.IDLE:
+			attack_anim = "attack"
+	elif state != STATES.ROLLING:
 		velocity = Vector2.ZERO
 		rollDirection = Vector2.ZERO
-		anim.play(idle)
+		if state == STATES.IDLE:
+			anim.play(idle)
 	
-	if Input.is_action_pressed("shift") and state == STATES.IDLE:
+	if Input.is_action_pressed("shift") and state != STATES.ROLLING:
 		if rollDirection:
 			state = STATES.ROLLING
-			canAttack = false
 			velocity = rollDirection.normalized() * 350
 			set_collision_layer_value(2,false)
 			anim.play("roll")
+			$CD.set_paused(true)
 			$RollAudio.play()
 			$IFrames.start()
 	
 	move_and_slide()
 	
 	# ATTACK
-	if Input.is_action_pressed("C1") and canAttack:
+	if Input.is_action_pressed("C1") and state == STATES.IDLE:
 		attack()
 		speed = 250
 	
@@ -88,7 +91,7 @@ func _process(delta: float) -> void:
 func _on_i_frames_timeout() -> void:
 	set_collision_layer_value(2,true)
 	state = STATES.IDLE
-	canAttack = true
+	$CD.set_paused(false)
 
 func receive_damage(dmg):
 	hp -= dmg
@@ -99,7 +102,7 @@ func receive_damage(dmg):
 	updateUI()
 
 func attack():
-	canAttack = false
+	state = STATES.ATTACKING
 	$CD.start(cooldown)
 	var attack = attackScene.instantiate()
 	attack.position = get_local_mouse_position().normalized() * 75
@@ -109,12 +112,13 @@ func attack():
 	attack.damage = hurt.x
 	if hurt.y == 1.0:
 		attack.modulate = Color.DEEP_SKY_BLUE
+	anim.play(attack_anim)
 	add_child(attack)
 
 
 func _on_cd_timeout() -> void:
-	canAttack = true
 	speed = startingSpeed
+	state = STATES.IDLE
 
 func get_dmg() -> Vector2:
 	var dmg : int

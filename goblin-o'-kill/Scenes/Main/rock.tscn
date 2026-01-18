@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://cya5g6dao173"]
+
+[ext_resource type="Script" uid="uid://bnax3y0dgjoxd" path="res://Scripts/rock.gd" id="1_bpaji"]
+[ext_resource type="Texture2D" uid="uid://bxjhch64puryw" path="res://Sprites/flashes.png" id="2_l3r86"]
+
+[sub_resource type="Curve" id="Curve_bpaji"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_l3r86"]
+curve = SubResource("Curve_bpaji")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gg1td"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 15.0
+initial_velocity_max = 20.0
+gravity = Vector3(0, 0, 0)
+scale_min = 5.0
+scale_max = 8.0
+scale_curve = SubResource("CurveTexture_l3r86")
+color = Color(1, 0, 0, 1)
+hue_variation_min = -2.23517e-08
+hue_variation_max = 0.12
+
+[node name="rock" type="Node2D"]
+z_index = 5
+script = ExtResource("1_bpaji")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2.68, 2.68)
+texture = ExtResource("2_l3r86")
+region_enabled = true
+region_rect = Rect2(0, 160, 16, 16)
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(50, 0)
+collision_mask = 3
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_gg1td")

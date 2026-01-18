@@ -1,0 +1,240 @@
+[gd_scene load_steps=30 format=3 uid="uid://dlgeaqttixnn"]
+
+[ext_resource type="Script" uid="uid://btuf0vwmpr25a" path="res://Scripts/goblin.gd" id="1_s147e"]
+[ext_resource type="Texture2D" uid="uid://detx120euehes" path="res://Sprites/ThrowerGoblin.png" id="2_bmsty"]
+[ext_resource type="PackedScene" uid="uid://cya5g6dao173" path="res://Scenes/Main/rock.tscn" id="2_s147e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xcvi8"]
+size = Vector2(76, 82)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tq8d5"]
+atlas = ExtResource("2_bmsty")
+region = Rect2(0, 160, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q8ntv"]
+atlas = ExtResource("2_bmsty")
+region = Rect2(40, 160, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v2gvq"]
+atlas = ExtResource("2_bmsty")
+region = Rect2(80, 160, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_meapa"]
+atlas = ExtResource("2_bmsty")
+region = Rect2(120, 160, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mu03k"]
+atlas = ExtResource("2_bmsty")
+region = Rect2(160, 160, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u02e4"]
+atlas = ExtResource("2_bmsty")
+region = Rect2(200, 160, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_67hnn"]
+atlas = ExtResource("2_bmsty")
+region = Rect2(0, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s147e"]
+atlas = ExtResource("2_bmsty")
+region = Rect2(40, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bmsty"]
+atlas = ExtResource("2_bmsty")
+region = Rect2(0, 200, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5n2m4"]
+atlas = ExtResource("2_bmsty")
+region = Rect2(40, 200, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tmatv"]
+atlas = ExtResource("2_bmsty")
+region = Rect2(80, 200, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j3t24"]
+atlas = ExtResource("2_bmsty")
+region = Rect2(120, 200, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ompi3"]
+atlas = ExtResource("2_bmsty")
+region = Rect2(160, 200, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j13wr"]
+atlas = ExtResource("2_bmsty")
+region = Rect2(200, 200, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w4lpd"]
+atlas = ExtResource("2_bmsty")
+region = Rect2(0, 40, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ipla"]
+atlas = ExtResource("2_bmsty")
+region = Rect2(40, 40, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i6tgd"]
+atlas = ExtResource("2_bmsty")
+region = Rect2(0, 120, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h3io2"]
+atlas = ExtResource("2_bmsty")
+region = Rect2(40, 120, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6edsp"]
+atlas = ExtResource("2_bmsty")
+region = Rect2(80, 120, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bbfv5"]
+atlas = ExtResource("2_bmsty")
+region = Rect2(120, 120, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w427e"]
+atlas = ExtResource("2_bmsty")
+region = Rect2(0, 80, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ncre"]
+atlas = ExtResource("2_bmsty")
+region = Rect2(40, 80, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ynca7"]
+atlas = ExtResource("2_bmsty")
+region = Rect2(80, 80, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u6tsh"]
+atlas = ExtResource("2_bmsty")
+region = Rect2(120, 80, 40, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tmatv"]
+animations = [{
+"frames": [{
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_tq8d5")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_q8ntv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v2gvq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_meapa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mu03k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u02e4")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_67hnn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s147e")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_bmsty")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_5n2m4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tmatv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j3t24")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ompi3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j13wr")
+}],
+"loop": false,
+"name": &"top_attack",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w4lpd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ipla")
+}],
+"loop": true,
+"name": &"top_idle",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i6tgd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h3io2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6edsp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bbfv5")
+}],
+"loop": true,
+"name": &"top_walk",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w427e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ncre")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ynca7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u6tsh")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 4.0
+}]
+
+[node name="Thrower" type="CharacterBody2D" groups=["Goblins"]]
+collision_layer = 4
+collision_mask = 9
+script = ExtResource("1_s147e")
+speed = 350
+strength = 2
+delay = 0.7
+cooldown = 1.2
+chaseRange = 400.0
+attackAtPosition = true
+attackScene = ExtResource("2_s147e")
+attackIsChild = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_xcvi8")
+
+[node name="CD" type="Timer" parent="."]
+one_shot = true
+
+[node name="Delay" type="Timer" parent="."]
+one_shot = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_tmatv")
+animation = &"attack"
+
+[connection signal="timeout" from="CD" to="." method="_on_cd_timeout"]
+[connection signal="timeout" from="Delay" to="." method="_on_delay_timeout"]
