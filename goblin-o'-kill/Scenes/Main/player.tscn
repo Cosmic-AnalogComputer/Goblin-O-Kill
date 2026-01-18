@@ -368,6 +368,7 @@ expand_mode = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/Control/Panel/MarginContainer/VBoxContainer/GOLDDD"]
 layout_mode = 2
+size_flags_vertical = 8
 theme_override_colors/font_color = Color(1, 0.913725, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "20 $"
@@ -384,6 +385,8 @@ expand_mode = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/Control/Panel/MarginContainer/VBoxContainer/DMG"]
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
 theme_override_colors/font_color = Color(1, 0.415686, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "12"
@@ -400,6 +403,7 @@ expand_mode = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/Control/Panel/MarginContainer/VBoxContainer/dmgspeed"]
 layout_mode = 2
+size_flags_vertical = 8
 theme_override_colors/font_color = Color(0, 0.529412, 1, 1)
 theme_override_font_sizes/font_size = 20
 text = "0.5s"
@@ -416,6 +420,7 @@ expand_mode = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/Control/Panel/MarginContainer/VBoxContainer/CritC"]
 layout_mode = 2
+size_flags_vertical = 8
 theme_override_colors/font_color = Color(0.682353, 1, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "1%"
@@ -432,6 +437,7 @@ expand_mode = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/Control/Panel/MarginContainer/VBoxContainer/CritM"]
 layout_mode = 2
+size_flags_vertical = 8
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "x3"

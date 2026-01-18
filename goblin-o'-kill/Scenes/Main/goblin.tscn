@@ -170,6 +170,12 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_w8ee8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mxbq4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_04ovc")
 }],
 "loop": false,
 "name": &"top_attack",
@@ -242,7 +248,7 @@ one_shot = true
 texture_filter = 1
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_ax1lh")
-animation = &"attack"
+animation = &"top_attack"
 
 [connection signal="timeout" from="CD" to="." method="_on_cd_timeout"]
 [connection signal="timeout" from="Delay" to="." method="_on_delay_timeout"]

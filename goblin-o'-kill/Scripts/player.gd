@@ -96,6 +96,7 @@ func receive_damage(dmg):
 		state = STATES.DEAD
 		queue_free()
 	hpbar.value = hp
+	updateUI()
 
 func attack():
 	canAttack = false
