@@ -7,6 +7,7 @@
 [sub_resource type="AtlasTexture" id="AtlasTexture_aehgt"]
 atlas = ExtResource("3_yat87")
 region = Rect2(0, 0, 16, 16)
+filter_clip = true
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aehgt"]
 bg_color = Color(0, 0, 0, 1)
@@ -40,10 +41,11 @@ region_rect = Rect2(16, 0, 16, 15)
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 visible = false
-offset_left = -100.0
-offset_top = -300.0
-offset_right = 100.0
-offset_bottom = -100.0
+z_index = 3
+offset_left = -400.0
+offset_top = -100.0
+offset_right = -200.0
+offset_bottom = 100.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_aehgt")
 

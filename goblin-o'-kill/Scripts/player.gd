@@ -71,7 +71,7 @@ func _process(delta: float) -> void:
 		if rollDirection:
 			state = STATES.ROLLING
 			canAttack = false
-			velocity = rollDirection.normalized() * 325
+			velocity = rollDirection.normalized() * 350
 			set_collision_layer_value(2,false)
 			anim.play("roll")
 			$RollAudio.play()
@@ -128,8 +128,9 @@ func get_dmg() -> Vector2:
 func updateUI(new_wave = false):
 	if new_wave:
 		$CanvasLayer/Control/PanelContainer/RichTextLabel.text = "Wave " + var_to_str(GlobalVariables.current_wave)
-	hpbar.value = hp
 	hpbar.max_value = max_hp
+	hpbar.value = hp
+	$CanvasLayer/Control/ProgressBar/Label.text = var_to_str(hp) + "/" + var_to_str(max_hp)
 	gold_text.text = "$" + var_to_str(gold)
 	dmg_text.text = var_to_str(strength)
 	if too_fast:

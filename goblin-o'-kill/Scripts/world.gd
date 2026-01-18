@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 signal new_wave()
 
@@ -29,16 +29,19 @@ func _process(delta: float) -> void:
 		for k in wave_container.get_child_count():
 			wave_container.get_child(k).receive_damage(100)
 	
-	musicStream.volume_db = lerp(GlobalVariables.music_volume,GlobalVariables.music_volume -15.0, ivolume)
+	musicStream.volume_db = lerp(GlobalVariables.music_volume * -10.0,GlobalVariables.music_volume * -15.0, ivolume)
 	if !playing_music and ivolume < 1.0:
 		ivolume += delta
 	elif ivolume > 0.0:
 		ivolume -= delta
 
 func make_new_wave():
-	$Victory.hide()
-	$"Victory/Wave Button/Interaction Component".monitoring = false
-	$"Victory/Wave Button/CollisionShape2D".disabled = true
+	for loop in get_tree().get_node_count_in_group("On Victory"):
+		get_tree().get_nodes_in_group("On Victory")[loop].hide()
+	$"Wave Button/Interaction Component".monitoring = false
+	$"Wave Button/CollisionShape2D".disabled = true
+	$Shop.set_collision_layer_value(1,false)
+	$"Shop/Interaction Component".monitoring = false
 	emit_signal("new_wave")
 	GlobalVariables.wave_dmg_mod = 1 + (GlobalVariables.current_wave * 0.1)
 	playing_music = true
@@ -69,17 +72,20 @@ func buy_goblins(num, amounts) -> Array:
 		while num >= prices[i]:
 			num -= prices[i]
 			amounts[i] += 1
-	#print(amounts, " num: ", num)
+	print(amounts, " num: ", num)
 	return amounts
 
 func restock():
-	$Victory.show()
-	$"Victory/Wave Button/Interaction Component".monitoring = true
-	$"Victory/Wave Button/CollisionShape2D".disabled = false
+	for loop in get_tree().get_node_count_in_group("On Victory"):
+		get_tree().get_nodes_in_group("On Victory")[loop].show()
+	$"Wave Button/Interaction Component".monitoring = true
+	$"Wave Button/CollisionShape2D".disabled = false
+	$Shop.set_collision_layer_value(1,true)
+	$"Shop/Interaction Component".monitoring = true
 	for i in 3:
 		var item = itemScene.instantiate()
 		item.UPGRADE = load(GlobalVariables.upgrades.pick_random())
-		item.position = $Victory.get_child(i).position
+		item.position = get_tree().get_nodes_in_group("On Victory")[i].position
 		connect("new_wave", item.queue_free)
 		add_child(item)
 

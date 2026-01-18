@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=4 uid="uid://bhkyobjeljr7i"]
+[gd_scene load_steps=35 format=4 uid="uid://bhkyobjeljr7i"]
 
 [ext_resource type="Script" uid="uid://djnsrw0beuq3m" path="res://Scripts/world.gd" id="1_6w0a8"]
 [ext_resource type="Texture2D" uid="uid://bkexd0hd5l4ap" path="res://Sprites/TestTiles0.png" id="2_mkl45"]
+[ext_resource type="Script" uid="uid://s4ladhyofkn2" path="res://Scripts/shop.gd" id="3_6ki3h"]
 [ext_resource type="PackedScene" uid="uid://crn3fw2rb4s8i" path="res://Scenes/Main/player.tscn" id="3_kxy5q"]
 [ext_resource type="AudioStream" uid="uid://cbn4gp4c2jy56" path="res://Audios/Discotheque - Nekkka.mp3" id="4_b4tvn"]
+[ext_resource type="Texture2D" uid="uid://b7ptuqv2gt2mn" path="res://Sprites/Shop_keeper.png" id="5_b4tvn"]
 [ext_resource type="Texture2D" uid="uid://18g11pd5c721" path="res://icon.svg" id="5_kxy5q"]
 [ext_resource type="PackedScene" uid="uid://c0ltolgyfraym" path="res://Scenes/Items/interaction_component.tscn" id="6_b4tvn"]
 
@@ -1016,10 +1018,222 @@ texture = ExtResource("2_mkl45")
 [sub_resource type="TileSet" id="TileSet_fo5ed"]
 sources/0 = SubResource("TileSetAtlasSource_8j60k")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_b4tvn"]
+atlas = ExtResource("5_b4tvn")
+region = Rect2(0, 0, 96, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ki3h"]
+atlas = ExtResource("5_b4tvn")
+region = Rect2(96, 0, 96, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvnx8"]
+atlas = ExtResource("5_b4tvn")
+region = Rect2(192, 0, 96, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_51068"]
+atlas = ExtResource("5_b4tvn")
+region = Rect2(288, 0, 96, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_16r8v"]
+atlas = ExtResource("5_b4tvn")
+region = Rect2(384, 0, 96, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wwef5"]
+atlas = ExtResource("5_b4tvn")
+region = Rect2(480, 0, 96, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3id6w"]
+atlas = ExtResource("5_b4tvn")
+region = Rect2(576, 0, 96, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vnfxb"]
+atlas = ExtResource("5_b4tvn")
+region = Rect2(672, 0, 96, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ihuw"]
+atlas = ExtResource("5_b4tvn")
+region = Rect2(768, 0, 96, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jnmjr"]
+atlas = ExtResource("5_b4tvn")
+region = Rect2(864, 0, 96, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_48xbc"]
+atlas = ExtResource("5_b4tvn")
+region = Rect2(960, 0, 96, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6qa7"]
+atlas = ExtResource("5_b4tvn")
+region = Rect2(1056, 0, 96, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8fjw"]
+atlas = ExtResource("5_b4tvn")
+region = Rect2(1152, 0, 96, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_chlgq"]
+atlas = ExtResource("5_b4tvn")
+region = Rect2(1248, 0, 96, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pndor"]
+atlas = ExtResource("5_b4tvn")
+region = Rect2(1344, 0, 96, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nxb1w"]
+atlas = ExtResource("5_b4tvn")
+region = Rect2(1440, 0, 96, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_08tv0"]
+atlas = ExtResource("5_b4tvn")
+region = Rect2(1536, 0, 96, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wgaph"]
+atlas = ExtResource("5_b4tvn")
+region = Rect2(1632, 0, 96, 70)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hm6q2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b4tvn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ki3h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kvnx8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_51068")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_16r8v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wwef5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3id6w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vnfxb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ihuw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jnmjr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_48xbc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f6qa7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a8fjw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_chlgq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pndor")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nxb1w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_08tv0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wgaph")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b4tvn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ki3h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kvnx8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_51068")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_16r8v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wwef5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3id6w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vnfxb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ihuw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jnmjr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b4tvn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ki3h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kvnx8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_51068")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_16r8v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wwef5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3id6w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vnfxb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ihuw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jnmjr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7xro7"]
+size = Vector2(240, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b4tvn"]
+size = Vector2(50, 25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6ki3h"]
+size = Vector2(63, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kvnx8"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_6ki3h"]
 radius = 24.0208
 
-[node name="World" type="Node"]
+[node name="World" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_6w0a8")
 canKillAll = true
 
@@ -1029,47 +1243,146 @@ texture_filter = 1
 scale = Vector2(4, 4)
 tile_map_data = PackedByteArray("AAAAAAAAAAATAAMAAAAAAAEAAAAUAAIAAAAAAAIAAAATAAIAAAAAAAMAAAASAAMAAAAAAAQAAAATAAEAAAAAAAUAAAAUAAEAAAAAAAYAAAAVAAIAAAAAAAcAAAATAAEAAAAAAAgAAAATAAMAAAAAAAkAAAAUAAEAAAAAAAoAAAATAAIAAAAAAAsAAAAVAAQAAAAAAAwAAAATAAIAAAABAAAAAAASAAQAAAABAAEAAAASAAEAAAABAAIAAAATAAMAAAABAAMAAAATAAEAAAABAAQAAAASAAQAAAABAAUAAAAVAAQAAAABAAYAAAASAAEAAAABAAcAAAAVAAIAAAABAAgAAAAVAAMAAAABAAkAAAAZAAQAAAABAAoAAAAVAAcAAFABAAsAAAAWAAcAAFABAAwAAAAXAAcAAFACAAAAAAAZAAQAAAACAAEAAAAYAAcAAFACAAIAAAAWAAcAAFACAAMAAAAWAAcAAFACAAQAAAAWAAcAAFACAAUAAAAXAAcAAFACAAYAAAAXAAcAAFACAAcAAAAXAAcAAFACAAgAAAAXAAcAAFACAAkAAAAaAAcAAAACAAoAAAATAAYAAAACAAsAAAASAAcAAAACAAwAAAATAAYAAAADAAAAAAAXAAgAAAADAAEAAAAUAAcAAAADAAIAAAAUAAcAAAADAAMAAAAUAAYAAAADAAQAAAAUAAcAAAADAAUAAAAUAAYAAAADAAYAAAASAAcAAAADAAcAAAATAAcAAAADAAgAAAAUAAcAAAADAAkAAAASAAYAAAADAAoAAAATAAcAAAADAAsAAAATAAcAAAADAAwAAAAUAAYAAAAEAAAAAAAXAAgAAAAEAAEAAAATAAYAAAAEAAIAAAATAAcAAAAEAAMAAAASAAcAAAAEAAQAAAASAAcAAAAEAAUAAAASAAcAAAAEAAYAAAATAAcAAAAEAAcAAAAUAAYAAAAEAAgAAAAUAAYAAAAEAAkAAAAUAAcAAAAEAAoAAAAUAAcAAAAEAAsAAAATAAYAAAAEAAwAAAAUAAYAAAAFAAAAAAAXAAgAAAAFAAEAAAASAAYAAAAFAAIAAAATAAYAAAAFAAMAAAASAAYAAAAFAAQAAAATAAcAAAAFAAUAAAATAAYAAAAFAAYAAAASAAYAAAAFAAcAAAAUAAcAAAAFAAgAAAAUAAYAAAAFAAkAAAATAAYAAAAFAAoAAAATAAcAAAAFAAsAAAAUAAcAAAAFAAwAAAASAAcAAAAGAAAAAAAXAAgAAAAGAAEAAAAUAAYAAAAGAAIAAAATAAcAAAAGAAMAAAAUAAcAAAAGAAQAAAAUAAYAAAAGAAUAAAASAAcAAAAGAAYAAAATAAYAAAAGAAcAAAAUAAYAAAAGAAgAAAAUAAYAAAAGAAkAAAAUAAYAAAAGAAoAAAAUAAcAAAAGAAsAAAATAAYAAAAGAAwAAAASAAcAAAAHAAAAAAAaAAcAAAAHAAEAAAAUAAcAAAAHAAIAAAASAAYAAAAHAAMAAAASAAYAAAAHAAQAAAATAAYAAAAHAAUAAAASAAYAAAAHAAYAAAATAAYAAAAHAAcAAAATAAYAAAAHAAgAAAATAAYAAAAHAAkAAAAUAAcAAAAHAAoAAAATAAcAAAAHAAsAAAASAAcAAAAHAAwAAAASAAYAAAAIAAAAAAATAAcAAAAIAAEAAAASAAcAAAAIAAIAAAASAAYAAAAIAAMAAAASAAYAAAAIAAQAAAASAAcAAAAIAAUAAAATAAcAAAAIAAYAAAAUAAYAAAAIAAcAAAAUAAYAAAAIAAgAAAASAAcAAAAIAAkAAAASAAYAAAAIAAoAAAAUAAcAAAAIAAsAAAAUAAYAAAAIAAwAAAATAAcAAAAJAAAAAAATAAcAAAAJAAEAAAASAAcAAAAJAAIAAAATAAcAAAAJAAMAAAASAAcAAAAJAAQAAAATAAcAAAAJAAUAAAAUAAYAAAAJAAYAAAASAAYAAAAJAAcAAAATAAcAAAAJAAgAAAAUAAcAAAAJAAkAAAATAAcAAAAJAAoAAAASAAYAAAAJAAsAAAATAAYAAAAJAAwAAAATAAYAAAAAAA0AAAASAAEAAAAAAA4AAAATAAMAAAAAAA8AAAASAAIAAAAAABAAAAAVAAIAAAABAA0AAAAYAAcAAFABAA4AAAAWAAcAAFABAA8AAAAYAAcAAFABABAAAAAXAAcAAFACAA0AAAATAAYAAAACAA4AAAASAAYAAAACAA8AAAASAAYAAAACABAAAAASAAcAAAADAA0AAAAUAAYAAAADAA4AAAAUAAYAAAADAA8AAAATAAcAAAADABAAAAATAAYAAAAEAA0AAAAUAAYAAAAEAA4AAAATAAcAAAAEAA8AAAAUAAYAAAAEABAAAAAUAAYAAAAFAA0AAAASAAcAAAAFAA4AAAATAAcAAAAFAA8AAAATAAYAAAAFABAAAAASAAYAAAAGAA0AAAASAAcAAAAGAA4AAAAUAAcAAAAGAA8AAAATAAYAAAAGABAAAAATAAcAAAAHAA0AAAAUAAYAAAAHAA4AAAATAAcAAAAHAA8AAAASAAcAAAAHABAAAAAUAAcAAAAIAA0AAAASAAcAAAAIAA4AAAASAAcAAAAIAA8AAAAUAAYAAAAIABAAAAASAAcAAAAJAA0AAAATAAcAAAAJAA4AAAATAAYAAAAJAA8AAAAUAAcAAAAJABAAAAATAAcAAAAKAAAAAAASAAYAAAAKAAEAAAATAAYAAAAKAAIAAAAUAAcAAAAKAAMAAAAUAAYAAAAKAAQAAAATAAYAAAAKAAUAAAATAAcAAAAKAAYAAAATAAYAAAAKAAcAAAATAAYAAAAKAAgAAAASAAYAAAAKAAkAAAASAAcAAAAKAAoAAAATAAcAAAAKAAsAAAAUAAYAAAAKAAwAAAAUAAYAAAAKAA0AAAASAAcAAAAKAA4AAAATAAcAAAAKAA8AAAASAAYAAAAKABAAAAAZAAYAAAALAAAAAAAUAAcAAAALAAEAAAAUAAcAAAALAAIAAAASAAcAAAALAAMAAAATAAYAAAALAAQAAAASAAcAAAALAAUAAAATAAcAAAALAAYAAAAUAAYAAAALAAcAAAASAAcAAAALAAgAAAASAAYAAAALAAkAAAAUAAYAAAALAAoAAAAUAAcAAAALAAsAAAAUAAcAAAALAAwAAAASAAYAAAALAA0AAAATAAcAAAALAA4AAAATAAYAAAALAA8AAAATAAYAAAALABAAAAAXAAcAAAAMAAAAAAAUAAcAAAAMAAEAAAASAAcAAAAMAAIAAAAUAAYAAAAMAAMAAAASAAYAAAAMAAQAAAAUAAcAAAAMAAUAAAAUAAYAAAAMAAYAAAAUAAcAAAAMAAcAAAATAAcAAAAMAAgAAAASAAYAAAAMAAkAAAASAAYAAAAMAAoAAAAUAAYAAAAMAAsAAAATAAcAAAAMAAwAAAASAAYAAAAMAA0AAAAUAAYAAAAMAA4AAAAUAAcAAAAMAA8AAAAUAAYAAAAMABAAAAAWAAcAAAANAAAAAAAUAAcAAAANAAEAAAASAAcAAAANAAIAAAASAAcAAAANAAMAAAASAAYAAAANAAQAAAASAAYAAAANAAUAAAATAAYAAAANAAYAAAATAAcAAAANAAcAAAAUAAYAAAANAAgAAAAUAAYAAAANAAkAAAATAAYAAAANAAoAAAASAAcAAAANAAsAAAASAAcAAAANAAwAAAAUAAcAAAANAA0AAAATAAcAAAANAA4AAAATAAcAAAANAA8AAAAUAAYAAAANABAAAAAYAAcAAAAOAAAAAAAVAAcAAGAOAAEAAAAZAAcAAAAOAAIAAAASAAcAAAAOAAMAAAASAAYAAAAOAAQAAAATAAcAAAAOAAUAAAASAAYAAAAOAAYAAAAUAAcAAAAOAAcAAAASAAYAAAAOAAgAAAASAAcAAAAOAAkAAAASAAYAAAAOAAoAAAAUAAYAAAAOAAsAAAAUAAYAAAAOAAwAAAAUAAcAAAAOAA0AAAATAAcAAAAOAA4AAAASAAcAAAAOAA8AAAATAAcAAAAOABAAAAAXAAcAAAAPAAAAAAAWAAEAAFAPAAEAAAAWAAgAAAAPAAIAAAASAAcAAAAPAAMAAAASAAYAAAAPAAQAAAASAAYAAAAPAAUAAAAUAAYAAAAPAAYAAAAUAAYAAAAPAAcAAAASAAcAAAAPAAgAAAASAAYAAAAPAAkAAAAUAAYAAAAPAAoAAAAUAAcAAAAPAAsAAAASAAYAAAAPAAwAAAASAAcAAAAPAA0AAAASAAYAAAAPAA4AAAASAAcAAAAPAA8AAAATAAYAAAAPABAAAAAXAAcAAAAQAAAAAAAWAAIAAAAQAAEAAAAaAAQAAAAQAAIAAAAVAAcAAGAQAAMAAAAVAAcAAGAQAAQAAAAYAAcAAGAQAAUAAAAXAAcAAGAQAAYAAAAVAAcAAGAQAAcAAAAVAAcAAGAQAAgAAAAXAAcAAGAQAAkAAAAWAAcAAGAQAAoAAAAZAAcAAAAQAAsAAAAUAAcAAAAQAAwAAAASAAcAAAAQAA0AAAATAAYAAAAQAA4AAAAUAAYAAAAQAA8AAAATAAcAAAAQABAAAAAaAAYAAAARAAAAAAAXAAIAAAARAAEAAAAWAAIAAAARAAIAAAAVAAIAAAARAAMAAAAVAAQAAAARAAQAAAAUAAEAAAARAAUAAAAVAAIAAAARAAYAAAAVAAQAAAARAAcAAAATAAIAAAARAAgAAAAVAAQAAAARAAkAAAASAAIAAAARAAoAAAAaAAQAAAARAAsAAAAVAAcAAGASAAAAAAAVAAIAAAASAAEAAAAVAAIAAAASAAIAAAASAAEAAAASAAMAAAAVAAIAAAASAAQAAAASAAIAAAASAAUAAAASAAEAAAASAAYAAAASAAEAAAASAAcAAAASAAIAAAASAAgAAAAUAAIAAAASAAkAAAATAAIAAAASAAoAAAATAAMAAAASAAsAAAATAAIAAAAAABIAAAAVAAIAAAABABIAAAASAAQAAAACABIAAAASAAQAAAADABIAAAASAAIAAAAEABIAAAAVAAEAAAAFABIAAAATAAIAAAAGABIAAAAUAAEAAAAHABIAAAAVAAMAAAAIABIAAAASAAEAAAAJABIAAAASAAQAAAAKABIAAAAVAAIAAAALABIAAAASAAQAAAAMABIAAAAUAAIAAAANABIAAAATAAEAAAAOABIAAAASAAEAAAAPABIAAAAVAAIAAAAQABIAAAASAAQAAAAAABEAAAAVAAQAAAABABEAAAAZAAUAAAACABEAAAAWAAcAAAADABEAAAAVAAcAAAAEABEAAAAYAAcAAAAFABEAAAAXAAcAAAAGABEAAAAYAAcAAAAHABEAAAAYAAcAAAAIABEAAAAYAAcAAAAJABEAAAAYAAcAAAAKABEAAAAaAAUAAAALABEAAAAVAAMAAAAMABEAAAATAAEAAAANABEAAAASAAEAAAAOABEAAAASAAQAAAAPABEAAAASAAMAAAAQABEAAAAZAAUAAAARAAwAAAAVAAcAAGARAA0AAAAYAAcAAGARAA4AAAAWAAcAAGASAAwAAAAVAAQAAAASAA0AAAATAAEAAAASAA4AAAAVAAEAAAARAA8AAAAZAAcAAAASAA8AAAAXAAgAAAARABAAAAATAAcAAAARABEAAAAaAAYAAAARABIAAAAZAAUAAAASABAAAAAUAAcAAAASABEAAAAUAAYAAAASABIAAAAaAAYAAAA=")
 tile_set = SubResource("TileSet_fo5ed")
+metadata/_edit_lock_ = true
 
-[node name="Player" parent="." instance=ExtResource("3_kxy5q")]
-position = Vector2(498, 217)
-cooldown = 1.0
+[node name="Item1" type="Node2D" parent="." groups=["On Victory"]]
+position = Vector2(350, 514)
+
+[node name="Item2" type="Node2D" parent="." groups=["On Victory"]]
+position = Vector2(605, 514)
+
+[node name="Item3" type="Node2D" parent="." groups=["On Victory"]]
+position = Vector2(860, 514)
+
+[node name="Shop" type="StaticBody2D" parent="." groups=["On Victory"]]
+y_sort_enabled = true
+position = Vector2(605, 151)
+script = ExtResource("3_6ki3h")
+Dialogues = Array[String](["Buy me some items, ya?", "Wha you look at me like that?", "Come on now, giv me ya gold!", "aye, buddy. It ain wrong to help out an ol' folk like me", "Take a look at these", "We both know u got some gold with ya, ain' tha righ?", "Maybe i'll take you gold ma self. Maybe", "U ain' dying if u donate som. Are ya?"])
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Shop" groups=["On Victory"]]
+y_sort_enabled = true
+texture_filter = 1
+position = Vector2(0, 56)
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_hm6q2")
+autoplay = "default"
+frame_progress = 0.322489
+offset = Vector2(0, -35)
+
+[node name="Sprite2D" type="Sprite2D" parent="Shop" groups=["On Victory"]]
+y_sort_enabled = true
+texture_filter = 1
+position = Vector2(0, 87.9)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("5_b4tvn")
+region_enabled = true
+region_rect = Rect2(0, 96, 96, 26)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shop"]
+z_index = 2
+position = Vector2(0, 57)
+rotation = -3.14159
+shape = SubResource("RectangleShape2D_7xro7")
+one_way_collision = true
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Shop"]
+z_index = 2
+position = Vector2(0, 74)
+shape = SubResource("RectangleShape2D_7xro7")
+one_way_collision = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Shop"]
+z_index = 2
+position = Vector2(0, 40.5)
+shape = SubResource("RectangleShape2D_b4tvn")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Shop"]
+position = Vector2(-117.5, 88.5)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_6ki3h")
+one_way_collision = true
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Shop"]
+position = Vector2(117, 88.5)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_6ki3h")
+one_way_collision = true
+
+[node name="ColorRect" type="ColorRect" parent="Shop"]
+visible = false
+offset_left = 167.0
+offset_top = -19.0
+offset_right = 217.0
+offset_bottom = 31.0
+rotation = 0.785398
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="Shop"]
+visible = false
+z_index = 3
+offset_left = 164.0
+offset_top = -48.0
+offset_right = 373.0
+offset_bottom = 57.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_kvnx8")
+
+[node name="MarginContainer" type="MarginContainer" parent="Shop/PanelContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Dialogue" type="RichTextLabel" parent="Shop/PanelContainer/MarginContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 1
+theme_override_font_sizes/normal_font_size = 15
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+
+[node name="DialogueTimer" type="Timer" parent="Shop"]
+wait_time = 3.0
+one_shot = true
+
+[node name="Interaction Component" parent="Shop" instance=ExtResource("6_b4tvn")]
+position = Vector2(0, 84)
+scale = Vector2(1.8, 1.12)
+tip_position = 4
+
+[node name="Wave Button" type="StaticBody2D" parent="." groups=["On Victory"]]
+position = Vector2(605, 1099)
+
+[node name="Sprite2D" type="Sprite2D" parent="Wave Button"]
+scale = Vector2(0.375, 0.375)
+texture = ExtResource("5_kxy5q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wave Button"]
+shape = SubResource("CircleShape2D_6ki3h")
+
+[node name="Interaction Component" parent="Wave Button" instance=ExtResource("6_b4tvn")]
+scale = Vector2(1.5, 1.5)
 
 [node name="Wave" type="Node" parent="."]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_b4tvn")
 autoplay = true
+parameters/looping = true
 
 [node name="checker" type="Timer" parent="."]
 one_shot = true
 
-[node name="Victory" type="Node2D" parent="."]
-
-[node name="Item1" type="Node2D" parent="Victory"]
-position = Vector2(350, 450)
-
-[node name="Item2" type="Node2D" parent="Victory"]
-position = Vector2(605, 450)
-
-[node name="Item3" type="Node2D" parent="Victory"]
-position = Vector2(860, 450)
-
-[node name="Shop" type="Node2D" parent="Victory"]
-position = Vector2(605, 278)
-
-[node name="Wave Button" type="StaticBody2D" parent="Victory"]
-position = Vector2(605, 1099)
-
-[node name="Sprite2D" type="Sprite2D" parent="Victory/Wave Button"]
-scale = Vector2(0.375, 0.375)
-texture = ExtResource("5_kxy5q")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Victory/Wave Button"]
-shape = SubResource("CircleShape2D_6ki3h")
-
-[node name="Interaction Component" parent="Victory/Wave Button" instance=ExtResource("6_b4tvn")]
-scale = Vector2(1.5, 1.5)
+[node name="Player" parent="." instance=ExtResource("3_kxy5q")]
+position = Vector2(591, 871)
+cooldown = 1.0
 
 [connection signal="new_wave" from="." to="Player" method="_on_world_new_wave"]
+[connection signal="timeout" from="Shop/DialogueTimer" to="Shop" method="_on_dialogue_timer_timeout"]
+[connection signal="interacted" from="Shop/Interaction Component" to="Shop" method="_on_interaction_component_interacted"]
+[connection signal="interacted" from="Wave Button/Interaction Component" to="." method="_on_interaction_component_interacted"]
 [connection signal="timeout" from="checker" to="." method="_on_checker_timeout"]
-[connection signal="interacted" from="Victory/Wave Button/Interaction Component" to="." method="_on_interaction_component_interacted"]

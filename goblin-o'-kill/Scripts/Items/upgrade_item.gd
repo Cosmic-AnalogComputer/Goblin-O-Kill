@@ -13,13 +13,15 @@ func _upgrade(player):
 	usage += 1
 	if usage == 1:
 		player.max_hp += UPGRADE.max_health
-		if player.hp < player.max_hp:
+		if player.hp <= (player.max_hp - UPGRADE.health):
 			player.receive_damage(-UPGRADE.health)
 		else:
 			player.receive_damage(-(player.max_hp - player.hp))
 		player.strength += UPGRADE.damage
-		if player.crit_chance < 1.0:
+		if player.crit_chance + UPGRADE.crit_chance <= 1.0:
 			player.crit_chance += UPGRADE.crit_chance
+		else:
+			player.crit_chance = 1.0
 		player.crit_mod += UPGRADE.crit_mod
 		if player.cooldown > 0.1 + UPGRADE.attack_speed:
 			player.cooldown -= UPGRADE.attack_speed

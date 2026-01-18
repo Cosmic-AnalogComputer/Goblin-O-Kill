@@ -13,7 +13,7 @@ var upgrades : Array[StringName] = ["res://Scripts/Upgrades/adrenaline.tres",\
 "res://Scripts/Upgrades/medkit.tres","res://Scripts/Upgrades/redpill.tres"]
 
 #Volume
-var music_volume : float = -10.0
+var music_volume : float = 1.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

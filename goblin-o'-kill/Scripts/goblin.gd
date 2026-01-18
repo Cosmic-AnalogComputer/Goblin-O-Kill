@@ -7,7 +7,7 @@ signal death()
 @export var speed = 200
 var goldValue : int
 @export_group("Combat")
-@export var strength = 1
+@export var strength = 1 ## multiplied by wave * 0.1
 @export var delay : float = 1.0
 @export var cooldown : float = 1.0
 @export var buffed := false
