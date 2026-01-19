@@ -105,5 +105,10 @@ func _on_delay_timeout() -> void:
 
 func get_damage() -> int:
 	var dmg : int
-	dmg = round(strength * GlobalVariables.wave_dmg_mod)
+	if GlobalVariables.difficulty == 2:
+		dmg = round(strength * GlobalVariables.wave_dmg_mod)
+	elif GlobalVariables.difficulty == 3:
+		dmg = round(strength * (1 + (GlobalVariables.current_wave * 0.5)))
+	else:
+		dmg = strength
 	return dmg

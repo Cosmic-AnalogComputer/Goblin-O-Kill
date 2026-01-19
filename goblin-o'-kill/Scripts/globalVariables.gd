@@ -4,7 +4,7 @@ extends Node
 var record : int
 var current_wave = 0
 var wave_dmg_mod : float = 1.0
-var difficulty = 2
+var difficulty : int
 var upgrades : Array[StringName] = ["res://Scripts/Upgrades/adrenaline.tres",\
 "res://Scripts/Upgrades/Bandage.tres","res://Scripts/Upgrades/bigdice.tres",\
 "res://Scripts/Upgrades/biggerdice.tres","res://Scripts/Upgrades/biggestdice.tres",\

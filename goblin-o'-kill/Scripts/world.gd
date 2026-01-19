@@ -41,7 +41,7 @@ func make_new_wave():
 	hide_shop()
 	emit_signal("new_wave")
 	GlobalVariables.wave_dmg_mod = 1 + (GlobalVariables.current_wave * 0.1)
-	print(GlobalVariables.wave_dmg_mod)
+	#print(GlobalVariables.wave_dmg_mod)
 	playing_music = true
 	var amounts = buy_goblins(GlobalVariables.current_wave, [0,0,0,0,0,0])
 	for g in amounts.size():
@@ -49,7 +49,9 @@ func make_new_wave():
 			var goblin = goblinScene[g].instantiate()
 			goblin.position = Vector2(randi_range(50,1150),randi_range(50,1150))
 			goblin.goldValue = _get_gold(goblinScene[g], g)
-			if GlobalVariables.difficulty >= 2:
+			if GlobalVariables.difficulty == 3:
+				goblin.hp = round(goblin.hp * (GlobalVariables.current_wave * 0.5))
+			elif GlobalVariables.difficulty == 2:
 				goblin.hp = round(goblin.hp * GlobalVariables.wave_dmg_mod)
 			wave_container.add_child(goblin)
 	inStock = false

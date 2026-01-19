@@ -11,9 +11,12 @@ config_version=5
 [application]
 
 config/name="Goblin O' Kill"
+config/version="1.0"
 run/main_scene="uid://cusy1hbayre3w"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/image="uid://b8pyssr45dkhx"
+config/icon="uid://byi41s0n2j5t3"
 
 [autoload]
 
