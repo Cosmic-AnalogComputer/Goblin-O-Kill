@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=4 uid="uid://bhkyobjeljr7i"]
+[gd_scene load_steps=53 format=4 uid="uid://bhkyobjeljr7i"]
 
 [ext_resource type="Script" uid="uid://djnsrw0beuq3m" path="res://Scripts/world.gd" id="1_6w0a8"]
 [ext_resource type="Texture2D" uid="uid://bkexd0hd5l4ap" path="res://Sprites/TestTiles0.png" id="2_mkl45"]
@@ -3269,6 +3269,22 @@ texture = ExtResource("2_mkl45")
 [sub_resource type="TileSet" id="TileSet_51068"]
 sources/0 = SubResource("TileSetAtlasSource_kvnx8")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wwef5"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3id6w"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+shadow_color = Color(0, 0, 0, 0)
+
 [node name="World" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_6w0a8")
@@ -3479,6 +3495,222 @@ tile_map_data = PackedByteArray("AAAPAPz/AAAZAAAAAAAQAPz/AAAZAAAAAAARAPz/AAAZAAA
 tile_set = SubResource("TileSet_51068")
 occlusion_enabled = false
 metadata/_edit_lock_ = true
+
+[node name="Tutorials" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Wave tutorial" type="PanelContainer" parent="Tutorials"]
+z_index = 3
+layout_mode = 0
+offset_left = 228.0
+offset_top = 1079.0
+offset_right = 428.0
+offset_bottom = 1195.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wwef5")
+
+[node name="MarginContainer" type="MarginContainer" parent="Tutorials/Wave tutorial"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorials/Wave tutorial/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Name" type="Label" parent="Tutorials/Wave tutorial/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Tutorial"
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Tutorials/Wave tutorial/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 5
+theme_override_styles/separator = SubResource("StyleBoxFlat_3id6w")
+
+[node name="Description" type="RichTextLabel" parent="Tutorials/Wave tutorial/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 1
+theme_override_font_sizes/normal_font_size = 15
+bbcode_enabled = true
+text = "Press E when near the altar to start the next wave!"
+fit_content = true
+scroll_active = false
+
+[node name="Wave tutorial2" type="PanelContainer" parent="Tutorials"]
+z_index = 3
+layout_mode = 0
+offset_left = 229.0
+offset_top = 777.0
+offset_right = 429.0
+offset_bottom = 857.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wwef5")
+
+[node name="MarginContainer" type="MarginContainer" parent="Tutorials/Wave tutorial2"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorials/Wave tutorial2/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Name" type="Label" parent="Tutorials/Wave tutorial2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Movement"
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Tutorials/Wave tutorial2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 5
+theme_override_styles/separator = SubResource("StyleBoxFlat_3id6w")
+
+[node name="Description" type="RichTextLabel" parent="Tutorials/Wave tutorial2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 1
+theme_override_font_sizes/normal_font_size = 15
+bbcode_enabled = true
+text = "Move to move."
+fit_content = true
+scroll_active = false
+
+[node name="Wave tutorial3" type="PanelContainer" parent="Tutorials"]
+z_index = 3
+layout_mode = 0
+offset_left = 778.0
+offset_top = 789.0
+offset_right = 978.0
+offset_bottom = 869.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wwef5")
+
+[node name="MarginContainer" type="MarginContainer" parent="Tutorials/Wave tutorial3"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorials/Wave tutorial3/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Name" type="Label" parent="Tutorials/Wave tutorial3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Dodge roll"
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Tutorials/Wave tutorial3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 5
+theme_override_styles/separator = SubResource("StyleBoxFlat_3id6w")
+
+[node name="Description" type="RichTextLabel" parent="Tutorials/Wave tutorial3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 1
+theme_override_font_sizes/normal_font_size = 15
+bbcode_enabled = true
+text = "Press shift while moving to dodge roll. You are invincible to attacks while rolling."
+fit_content = true
+scroll_active = false
+
+[node name="Wave tutorial5" type="PanelContainer" parent="Tutorials"]
+z_index = 3
+layout_mode = 0
+offset_left = 509.0
+offset_top = 737.0
+offset_right = 709.0
+offset_bottom = 859.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wwef5")
+
+[node name="MarginContainer" type="MarginContainer" parent="Tutorials/Wave tutorial5"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorials/Wave tutorial5/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Name" type="Label" parent="Tutorials/Wave tutorial5/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Shop ^"
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Tutorials/Wave tutorial5/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 5
+theme_override_styles/separator = SubResource("StyleBoxFlat_3id6w")
+
+[node name="Description" type="RichTextLabel" parent="Tutorials/Wave tutorial5/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 1
+theme_override_font_sizes/normal_font_size = 15
+bbcode_enabled = true
+text = "Above you will find the shop. Buy items with gold to become stronger!"
+fit_content = true
+scroll_active = false
+
+[node name="Wave tutorial4" type="PanelContainer" parent="Tutorials"]
+z_index = 3
+layout_mode = 0
+offset_left = 770.0
+offset_top = 1076.0
+offset_right = 970.0
+offset_bottom = 1211.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wwef5")
+
+[node name="MarginContainer" type="MarginContainer" parent="Tutorials/Wave tutorial4"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorials/Wave tutorial4/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Name" type="Label" parent="Tutorials/Wave tutorial4/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Attacking"
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Tutorials/Wave tutorial4/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 5
+theme_override_styles/separator = SubResource("StyleBoxFlat_3id6w")
+
+[node name="Description" type="RichTextLabel" parent="Tutorials/Wave tutorial4/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 1
+theme_override_font_sizes/normal_font_size = 15
+bbcode_enabled = true
+text = "Press left click to attack! Use this to fight the goblins."
+fit_content = true
+scroll_active = false
 
 [connection signal="new_wave" from="." to="Player" method="_on_world_new_wave"]
 [connection signal="timeout" from="Shop/DialogueTimer" to="Shop" method="_on_dialogue_timer_timeout"]

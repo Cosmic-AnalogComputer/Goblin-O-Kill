@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://cusy1hbayre3w"]
+[gd_scene load_steps=20 format=3 uid="uid://cusy1hbayre3w"]
 
 [ext_resource type="Script" uid="uid://c41yi7af8uq2l" path="res://Scripts/UI/main_menu.gd" id="1_5wsvm"]
 [ext_resource type="Texture2D" uid="uid://bnh1csywm5kry" path="res://Sprites/nekkkapfp.png" id="2_i2xx2"]
 [ext_resource type="Script" uid="uid://m354wp0ul6p4" path="res://Scripts/UI/options_menu.gd" id="3_o14dv"]
+[ext_resource type="Texture2D" uid="uid://3cjtp32jy0b8" path="res://Sprites/PFP1.png" id="3_u7lva"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_28flt"]
 bg_color = Color(0, 0.721569, 0.6, 1)
@@ -47,6 +48,14 @@ expand_margin_top = 1.0
 expand_margin_right = 1.0
 expand_margin_bottom = 1.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4pqbp"]
+bg_color = Color(0.25098, 0.25098, 0.443137, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u7lva"]
 bg_color = Color(0, 0, 0, 1)
 border_width_left = 5
@@ -63,6 +72,18 @@ border_width_right = 5
 border_width_bottom = 5
 border_color = Color(1, 1, 1, 1)
 shadow_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_u7lva"]
+color = Color(1, 1, 1, 1)
+thickness = 6
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_mrfpk"]
+color = Color(0, 0.823529, 0, 1)
+thickness = 6
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_k33u3"]
+color = Color(0, 1, 0, 1)
+thickness = 6
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_4pqbp"]
 color = Color(1, 1, 1, 1)
@@ -216,13 +237,13 @@ clip_text = true
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.043
-anchor_top = 0.256
-anchor_right = 0.194
-anchor_bottom = 0.719
+anchor_top = 0.248
+anchor_right = 0.208
+anchor_bottom = 0.728
 offset_left = 0.463997
-offset_top = 0.112
-offset_right = -0.488007
-offset_bottom = 0.0879822
+offset_top = 5.29599
+offset_right = -16.616
+offset_bottom = -5.74405
 grow_vertical = 2
 mouse_default_cursor_shape = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_5wsvm")
@@ -297,6 +318,7 @@ fit_content = true
 scroll_active = false
 
 [node name="Button" type="Button" parent="Credits to Nekka/MarginContainer/VBoxContainer"]
+texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 6
 mouse_default_cursor_shape = 2
@@ -306,6 +328,84 @@ theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 25
 text = "Nekka"
 icon = ExtResource("2_i2xx2")
+flat = true
+
+[node name="Credits to Cosmic" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.792
+anchor_top = 0.247
+anchor_right = 0.957
+anchor_bottom = 0.727
+offset_left = -0.384033
+offset_top = -0.0559998
+offset_right = -0.463989
+offset_bottom = -0.0960388
+grow_vertical = 2
+mouse_default_cursor_shape = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_4pqbp")
+
+[node name="MarginContainer" type="MarginContainer" parent="Credits to Cosmic"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Credits to Cosmic/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="Label" type="Label" parent="Credits to Cosmic/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 25
+text = "Game by:"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Credits to Cosmic/MarginContainer/VBoxContainer"]
+texture_filter = 2
+layout_mode = 2
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.5
+theme_override_styles/separator = SubResource("StyleBoxFlat_i2xx2")
+
+[node name="Label2" type="Label" parent="Credits to Cosmic/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(1, 0.843137, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.294638, 3.21874e-07, 8.42288e-08, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_constants/shadow_outline_size = 5
+theme_override_font_sizes/font_size = 40
+text = "Cosmic A.C."
+horizontal_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Credits to Cosmic/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+bbcode_enabled = true
+text = "Worked really hard on this. Please follow me on [color=red]YT[/color] and [color=sky_blue]Twitter[/color]"
+fit_content = true
+scroll_active = false
+
+[node name="Cosmic" type="Button" parent="Credits to Cosmic/MarginContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 3
+mouse_default_cursor_shape = 2
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 0.843137, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 25
+text = "Link"
+icon = ExtResource("3_u7lva")
 flat = true
 
 [node name="Options Menu" type="Control" parent="."]
@@ -357,6 +457,33 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_styles/separator = SubResource("StyleBoxFlat_mrfpk")
+
+[node name="Master Volume" type="HBoxContainer" parent="Options Menu/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 25
+
+[node name="Label" type="Label" parent="Options Menu/PanelContainer/MarginContainer/VBoxContainer/Master Volume"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Master Volume"
+
+[node name="Master Volume Slider" type="HSlider" parent="Options Menu/PanelContainer/MarginContainer/VBoxContainer/Master Volume"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_styles/slider = SubResource("StyleBoxLine_u7lva")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_mrfpk")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_k33u3")
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="Master Volume Number" type="Label" parent="Options Menu/PanelContainer/MarginContainer/VBoxContainer/Master Volume"]
+layout_mode = 2
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Music Volume" type="HBoxContainer" parent="Options Menu/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -437,6 +564,8 @@ text = "Back"
 [connection signal="button_down" from="Play Menu/VBoxContainer/Options" to="." method="_on_options_button_down"]
 [connection signal="button_down" from="Play Menu/VBoxContainer/Quit" to="." method="_on_quit_button_down"]
 [connection signal="button_down" from="Credits to Nekka/MarginContainer/VBoxContainer/Button" to="." method="_on_button_button_down"]
+[connection signal="button_down" from="Credits to Cosmic/MarginContainer/VBoxContainer/Cosmic" to="." method="_on_cosmic_button_down"]
+[connection signal="value_changed" from="Options Menu/PanelContainer/MarginContainer/VBoxContainer/Master Volume/Master Volume Slider" to="Options Menu" method="_on_master_volume_slider_value_changed"]
 [connection signal="value_changed" from="Options Menu/PanelContainer/MarginContainer/VBoxContainer/Music Volume/Music Volume Slider" to="Options Menu" method="_on_music_volume_slider_value_changed"]
 [connection signal="value_changed" from="Options Menu/PanelContainer/MarginContainer/VBoxContainer/SFX Volume/SFX Volume Slider" to="Options Menu" method="_on_sfx_volume_slider_value_changed"]
 [connection signal="toggled" from="Options Menu/PanelContainer/MarginContainer/VBoxContainer/CheckButton" to="Options Menu" method="_on_check_button_toggled"]

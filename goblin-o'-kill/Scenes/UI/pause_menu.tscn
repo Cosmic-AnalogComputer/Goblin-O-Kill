@@ -216,6 +216,33 @@ layout_mode = 2
 size_flags_vertical = 0
 theme_override_styles/separator = SubResource("StyleBoxFlat_kdnb7")
 
+[node name="Master Volume" type="HBoxContainer" parent="Options Menu/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 25
+
+[node name="Label" type="Label" parent="Options Menu/PanelContainer/MarginContainer/VBoxContainer/Master Volume"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Master Volume"
+
+[node name="Master Volume Slider" type="HSlider" parent="Options Menu/PanelContainer/MarginContainer/VBoxContainer/Master Volume"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_styles/slider = SubResource("StyleBoxLine_702e2")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_qyryt")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_23me3")
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="Master Volume Number" type="Label" parent="Options Menu/PanelContainer/MarginContainer/VBoxContainer/Master Volume"]
+layout_mode = 2
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Music Volume" type="HBoxContainer" parent="Options Menu/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
@@ -295,6 +322,8 @@ text = "Back"
 [connection signal="button_down" from="PanelContainer/MarginContainer/VBoxContainer/Resume" to="." method="_on_resume_button_down"]
 [connection signal="button_down" from="PanelContainer/MarginContainer/VBoxContainer/Options" to="." method="_on_options_button_down"]
 [connection signal="button_down" from="PanelContainer/MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_button_down"]
+[connection signal="visibility_changed" from="Options Menu" to="Options Menu" method="_on_visibility_changed"]
+[connection signal="value_changed" from="Options Menu/PanelContainer/MarginContainer/VBoxContainer/Master Volume/Master Volume Slider" to="Options Menu" method="_on_master_volume_slider_value_changed"]
 [connection signal="value_changed" from="Options Menu/PanelContainer/MarginContainer/VBoxContainer/Music Volume/Music Volume Slider" to="Options Menu" method="_on_music_volume_slider_value_changed"]
 [connection signal="value_changed" from="Options Menu/PanelContainer/MarginContainer/VBoxContainer/SFX Volume/SFX Volume Slider" to="Options Menu" method="_on_sfx_volume_slider_value_changed"]
 [connection signal="toggled" from="Options Menu/PanelContainer/MarginContainer/VBoxContainer/CheckButton" to="Options Menu" method="_on_check_button_toggled"]

@@ -99,7 +99,8 @@ func receive_damage(dmg):
 		
 		$"CanvasLayer/Death Menu".show()
 		$"CanvasLayer/Death Menu/PanelContainer/MarginContainer/VBoxContainer/Death Text".text =\
-		"[p][color=red]YOU DIED[/color][/p]At wave: " + var_to_str(GlobalVariables.current_wave)
+		"[p][color=red]YOU DIED[/color][/p][p]At wave: " + var_to_str(GlobalVariables.current_wave)
+		get_tree().paused = true
 	hpbar.value = hp
 	updateUI()
 
@@ -154,4 +155,5 @@ func _on_quit_to_desktop_button_down() -> void:
 	get_tree().quit()
 
 func _on_restart_button_down() -> void:
+	get_tree().paused = false
 	get_tree().reload_current_scene()

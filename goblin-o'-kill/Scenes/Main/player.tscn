@@ -573,6 +573,7 @@ visible = false
 z_index = 6
 
 [node name="Death Menu" type="Control" parent="CanvasLayer"]
+process_mode = 3
 visible = false
 z_index = 5
 layout_mode = 3
@@ -682,4 +683,5 @@ bus = &"SFX"
 [connection signal="timeout" from="IFrames" to="." method="_on_i_frames_timeout"]
 [connection signal="timeout" from="CD" to="." method="_on_cd_timeout"]
 [connection signal="button_down" from="CanvasLayer/Death Menu/PanelContainer/MarginContainer/VBoxContainer/Restart" to="." method="_on_restart_button_down"]
+[connection signal="button_down" from="CanvasLayer/Death Menu/PanelContainer/MarginContainer/VBoxContainer/Quit" to="CanvasLayer/Pause Menu" method="_on_quit_button_down"]
 [connection signal="button_down" from="CanvasLayer/Death Menu/PanelContainer/MarginContainer/VBoxContainer/Quit to desktop" to="." method="_on_quit_to_desktop_button_down"]

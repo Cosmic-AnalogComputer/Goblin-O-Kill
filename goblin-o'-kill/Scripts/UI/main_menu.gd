@@ -29,3 +29,6 @@ func _on_back_button_pressed() -> void:
 
 func _on_button_button_down() -> void:
 	OS.shell_open("https://open.spotify.com/intl-es/artist/6DKyviPEmx6sSRlKQlmFPw")
+
+func _on_cosmic_button_down() -> void:
+	OS.shell_open("https://www.youtube.com/@CosmicAnalogComputer")

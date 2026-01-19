@@ -21,7 +21,6 @@ var ivolume : float = 0.5
 
 func _ready() -> void:
 	GlobalVariables.current_wave = 0
-	hide_shop(false)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -86,6 +85,7 @@ func restock():
 func _on_interaction_component_interacted(user: Player) -> void:
 	GlobalVariables.current_wave += 1
 	make_new_wave()
+	$Tutorials.hide()
 
 func _get_gold(goblino, i) -> int:
 	var gold : int
