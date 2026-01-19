@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://c0ltolgyfraym"]
+[gd_scene load_steps=4 format=3 uid="uid://c0ltolgyfraym"]
 
 [ext_resource type="Script" uid="uid://b84o70bbbugft" path="res://Scripts/Items/interaction_component.gd" id="1_rjwtd"]
+[ext_resource type="Texture2D" uid="uid://bxjhch64puryw" path="res://Sprites/flashes.png" id="2_kx42t"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a6180"]
 radius = 64.0
@@ -11,6 +12,14 @@ script = ExtResource("1_rjwtd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_a6180")
+
+[node name="Key" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+scale = Vector2(3, 3)
+texture = ExtResource("2_kx42t")
+region_enabled = true
+region_rect = Rect2(0, 184, 16, 16)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

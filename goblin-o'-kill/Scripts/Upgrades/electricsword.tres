@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="Upgrade" load_steps=4 format=3 uid="uid://j7f8wnlp2txy"]
+
+[ext_resource type="Script" uid="uid://c2wxw55rruo72" path="res://Scripts/Upgrades/BaseUpgradeTemplate.gd" id="1_e6vpf"]
+[ext_resource type="Texture2D" uid="uid://bgnk58vy4ir8f" path="res://Sprites/Upgrades.png" id="2_adafj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nj1iu"]
+atlas = ExtResource("2_adafj")
+region = Rect2(144, 16, 16, 16)
+filter_clip = true
+
+[resource]
+script = ExtResource("1_e6vpf")
+texture = SubResource("AtlasTexture_nj1iu")
+name = &"Electric Sword"
+description = "[p]Goblins rumour this sword comes from the same universe as the [color=red]Fire Sword.[/color] But not much is known...[/p][p]+4 Damage[/p][p]+0.5 times damage on critical strike[/p][p]-0.05s cooldown in attack[/p]"
+price = 30
+max_health = 0
+health = 0
+damage = 4
+crit_chance = 0.0
+crit_mod = 0.5
+attack_speed = 0.05
+hasVisualEffect = false
+metadata/_custom_type_script = "uid://c2wxw55rruo72"

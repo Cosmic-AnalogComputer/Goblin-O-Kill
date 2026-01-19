@@ -1,10 +1,10 @@
-[gd_scene load_steps=50 format=3 uid="uid://crn3fw2rb4s8i"]
+[gd_scene load_steps=53 format=3 uid="uid://crn3fw2rb4s8i"]
 
 [ext_resource type="Script" uid="uid://c7f533jd3dx" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://ctvjr0t77hpnc" path="res://Sprites/Knight.png" id="2_6t5aa"]
 [ext_resource type="AudioStream" uid="uid://brtx0djon3oc4" path="res://Audios/Dodgeroll.wav" id="3_6t5aa"]
-[ext_resource type="Texture2D" uid="uid://bxjhch64puryw" path="res://Sprites/flashes.png" id="3_nmmoa"]
 [ext_resource type="Texture2D" uid="uid://b203f415igtq2" path="res://Sprites/UI.png" id="4_yhj4d"]
+[ext_resource type="PackedScene" uid="uid://dfj2d30ayli7l" path="res://Scenes/UI/pause_menu.tscn" id="5_knxm8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nmmoa"]
 size = Vector2(24.8, 30)
@@ -288,11 +288,11 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yhj4d"]
-bg_color = Color(0, 0, 0, 0.360784)
+bg_color = Color(0.0962047, 0.0962048, 0.0962047, 1)
 border_width_top = 5
 border_width_right = 5
 border_width_bottom = 5
-border_color = Color(0.572988, 0.572988, 0.572988, 1)
+border_color = Color(1, 1, 1, 1)
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 
@@ -319,6 +319,30 @@ region = Rect2(48, 0, 16, 16)
 atlas = SubResource("CompressedTexture2D_g0kg6")
 region = Rect2(64, 0, 16, 16)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_knxm8"]
+bg_color = Color(0, 0, 0, 0.498039)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g0kg6"]
+bg_color = Color(0, 0, 0, 1)
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y7tpv"]
+bg_color = Color(0.215902, 0.215902, 0.215902, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 2
 collision_mask = 13
@@ -337,15 +361,6 @@ sprite_frames = SubResource("SpriteFrames_fkybt")
 animation = &"top_attack"
 frame = 4
 frame_progress = 1.0
-
-[node name="Sprite2D" type="Sprite2D" parent="AnimatedSprite2D"]
-visible = false
-texture_filter = 1
-position = Vector2(-114.75, 0)
-scale = Vector2(3, 3)
-texture = ExtResource("3_nmmoa")
-region_enabled = true
-region_rect = Rect2(0, 184, 16, 16)
 
 [node name="IFrames" type="Timer" parent="."]
 wait_time = 0.75
@@ -367,27 +382,58 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Control"]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.4
-anchor_top = 0.9
-anchor_right = 0.6
-anchor_bottom = 0.95
-offset_top = -1.0
+anchor_left = 0.35
+anchor_top = 0.8
+anchor_right = 0.65
+anchor_bottom = 0.9
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/ColorRect"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Control/ColorRect/MarginContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 1
 theme_override_styles/background = SubResource("StyleBoxFlat_cvnsp")
 theme_override_styles/fill = SubResource("StyleBoxFlat_6t5aa")
 max_value = 15.0
 value = 15.0
 show_percentage = false
 
-[node name="Label" type="Label" parent="CanvasLayer/Control/ProgressBar"]
-layout_mode = 0
-offset_right = 190.0
-offset_bottom = 22.3333
+[node name="Label" type="Label" parent="CanvasLayer/Control/ColorRect/MarginContainer/ProgressBar"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -20.9375
+offset_bottom = 20.9375
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 40
 text = "111"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control"]
 layout_mode = 1
@@ -449,9 +495,8 @@ expand_mode = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/Control/Panel/MarginContainer/VBoxContainer/GOLDDD"]
 layout_mode = 2
-size_flags_vertical = 8
 theme_override_colors/font_color = Color(1, 0.913725, 0, 1)
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 35
 text = "20 $"
 
 [node name="DMG" type="HBoxContainer" parent="CanvasLayer/Control/Panel/MarginContainer/VBoxContainer"]
@@ -469,7 +514,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
 theme_override_colors/font_color = Color(1, 0.415686, 0, 1)
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 35
 text = "12"
 
 [node name="dmgspeed" type="HBoxContainer" parent="CanvasLayer/Control/Panel/MarginContainer/VBoxContainer"]
@@ -486,7 +531,7 @@ expand_mode = 2
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_colors/font_color = Color(0, 0.529412, 1, 1)
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 35
 text = "0.5s"
 
 [node name="CritC" type="HBoxContainer" parent="CanvasLayer/Control/Panel/MarginContainer/VBoxContainer"]
@@ -503,7 +548,7 @@ expand_mode = 2
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_colors/font_color = Color(0.682353, 1, 0, 1)
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 35
 text = "1%"
 
 [node name="CritM" type="HBoxContainer" parent="CanvasLayer/Control/Panel/MarginContainer/VBoxContainer"]
@@ -520,13 +565,121 @@ expand_mode = 2
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 35
 text = "x3"
+
+[node name="Pause Menu" parent="CanvasLayer" instance=ExtResource("5_knxm8")]
+visible = false
+z_index = 6
+
+[node name="Death Menu" type="Control" parent="CanvasLayer"]
+visible = false
+z_index = 5
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Death Menu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.35
+anchor_top = 0.15
+anchor_right = 0.65
+anchor_bottom = 0.9
+offset_left = 0.295959
+offset_top = 0.199997
+offset_right = -0.447998
+offset_bottom = 0.399994
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_knxm8")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Death Menu/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Death Menu/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Death Text" type="RichTextLabel" parent="CanvasLayer/Death Menu/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/normal_font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_g0kg6")
+bbcode_enabled = true
+text = "YOU DIED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/Death Menu/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Restart" type="Button" parent="CanvasLayer/Death Menu/PanelContainer/MarginContainer/VBoxContainer"]
+process_mode = 3
+layout_mode = 2
+size_flags_vertical = 3
+mouse_default_cursor_shape = 2
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.564962, 0.564962, 0.564962, 1)
+theme_override_colors/font_pressed_color = Color(0.666667, 1, 0.662745, 1)
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = SubResource("StyleBoxFlat_y7tpv")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_y7tpv")
+theme_override_styles/normal = SubResource("StyleBoxFlat_y7tpv")
+text = "Restart"
+
+[node name="Quit" type="Button" parent="CanvasLayer/Death Menu/PanelContainer/MarginContainer/VBoxContainer"]
+process_mode = 3
+layout_mode = 2
+size_flags_vertical = 3
+mouse_default_cursor_shape = 2
+theme_override_colors/font_hover_pressed_color = Color(1, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.999988, 0.107065, 0.297848, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.564962, 0.564962, 0.564962, 1)
+theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = SubResource("StyleBoxFlat_y7tpv")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_y7tpv")
+theme_override_styles/normal = SubResource("StyleBoxFlat_y7tpv")
+text = "Quit to menu"
+
+[node name="Quit to desktop" type="Button" parent="CanvasLayer/Death Menu/PanelContainer/MarginContainer/VBoxContainer"]
+process_mode = 3
+layout_mode = 2
+size_flags_vertical = 3
+mouse_default_cursor_shape = 2
+theme_override_colors/font_hover_pressed_color = Color(1, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.999988, 0.107065, 0.297848, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.564962, 0.564962, 0.564962, 1)
+theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = SubResource("StyleBoxFlat_y7tpv")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_y7tpv")
+theme_override_styles/normal = SubResource("StyleBoxFlat_y7tpv")
+text = "Quit to desktop"
 
 [node name="AudioListener2D" type="AudioListener2D" parent="."]
 
 [node name="RollAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_6t5aa")
+bus = &"SFX"
 
 [connection signal="timeout" from="IFrames" to="." method="_on_i_frames_timeout"]
 [connection signal="timeout" from="CD" to="." method="_on_cd_timeout"]
+[connection signal="button_down" from="CanvasLayer/Death Menu/PanelContainer/MarginContainer/VBoxContainer/Restart" to="." method="_on_restart_button_down"]
+[connection signal="button_down" from="CanvasLayer/Death Menu/PanelContainer/MarginContainer/VBoxContainer/Quit to desktop" to="." method="_on_quit_to_desktop_button_down"]

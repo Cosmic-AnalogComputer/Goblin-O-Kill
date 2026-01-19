@@ -11,7 +11,7 @@ var gold = 0
 @export_subgroup("Combat")
 @export var strength = 1
 @export var crit_chance : float = 0.10 # x 100
-@export var crit_mod : float = 3.0
+@export var crit_mod : float = 1.5
 @export var cooldown : float = 0.5
 var too_fast = false
 @export var attackScene = preload("res://Scenes/Attacks/punch.tscn")
@@ -28,10 +28,8 @@ var speed = 375
 @onready var hitbox = $CollisionShape2D
 @onready var anim = $AnimatedSprite2D
 
-@onready var key_tip = $AnimatedSprite2D/Sprite2D
-
 #UI References
-@onready var hpbar = $CanvasLayer/Control/ProgressBar
+@onready var hpbar = $CanvasLayer/Control/ColorRect/MarginContainer/ProgressBar
 @onready var gold_text = $CanvasLayer/Control/Panel/MarginContainer/VBoxContainer/GOLDDD/Label
 @onready var dmg_text = $CanvasLayer/Control/Panel/MarginContainer/VBoxContainer/DMG/Label
 @onready var attack_speed_text = $CanvasLayer/Control/Panel/MarginContainer/VBoxContainer/dmgspeed/Label
@@ -97,7 +95,11 @@ func receive_damage(dmg):
 	hp -= dmg
 	if hp <= 0:
 		state = STATES.DEAD
-		queue_free()
+		$AnimatedSprite2D.hide()
+		
+		$"CanvasLayer/Death Menu".show()
+		$"CanvasLayer/Death Menu/PanelContainer/MarginContainer/VBoxContainer/Death Text".text =\
+		"[p][color=red]YOU DIED[/color][/p]At wave: " + var_to_str(GlobalVariables.current_wave)
 	hpbar.value = hp
 	updateUI()
 
@@ -135,7 +137,7 @@ func updateUI(new_wave = false):
 		$CanvasLayer/Control/PanelContainer/RichTextLabel.text = "Wave " + var_to_str(GlobalVariables.current_wave)
 	hpbar.max_value = max_hp
 	hpbar.value = hp
-	$CanvasLayer/Control/ProgressBar/Label.text = var_to_str(hp) + "/" + var_to_str(max_hp)
+	$CanvasLayer/Control/ColorRect/MarginContainer/ProgressBar/Label.text = var_to_str(hp) + "/" + var_to_str(max_hp)
 	gold_text.text = "$" + var_to_str(gold)
 	dmg_text.text = var_to_str(strength)
 	if too_fast:
@@ -147,3 +149,9 @@ func updateUI(new_wave = false):
 
 func _on_world_new_wave() -> void:
 	updateUI(true)
+
+func _on_quit_to_desktop_button_down() -> void:
+	get_tree().quit()
+
+func _on_restart_button_down() -> void:
+	get_tree().reload_current_scene()

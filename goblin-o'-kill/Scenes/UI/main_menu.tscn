@@ -1,0 +1,443 @@
+[gd_scene load_steps=15 format=3 uid="uid://cusy1hbayre3w"]
+
+[ext_resource type="Script" uid="uid://c41yi7af8uq2l" path="res://Scripts/UI/main_menu.gd" id="1_5wsvm"]
+[ext_resource type="Texture2D" uid="uid://bnh1csywm5kry" path="res://Sprites/nekkkapfp.png" id="2_i2xx2"]
+[ext_resource type="Script" uid="uid://m354wp0ul6p4" path="res://Scripts/UI/options_menu.gd" id="3_o14dv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_28flt"]
+bg_color = Color(0, 0.721569, 0.6, 1)
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_48xlc"]
+bg_color = Color(0.513726, 0.607843, 0.6, 1)
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ce3w2"]
+bg_color = Color(0.6, 0.564706, 0.6, 1)
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5wsvm"]
+bg_color = Color(0.498039, 0.333333, 0.556863, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i2xx2"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u7lva"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mrfpk"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+shadow_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_4pqbp"]
+color = Color(1, 1, 1, 1)
+thickness = 6
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_gih0s"]
+color = Color(0, 0.823529, 0, 1)
+thickness = 6
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_o14dv"]
+color = Color(0, 1, 0, 1)
+thickness = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o14dv"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 25
+border_width_top = 15
+border_width_right = 25
+border_width_bottom = 15
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[node name="Main Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5wsvm")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.105882, 0, 1)
+
+[node name="Play Menu" type="MarginContainer" parent="."]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Play Menu"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 5
+
+[node name="TITLE" type="Label" parent="Play Menu/VBoxContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0, 0.913725, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.372549, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/outline_size = 25
+theme_override_constants/shadow_outline_size = 25
+theme_override_font_sizes/font_size = 100
+text = "GOBLIN O' KILL"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Record Wave" type="RichTextLabel" parent="Play Menu/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 0.843137, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "Record: 0"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Play" type="Button" parent="Play Menu/VBoxContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.5
+mouse_default_cursor_shape = 2
+theme_override_colors/font_hover_pressed_color = Color(0, 1, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0.85771, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0, 1, 0, 1)
+theme_override_constants/outline_size = 25
+theme_override_font_sizes/font_size = 50
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_28flt")
+theme_override_styles/hover = SubResource("StyleBoxFlat_28flt")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_28flt")
+theme_override_styles/normal = SubResource("StyleBoxFlat_28flt")
+text = "Play"
+clip_text = true
+
+[node name="Options" type="Button" parent="Play Menu/VBoxContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 3
+mouse_default_cursor_shape = 2
+theme_override_colors/font_hover_pressed_color = Color(0.43134, 0.43134, 0.43134, 1)
+theme_override_colors/font_hover_color = Color(0.580392, 0.580392, 0.580392, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.581033, 0.581033, 0.581033, 1)
+theme_override_constants/outline_size = 25
+theme_override_font_sizes/font_size = 50
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_48xlc")
+theme_override_styles/hover = SubResource("StyleBoxFlat_48xlc")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_48xlc")
+theme_override_styles/normal = SubResource("StyleBoxFlat_48xlc")
+text = "Options
+"
+clip_text = true
+
+[node name="Quit" type="Button" parent="Play Menu/VBoxContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 3
+mouse_default_cursor_shape = 2
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 25
+theme_override_font_sizes/font_size = 50
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_ce3w2")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ce3w2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ce3w2")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ce3w2")
+text = "Quit
+"
+clip_text = true
+
+[node name="Credits to Nekka" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.043
+anchor_top = 0.256
+anchor_right = 0.194
+anchor_bottom = 0.719
+offset_left = 0.463997
+offset_top = 0.112
+offset_right = -0.488007
+offset_bottom = 0.0879822
+grow_vertical = 2
+mouse_default_cursor_shape = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_5wsvm")
+
+[node name="MarginContainer" type="MarginContainer" parent="Credits to Nekka"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Credits to Nekka/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="Label" type="Label" parent="Credits to Nekka/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 25
+text = "MUSIC:"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Credits to Nekka/MarginContainer/VBoxContainer"]
+texture_filter = 2
+layout_mode = 2
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.5
+theme_override_styles/separator = SubResource("StyleBoxFlat_i2xx2")
+
+[node name="Label2" type="Label" parent="Credits to Nekka/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.941176, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_constants/shadow_outline_size = 5
+theme_override_font_sizes/font_size = 25
+text = "Discotheque"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="Credits to Nekka/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 5
+text = "by:"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="Credits to Nekka/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.941176, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_constants/shadow_outline_size = 5
+theme_override_font_sizes/font_size = 25
+text = "Nekkka"
+horizontal_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Credits to Nekka/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+bbcode_enabled = true
+text = "Love you dude
+Go follow him on [color=green]spotify[/color] and [color=red]itch.io![/color]"
+fit_content = true
+scroll_active = false
+
+[node name="Button" type="Button" parent="Credits to Nekka/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+mouse_default_cursor_shape = 2
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0.160784, 0, 0.458824, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 25
+text = "Nekka"
+icon = ExtResource("2_i2xx2")
+flat = true
+
+[node name="Options Menu" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_o14dv")
+
+[node name="PanelContainer" type="PanelContainer" parent="Options Menu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.117
+anchor_top = 0.117
+anchor_right = 0.883
+anchor_bottom = 0.883
+offset_left = 0.215988
+offset_top = 0.183998
+offset_right = -0.216003
+offset_bottom = -0.184021
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_u7lva")
+
+[node name="MarginContainer" type="MarginContainer" parent="Options Menu/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Options Menu/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="Options Menu/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 25
+text = "Options"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Options Menu/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_styles/separator = SubResource("StyleBoxFlat_mrfpk")
+
+[node name="Music Volume" type="HBoxContainer" parent="Options Menu/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 25
+
+[node name="Label" type="Label" parent="Options Menu/PanelContainer/MarginContainer/VBoxContainer/Music Volume"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Music Volume"
+
+[node name="Music Volume Slider" type="HSlider" parent="Options Menu/PanelContainer/MarginContainer/VBoxContainer/Music Volume"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_styles/slider = SubResource("StyleBoxLine_4pqbp")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_gih0s")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_o14dv")
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="Music Volume Number" type="Label" parent="Options Menu/PanelContainer/MarginContainer/VBoxContainer/Music Volume"]
+layout_mode = 2
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SFX Volume" type="HBoxContainer" parent="Options Menu/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 25
+
+[node name="Label" type="Label" parent="Options Menu/PanelContainer/MarginContainer/VBoxContainer/SFX Volume"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "SFX Volume"
+
+[node name="SFX Volume Slider" type="HSlider" parent="Options Menu/PanelContainer/MarginContainer/VBoxContainer/SFX Volume"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_styles/slider = SubResource("StyleBoxLine_4pqbp")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_gih0s")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_o14dv")
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="SFX Volume Number" type="Label" parent="Options Menu/PanelContainer/MarginContainer/VBoxContainer/SFX Volume"]
+layout_mode = 2
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckButton" type="CheckButton" parent="Options Menu/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Fullscreen"
+icon_alignment = 1
+
+[node name="Back Button" type="Button" parent="Options Menu/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 10
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_o14dv")
+theme_override_styles/hover = SubResource("StyleBoxFlat_o14dv")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_o14dv")
+theme_override_styles/normal = SubResource("StyleBoxFlat_o14dv")
+action_mode = 0
+text = "Back"
+
+[connection signal="button_down" from="Play Menu/VBoxContainer/Play" to="." method="_on_play_button_down"]
+[connection signal="button_down" from="Play Menu/VBoxContainer/Options" to="." method="_on_options_button_down"]
+[connection signal="button_down" from="Play Menu/VBoxContainer/Quit" to="." method="_on_quit_button_down"]
+[connection signal="button_down" from="Credits to Nekka/MarginContainer/VBoxContainer/Button" to="." method="_on_button_button_down"]
+[connection signal="value_changed" from="Options Menu/PanelContainer/MarginContainer/VBoxContainer/Music Volume/Music Volume Slider" to="Options Menu" method="_on_music_volume_slider_value_changed"]
+[connection signal="value_changed" from="Options Menu/PanelContainer/MarginContainer/VBoxContainer/SFX Volume/SFX Volume Slider" to="Options Menu" method="_on_sfx_volume_slider_value_changed"]
+[connection signal="toggled" from="Options Menu/PanelContainer/MarginContainer/VBoxContainer/CheckButton" to="Options Menu" method="_on_check_button_toggled"]
+[connection signal="pressed" from="Options Menu/PanelContainer/MarginContainer/VBoxContainer/Back Button" to="." method="_on_back_button_pressed"]

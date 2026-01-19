@@ -31,7 +31,7 @@ script = ExtResource("1_dbs7w")
 
 [node name="Interaction Component" parent="." instance=ExtResource("2_5kjme")]
 scale = Vector2(1.5, 1.5)
-tip_position = 3
+scale_bonus = 3.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -79,10 +79,10 @@ bbcode_enabled = true
 fit_content = true
 scroll_active = false
 
-[node name="Price" type="Label" parent="PanelContainer/MarginContainer"]
+[node name="Price" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
-size_flags_vertical = 8
+size_flags_vertical = 10
 theme_override_colors/font_color = Color(1, 0.784314, 0, 1)
 horizontal_alignment = 2
 vertical_alignment = 1

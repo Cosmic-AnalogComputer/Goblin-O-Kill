@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=4 uid="uid://bhkyobjeljr7i"]
+[gd_scene load_steps=51 format=4 uid="uid://bhkyobjeljr7i"]
 
 [ext_resource type="Script" uid="uid://djnsrw0beuq3m" path="res://Scripts/world.gd" id="1_6w0a8"]
 [ext_resource type="Texture2D" uid="uid://bkexd0hd5l4ap" path="res://Sprites/TestTiles0.png" id="2_mkl45"]
@@ -1241,6 +1241,9 @@ border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
 border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jnmjr"]
+size = Vector2(232, 127)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3id6w"]
 size = Vector2(59, 4)
@@ -3269,7 +3272,6 @@ sources/0 = SubResource("TileSetAtlasSource_kvnx8")
 [node name="World" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_6w0a8")
-canKillAll = true
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 z_index = -2
@@ -3281,13 +3283,13 @@ tile_set = SubResource("TileSet_fo5ed")
 metadata/_edit_lock_ = true
 
 [node name="Item1" type="Node2D" parent="." groups=["On Victory"]]
-position = Vector2(350, 514)
+position = Vector2(230, 514)
 
 [node name="Item2" type="Node2D" parent="." groups=["On Victory"]]
 position = Vector2(605, 514)
 
 [node name="Item3" type="Node2D" parent="." groups=["On Victory"]]
-position = Vector2(860, 514)
+position = Vector2(980, 514)
 
 [node name="Shop" type="StaticBody2D" parent="." groups=["On Victory"]]
 y_sort_enabled = true
@@ -3386,8 +3388,13 @@ one_shot = true
 
 [node name="Interaction Component" parent="Shop" instance=ExtResource("6_b4tvn")]
 position = Vector2(0, 84)
-scale = Vector2(1.8, 1.12)
 tip_position = 4
+distance = 250
+scale_bonus = 5.0
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Shop/Interaction Component"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_jnmjr")
 
 [node name="Wave Button" type="StaticBody2D" parent="." groups=["On Victory"]]
 position = Vector2(605, 1300)
@@ -3457,10 +3464,8 @@ shape = SubResource("RectangleShape2D_51068")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_b4tvn")
 autoplay = true
+bus = &"Music"
 parameters/looping = true
-
-[node name="checker" type="Timer" parent="."]
-one_shot = true
 
 [node name="Player" parent="." instance=ExtResource("3_kxy5q")]
 position = Vector2(600, 1017)
@@ -3479,4 +3484,3 @@ metadata/_edit_lock_ = true
 [connection signal="timeout" from="Shop/DialogueTimer" to="Shop" method="_on_dialogue_timer_timeout"]
 [connection signal="interacted" from="Shop/Interaction Component" to="Shop" method="_on_interaction_component_interacted"]
 [connection signal="interacted" from="Wave Button/Interaction Component" to="." method="_on_interaction_component_interacted"]
-[connection signal="timeout" from="checker" to="." method="_on_checker_timeout"]

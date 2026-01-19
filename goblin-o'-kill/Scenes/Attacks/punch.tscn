@@ -91,6 +91,7 @@ autostart = true
 
 [node name="Audio" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamWAV_jbxk5")
+bus = &"SFX"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

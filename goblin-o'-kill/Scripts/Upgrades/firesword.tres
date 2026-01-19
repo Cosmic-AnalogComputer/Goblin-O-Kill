@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="Upgrade" load_steps=4 format=3 uid="uid://cb683fcks6m0k"]
+
+[ext_resource type="Script" uid="uid://c2wxw55rruo72" path="res://Scripts/Upgrades/BaseUpgradeTemplate.gd" id="1_1bgvf"]
+[ext_resource type="Texture2D" uid="uid://bgnk58vy4ir8f" path="res://Sprites/Upgrades.png" id="2_dk62t"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2vf3a"]
+atlas = ExtResource("2_dk62t")
+region = Rect2(144, 32, 16, 16)
+filter_clip = true
+
+[resource]
+script = ExtResource("1_1bgvf")
+texture = SubResource("AtlasTexture_2vf3a")
+name = &"Fire Sword"
+description = "[p][color=red]The mighty[/color][color=orange] Fire Sword[/color][/p][p]Some say it's a sword from another universe entirely.[/p][p]Just from wielding it, you feel as if you could take down a giant.[/p][p]+10 Damage[/p][p]+1 times damage on critical strike[/p][p]-0.1s cooldown in attack[/p]"
+price = 60
+max_health = 0
+health = 0
+damage = 10
+crit_chance = 0.0
+crit_mod = 1.0
+attack_speed = 0.1
+hasVisualEffect = false
+metadata/_custom_type_script = "uid://c2wxw55rruo72"

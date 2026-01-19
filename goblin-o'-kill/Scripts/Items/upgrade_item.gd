@@ -7,7 +7,7 @@ func _ready() -> void:
 	$Sprite2D.texture = UPGRADE.texture
 	$PanelContainer/MarginContainer/VBoxContainer/Name.text = UPGRADE.name
 	$PanelContainer/MarginContainer/VBoxContainer/Description.text = UPGRADE.description
-	$PanelContainer/MarginContainer/Price.text = "$" + var_to_str(UPGRADE.price)
+	$PanelContainer/MarginContainer/VBoxContainer/Price.text = "Price: $" + var_to_str(UPGRADE.price)
 
 func _upgrade(player):
 	usage += 1
