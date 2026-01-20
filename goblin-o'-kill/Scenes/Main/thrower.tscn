@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://btuf0vwmpr25a" path="res://Scripts/goblin.gd" id="1_s147e"]
 [ext_resource type="Texture2D" uid="uid://detx120euehes" path="res://Sprites/ThrowerGoblin.png" id="2_bmsty"]
-[ext_resource type="PackedScene" uid="uid://cya5g6dao173" path="res://Scenes/Main/rock.tscn" id="2_s147e"]
+[ext_resource type="PackedScene" uid="uid://cya5g6dao173" path="res://Scenes/Attacks/rock.tscn" id="2_s147e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xcvi8"]
 size = Vector2(76, 82)

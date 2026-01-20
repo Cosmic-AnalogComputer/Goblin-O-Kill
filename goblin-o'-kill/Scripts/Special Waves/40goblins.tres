@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="waveEvent" load_steps=2 format=3 uid="uid://70g4m7sbgqh5"]
+
+[ext_resource type="Script" uid="uid://dxta12hf8o11e" path="res://Scripts/Special Waves/event_template.gd" id="1_gpd0m"]
+
+[resource]
+script = ExtResource("1_gpd0m")
+name = "40 GOBLINS"
+appearOnce = false
+wave = 40
+goblins = Array[int]([40])
+metadata/_custom_type_script = "uid://dxta12hf8o11e"

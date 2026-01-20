@@ -22,12 +22,12 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
+		user = body
 		canInteract = true
 		key_tip.position = keyPosition[tip_position - 1] * distance
 		key_tip.show()
 
 func _on_body_exited(body: Node2D) -> void:
 	if body is Player:
-		user = body
 		canInteract = false
 		key_tip.hide()

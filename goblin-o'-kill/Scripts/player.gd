@@ -5,12 +5,12 @@ enum STATES {IDLE,ROLLING,DEAD,ATTACKING}
 var state : STATES = STATES.IDLE
 
 @export_group("Stats")
-var gold = 0
+@export var gold = 0
 @export var max_hp = 15
 @export var hp = 15
 @export_subgroup("Combat")
 @export var strength = 1
-@export var crit_chance : float = 0.10 # x 100
+@export var crit_chance : float = 0.05 ## x 100 on attack
 @export var crit_mod : float = 1.5
 @export var cooldown : float = 0.5
 var too_fast = false
@@ -22,7 +22,7 @@ var walk = "walk"
 var attack_anim = "attack"
 var currentAttack = 1
 var speed = 375
-
+var inmortal = false
 
 @onready var startingSpeed = speed
 @onready var hitbox = $CollisionShape2D
@@ -71,8 +71,9 @@ func _process(delta: float) -> void:
 	if Input.is_action_pressed("shift") and state != STATES.ROLLING:
 		if rollDirection:
 			state = STATES.ROLLING
-			velocity = rollDirection.normalized() * 350
-			set_collision_layer_value(2,false)
+			velocity = rollDirection.normalized() * 400
+			set_collision_layer_value(2, false)
+			set_collision_mask_value(3, false)
 			anim.play("roll")
 			$CD.set_paused(true)
 			$RollAudio.play()
@@ -87,12 +88,14 @@ func _process(delta: float) -> void:
 	
 
 func _on_i_frames_timeout() -> void:
-	set_collision_layer_value(2,true)
+	set_collision_layer_value(2, true)
+	set_collision_mask_value(3, true)
 	state = STATES.IDLE
 	$CD.set_paused(false)
 
 func receive_damage(dmg):
-	hp -= dmg
+	if !inmortal:
+		hp -= dmg
 	if hp <= 0:
 		state = STATES.DEAD
 		$AnimatedSprite2D.hide()
@@ -100,8 +103,8 @@ func receive_damage(dmg):
 		$"CanvasLayer/Death Menu".show()
 		$"CanvasLayer/Death Menu/PanelContainer/MarginContainer/VBoxContainer/Death Text".text =\
 		"[p][color=red]YOU DIED[/color][/p][p]At wave: " + var_to_str(GlobalVariables.current_wave)
+		GlobalVariables.current_wave = 0
 		get_tree().paused = true
-	hpbar.value = hp
 	updateUI()
 
 func attack():

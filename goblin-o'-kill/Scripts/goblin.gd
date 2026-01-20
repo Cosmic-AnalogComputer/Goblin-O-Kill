@@ -5,7 +5,7 @@ signal death()
 @export_group("Stats")
 @export var hp = 3
 @export var speed = 200
-var goldValue : int
+@export var goldValue = 1
 @export_group("Combat")
 @export var strength = 1 ## multiplied by wave * 0.1
 @export var delay : float = 1.0
@@ -105,10 +105,5 @@ func _on_delay_timeout() -> void:
 
 func get_damage() -> int:
 	var dmg : int
-	if GlobalVariables.difficulty == 2:
-		dmg = round(strength * GlobalVariables.wave_dmg_mod)
-	elif GlobalVariables.difficulty == 3:
-		dmg = round(strength * (1 + (GlobalVariables.current_wave * 0.5)))
-	else:
-		dmg = strength
+	dmg = strength * GlobalVariables.difficulty
 	return dmg

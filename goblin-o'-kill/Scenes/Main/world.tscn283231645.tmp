@@ -1,20 +1,16 @@
-[gd_scene load_steps=57 format=4 uid="uid://bhkyobjeljr7i"]
+[gd_scene load_steps=53 format=4 uid="uid://bhkyobjeljr7i"]
 
 [ext_resource type="Script" uid="uid://djnsrw0beuq3m" path="res://Scripts/world.gd" id="1_6w0a8"]
-[ext_resource type="Script" uid="uid://dxta12hf8o11e" path="res://Scripts/Special Waves/event_template.gd" id="2_jnmjr"]
 [ext_resource type="Texture2D" uid="uid://bkexd0hd5l4ap" path="res://Sprites/TestTiles0.png" id="2_mkl45"]
 [ext_resource type="Script" uid="uid://s4ladhyofkn2" path="res://Scripts/shop.gd" id="3_6ki3h"]
-[ext_resource type="Resource" uid="uid://70g4m7sbgqh5" path="res://Scripts/Special Waves/40goblins.tres" id="3_48xbc"]
 [ext_resource type="PackedScene" uid="uid://ooookqil64u4" path="res://Scenes/Items/bgg_oblin.tscn" id="3_kvnx8"]
 [ext_resource type="PackedScene" uid="uid://crn3fw2rb4s8i" path="res://Scenes/Main/player.tscn" id="3_kxy5q"]
 [ext_resource type="PackedScene" uid="uid://evb4gsey03rd" path="res://Scenes/Items/bggoblinm_2.tscn" id="4_16r8v"]
 [ext_resource type="AudioStream" uid="uid://cbn4gp4c2jy56" path="res://Audios/Discotheque - Nekkka.mp3" id="4_b4tvn"]
-[ext_resource type="Resource" uid="uid://cj2b8bswvx3pv" path="res://Scripts/Special Waves/test.tres" id="4_f6qa7"]
 [ext_resource type="Texture2D" uid="uid://b7ptuqv2gt2mn" path="res://Sprites/Shop_keeper.png" id="5_b4tvn"]
 [ext_resource type="PackedScene" uid="uid://5a56w426b3c2" path="res://Scenes/Items/bgbolin_3.tscn" id="5_wwef5"]
 [ext_resource type="PackedScene" uid="uid://c0ltolgyfraym" path="res://Scenes/Items/interaction_component.tscn" id="6_b4tvn"]
 [ext_resource type="PackedScene" uid="uid://b4pxd2dou17tb" path="res://Scenes/Items/bggoblinm_4.tscn" id="6_wwef5"]
-[ext_resource type="PackedScene" uid="uid://dscraullb0bah" path="res://Scenes/Items/upgrade_item.tscn" id="7_3id6w"]
 [ext_resource type="Texture2D" uid="uid://d273j2bneec16" path="res://Sprites/Altar.png" id="10_wwef5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8j60k"]
@@ -3292,13 +3288,6 @@ shadow_color = Color(0, 0, 0, 0)
 [node name="World" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_6w0a8")
-getFreeGold = true
-canKillAll = true
-canGoInmortal = true
-canDisableCollision = true
-hasStarterWave = true
-starterWave = 5
-events = Array[ExtResource("2_jnmjr")]([ExtResource("3_48xbc"), ExtResource("4_f6qa7")])
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 z_index = -2
@@ -3309,23 +3298,19 @@ tile_map_data = PackedByteArray("AAAAAAAAAAATAAMAAAAAAAEAAAAUAAIAAAAAAAIAAAATAAI
 tile_set = SubResource("TileSet_fo5ed")
 metadata/_edit_lock_ = true
 
-[node name="Upgrade Item" parent="." groups=["On Victory", "Upgrades"] instance=ExtResource("7_3id6w")]
-visible = false
-position = Vector2(230, 515)
+[node name="Item1" type="Node2D" parent="." groups=["On Victory"]]
+position = Vector2(230, 514)
 
-[node name="Upgrade Item2" parent="." groups=["On Victory", "Upgrades"] instance=ExtResource("7_3id6w")]
-visible = false
-position = Vector2(605, 515)
+[node name="Item2" type="Node2D" parent="." groups=["On Victory"]]
+position = Vector2(605, 514)
 
-[node name="Upgrade Item3" parent="." groups=["On Victory", "Upgrades"] instance=ExtResource("7_3id6w")]
-visible = false
-position = Vector2(980, 515)
+[node name="Item3" type="Node2D" parent="." groups=["On Victory"]]
+position = Vector2(980, 514)
 
 [node name="Shop" type="StaticBody2D" parent="." groups=["On Victory"]]
 visible = false
 y_sort_enabled = true
 position = Vector2(605, 151)
-collision_layer = 0
 script = ExtResource("3_6ki3h")
 Dialogues = Array[String](["Buy me some items, ya?", "Wha you look at me like that?", "Come on now, giv me ya gold!", "aye, buddy. It ain wrong to help out an ol' folk like me", "Take a look at these", "We both know u got some gold with ya, ain' tha righ?", "Maybe i'll take you gold ma self...Maybe", "U ain' dying if u donate som. Are ya?"])
 
@@ -3444,7 +3429,6 @@ one_way_collision = true
 
 [node name="Interaction Component" parent="Wave Button" instance=ExtResource("6_b4tvn")]
 scale = Vector2(1.98, 1.98)
-tip_position = 3
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Wave Button"]
 position = Vector2(0, -28)
