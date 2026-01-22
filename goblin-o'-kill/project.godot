@@ -15,17 +15,31 @@ config/version="1.0"
 run/main_scene="uid://bhkyobjeljr7i"
 config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)
-boot_splash/image="uid://b8pyssr45dkhx"
 config/icon="uid://byi41s0n2j5t3"
 
 [autoload]
 
 GlobalVariables="*res://Scripts/globalVariables.gd"
 
+[display]
+
+window/size/mode=2
+
+[file_customization]
+
+folder_colors={
+"res://Audios/": "yellow",
+"res://Scenes/": "blue",
+"res://Scripts/": "green",
+"res://Scripts/Enemies/": "green",
+"res://Scripts/State Machine/": "pink",
+"res://Scripts/Upgrades/": "purple",
+"res://Sprites/": "red"
+}
+
 [global_group]
 
 Player="Player node group"
-Goblins="GOBLIN!!! 40 GOBLINNSS!!! GOLD!!"
 "On Victory"=""
 Upgrades=""
 
@@ -98,6 +112,11 @@ y={
 p={
 "deadzone": 0.2,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":80,"key_label":0,"unicode":112,"location":0,"echo":false,"script":null)
+]
+}
+h={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":72,"key_label":0,"unicode":104,"location":0,"echo":false,"script":null)
 ]
 }
 

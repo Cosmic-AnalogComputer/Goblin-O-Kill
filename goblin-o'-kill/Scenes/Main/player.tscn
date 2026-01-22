@@ -359,8 +359,6 @@ texture_filter = 1
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_fkybt")
 animation = &"top_attack"
-frame = 4
-frame_progress = 1.0
 
 [node name="IFrames" type="Timer" parent="."]
 wait_time = 0.75

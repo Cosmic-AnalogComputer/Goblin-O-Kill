@@ -19,7 +19,6 @@ var too_fast = false
 var rollDirection : Vector2
 var idle = "idle"
 var walk = "walk"
-var attack_anim = "attack"
 var currentAttack = 1
 var speed = 375
 var inmortal = false
@@ -42,26 +41,24 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	var direction = Input.get_vector("a","d","w","s")
-	if direction and not state == STATES.ROLLING:
+	if direction and state != STATES.ROLLING:
 		velocity = direction.normalized() * speed
 		if state == STATES.IDLE:
 			anim.play(walk)
+			if direction.x < 0:
+				anim.flip_h = true
+			if direction.x > 0:
+				anim.flip_h = false
 		rollDirection = direction
 		
-		if direction.x < 0:
-			anim.flip_h = true
-		else:
-			anim.flip_h = false
 		if direction.y < 0:
 			walk = "top_walk"
 			idle = "top_idle"
-			attack_anim = "top_attack"
 		else:
 			walk = "walk"
 			idle = "idle"
-			attack_anim = "attack"
 	elif state != STATES.ROLLING:
 		velocity = Vector2.ZERO
 		rollDirection = Vector2.ZERO
@@ -118,7 +115,7 @@ func attack():
 	attack.damage = hurt.x
 	if hurt.y == 1.0:
 		attack.modulate = Color.DEEP_SKY_BLUE
-	anim.play(attack_anim)
+	anim.play(get_attack_anim())
 	add_child(attack)
 
 
@@ -160,3 +157,23 @@ func _on_quit_to_desktop_button_down() -> void:
 func _on_restart_button_down() -> void:
 	get_tree().paused = false
 	get_tree().reload_current_scene()
+
+func get_attack_anim() -> String:
+	var rot = int(rad_to_deg(get_angle_to(get_global_mouse_position())) + 90)
+	print(rot)
+	if rot in range(0,180):
+		anim.flip_h = false
+	else:
+		anim.flip_h = true
+	
+	var attack_anim : Array[String] = ["top_attack","attack","attack"]
+	var arc = -60
+	var arc_2 = 60
+	for a in 3:
+		if rot in range(arc,arc_2):
+			return attack_anim[a]
+		else:
+			arc = arc_2
+			arc_2 += 90
+	
+	return attack_anim[2]

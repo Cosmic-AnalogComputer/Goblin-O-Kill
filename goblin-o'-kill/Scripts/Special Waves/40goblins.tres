@@ -6,6 +6,7 @@
 script = ExtResource("1_gpd0m")
 name = "40 GOBLINS"
 appearOnce = false
+DoubleEachInstance = true
 wave = 40
 goblins = Array[int]([40])
 metadata/_custom_type_script = "uid://dxta12hf8o11e"

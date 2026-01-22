@@ -6,6 +6,7 @@
 script = ExtResource("1_boa32")
 name = "test"
 appearOnce = true
-wave = 6
+DoubleEachInstance = false
+wave = 20
 goblins = Array[int]([0, 10])
 metadata/_custom_type_script = "uid://dxta12hf8o11e"

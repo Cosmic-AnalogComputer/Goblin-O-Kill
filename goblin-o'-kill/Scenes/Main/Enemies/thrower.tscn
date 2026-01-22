@@ -1,8 +1,10 @@
-[gd_scene load_steps=30 format=3 uid="uid://dlgeaqttixnn"]
+[gd_scene load_steps=32 format=3 uid="uid://dlgeaqttixnn"]
 
-[ext_resource type="Script" uid="uid://btuf0vwmpr25a" path="res://Scripts/goblin.gd" id="1_s147e"]
+[ext_resource type="Script" uid="uid://dhejj6r063rc0" path="res://Scripts/Enemies/goblin_rework.gd" id="1_b58ok"]
 [ext_resource type="Texture2D" uid="uid://detx120euehes" path="res://Sprites/ThrowerGoblin.png" id="2_bmsty"]
 [ext_resource type="PackedScene" uid="uid://cya5g6dao173" path="res://Scenes/Attacks/rock.tscn" id="2_s147e"]
+[ext_resource type="Script" uid="uid://cgl1dkmxrdath" path="res://Scripts/State Machine/EnemyChase.gd" id="4_n0hgt"]
+[ext_resource type="Script" uid="uid://lop8wx2r7exx" path="res://Scripts/State Machine/Attack.gd" id="5_2k3g0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xcvi8"]
 size = Vector2(76, 82)
@@ -208,27 +210,27 @@ animations = [{
 "speed": 4.0
 }]
 
-[node name="Thrower" type="CharacterBody2D" groups=["Goblins"]]
+[node name="Thrower" type="CharacterBody2D" node_paths=PackedStringArray("initial_state")]
 collision_layer = 4
 collision_mask = 9
-script = ExtResource("1_s147e")
-speed = 350
-strength = 2
+script = ExtResource("1_b58ok")
+hp = 3
+speed = 300
+gold = 2
+damage = 2
 delay = 0.7
 cooldown = 1.2
-chaseRange = 400.0
-attackAtPosition = true
-attackScene = ExtResource("2_s147e")
+meleeAttack = false
+range = 400.0
+goodAim = true
 attackIsChild = false
+attackScene = ExtResource("2_s147e")
+walk = Array[String](["top_walk", "walk", "walk", "walk"])
+attack_anim = Array[String](["top_attack", "attack", "attack", "attack"])
+initial_state = NodePath("chase")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_xcvi8")
-
-[node name="CD" type="Timer" parent="."]
-one_shot = true
-
-[node name="Delay" type="Timer" parent="."]
-one_shot = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -236,5 +238,10 @@ scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_tmatv")
 animation = &"attack"
 
-[connection signal="timeout" from="CD" to="." method="_on_cd_timeout"]
-[connection signal="timeout" from="Delay" to="." method="_on_delay_timeout"]
+[node name="chase" type="Node" parent="."]
+script = ExtResource("4_n0hgt")
+metadata/_custom_type_script = "uid://cgl1dkmxrdath"
+
+[node name="Attack" type="Node" parent="."]
+script = ExtResource("5_2k3g0")
+metadata/_custom_type_script = "uid://lop8wx2r7exx"

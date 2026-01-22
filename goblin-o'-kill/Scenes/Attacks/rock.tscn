@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cya5g6dao173"]
 
-[ext_resource type="Script" uid="uid://bnax3y0dgjoxd" path="res://Scripts/rock.gd" id="1_bpaji"]
+[ext_resource type="Script" uid="uid://bnax3y0dgjoxd" path="res://Scripts/Attacks/rock.gd" id="1_bpaji"]
 [ext_resource type="Texture2D" uid="uid://bxjhch64puryw" path="res://Sprites/flashes.png" id="2_l3r86"]
 
 [sub_resource type="Curve" id="Curve_bpaji"]

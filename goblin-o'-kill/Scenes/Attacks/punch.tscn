@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=4 uid="uid://dxgivpk3eary6"]
 
-[ext_resource type="Script" uid="uid://babfxfgnrcwaa" path="res://Scripts/attack.gd" id="1_jbxk5"]
+[ext_resource type="Script" uid="uid://babfxfgnrcwaa" path="res://Scripts/Attacks/attack.gd" id="1_jbxk5"]
 [ext_resource type="Texture2D" uid="uid://bxjhch64puryw" path="res://Sprites/flashes.png" id="2_jbxk5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jbxk5"]
@@ -83,6 +83,7 @@ animation = &"null"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_jbxk5")
+debug_color = Color(1, 0, 0, 0.419608)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.1

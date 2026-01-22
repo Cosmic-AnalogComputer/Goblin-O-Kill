@@ -7,18 +7,19 @@ signal new_wave()
 @export var canKillAll : bool = false ## Press K to kill al goblins
 @export var canGoInmortal : bool = false ## Press Y to go inmortal
 @export var canDisableCollision : bool = false ## Press P to disable collision
+@export var showShop : bool = false ## Shows shop at the start of the scene
 @export_subgroup("Starter Wave")
 @export var hasStarterWave = false ## If true, will begin the game at a wave equal to starterWave
 @export var starterWave : int ## Starts the game at this wave, if has starter wave is enabled
 
 var itemScene = preload("res://Scenes/Items/upgrade_item.tscn")
 
-@export_group("Waves")
-@export var goblins : Array[PackedScene] = [preload("res://Scenes/Main/goblin.tscn"),\
-preload("res://Scenes/Main/thrower.tscn")]
+@export_group("Wave System")
+@export var goblins : Array[PackedScene] = [preload("res://Scenes/Main/Enemies/goblin.tscn"),\
+preload("res://Scenes/Main/Enemies/thrower.tscn")]
 @export var goblin_prices : Array[int] = [1, 3] ## Asign prices in the order of the goblins list
 #var prices : Array[int] = [20,15,7,4,3,1] # 1-Goblin 2-Thrower 3-Buffed Goblin 4-Guard 5-Wizard 6-Boss
-@export var events : Array[waveEvent]
+@export var events : Array[waveEvent] ## Priority is established from top to bottom (so the lower, the higher priority)
 
 var inStock : bool = true
 var playing_music = true
@@ -28,6 +29,8 @@ var ivolume : float = 0.5
 @onready var musicStream = $AudioStreamPlayer
 
 func _ready() -> void:
+	if !showShop:
+		hide_shop(false)
 	if hasStarterWave:
 		GlobalVariables.current_wave = starterWave - 1
 
@@ -48,14 +51,17 @@ func make_new_wave():
 	emit_signal("new_wave")
 	playing_music = true
 	var amounts : Array[int]
-	for Ievents in events.size():
-		var event = events[Ievents]
+	for event in events:
 		if event.appearOnce and GlobalVariables.current_wave == event.wave:
 			amounts = event.goblins
 		elif GlobalVariables.current_wave % event.wave == 0:
-			amounts = event.goblins 
-		else:
-			amounts = buy_goblins(GlobalVariables.current_wave)
+			amounts = event.goblins
+			if event.DoubleEachInstance:
+				for i in amounts.size():
+					amounts[i] *= GlobalVariables.current_wave / event.wave
+	if amounts.is_empty():
+		amounts = buy_goblins(GlobalVariables.current_wave)
+	#print(amounts)
 	for g in amounts.size():
 		for i in amounts[g]:
 			var goblin = goblins[g].instantiate()
@@ -75,6 +81,7 @@ func buy_goblins(num) -> Array[int]:
 		if num - goblin_prices[ran_goblin] >= 0:
 			num -= goblin_prices[ran_goblin]
 			amounts[ran_goblin] += 1
+	#print("bought goblins: ", amounts)
 	return amounts
 
 func restock():
@@ -131,3 +138,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			$Player/CollisionShape2D.disabled = false
 		else:
 			$Player/CollisionShape2D.disabled = true
+
+func _on_restocker_interaction_interacted(user: Player) -> void:
+	if user.gold >= 15:
+		user.gold -= 15
+		user.updateUI()
+		restock()

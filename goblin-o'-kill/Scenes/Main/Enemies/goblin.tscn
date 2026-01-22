@@ -1,7 +1,9 @@
-[gd_scene load_steps=31 format=3 uid="uid://b1cymn7dg72ea"]
+[gd_scene load_steps=33 format=3 uid="uid://b1cymn7dg72ea"]
 
-[ext_resource type="Script" uid="uid://btuf0vwmpr25a" path="res://Scripts/goblin.gd" id="1_ax1lh"]
+[ext_resource type="Script" uid="uid://dhejj6r063rc0" path="res://Scripts/Enemies/goblin_rework.gd" id="1_7nlfl"]
 [ext_resource type="Texture2D" uid="uid://cienmm55sw87u" path="res://Sprites/Goblin.png" id="2_potlr"]
+[ext_resource type="Script" uid="uid://cgl1dkmxrdath" path="res://Scripts/State Machine/EnemyChase.gd" id="3_14l0p"]
+[ext_resource type="Script" uid="uid://lop8wx2r7exx" path="res://Scripts/State Machine/Attack.gd" id="4_eqilx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xcvi8"]
 size = Vector2(76, 82)
@@ -227,28 +229,31 @@ animations = [{
 "speed": 4.0
 }]
 
-[node name="Goblin" type="CharacterBody2D" groups=["Goblins"]]
+[node name="Goblin" type="CharacterBody2D" node_paths=PackedStringArray("initial_state")]
 collision_layer = 4
 collision_mask = 9
-script = ExtResource("1_ax1lh")
-speed = 352
+script = ExtResource("1_7nlfl")
+hp = 3
 delay = 0.7
-chaseRange = 90.0
+cooldown = 0.5
+walk = Array[String](["top_walk", "walk", "walk", "walk"])
+attack_anim = Array[String](["top_attack", "attack", "attack", "attack"])
+initial_state = NodePath("chase")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_xcvi8")
-
-[node name="CD" type="Timer" parent="."]
-one_shot = true
-
-[node name="Delay" type="Timer" parent="."]
-one_shot = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_ax1lh")
-animation = &"top_attack"
+animation = &"idle"
+autoplay = "idle"
 
-[connection signal="timeout" from="CD" to="." method="_on_cd_timeout"]
-[connection signal="timeout" from="Delay" to="." method="_on_delay_timeout"]
+[node name="chase" type="Node" parent="."]
+script = ExtResource("3_14l0p")
+metadata/_custom_type_script = "uid://cgl1dkmxrdath"
+
+[node name="attack" type="Node" parent="."]
+script = ExtResource("4_eqilx")
+metadata/_custom_type_script = "uid://lop8wx2r7exx"

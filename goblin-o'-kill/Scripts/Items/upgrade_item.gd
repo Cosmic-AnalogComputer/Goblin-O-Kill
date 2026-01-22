@@ -7,7 +7,6 @@ func load_item(new_upgrade : Upgrade):
 	UPGRADE = new_upgrade
 	usage = 0
 	$Sprite2D.show()
-	$"Interaction Component".monitoring = true
 	$Sprite2D.texture = UPGRADE.texture
 	$PanelContainer/MarginContainer/VBoxContainer/Name.text = UPGRADE.name
 	$PanelContainer/MarginContainer/VBoxContainer/Description.text = UPGRADE.description
@@ -53,3 +52,4 @@ func _on_interaction_component_body_exited(body: Node2D) -> void:
 
 func _on_visibility_changed() -> void:
 	set_collision_layer_value(1,visible)
+	$"Interaction Component".monitoring = visible
