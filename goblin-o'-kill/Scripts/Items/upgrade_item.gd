@@ -4,6 +4,7 @@ extends StaticBody2D
 var usage = 0
 
 func load_item(new_upgrade : Upgrade):
+	$"Interaction Component".monitoring = true
 	UPGRADE = new_upgrade
 	usage = 0
 	$Sprite2D.show()
@@ -52,4 +53,3 @@ func _on_interaction_component_body_exited(body: Node2D) -> void:
 
 func _on_visibility_changed() -> void:
 	set_collision_layer_value(1,visible)
-	$"Interaction Component".monitoring = visible

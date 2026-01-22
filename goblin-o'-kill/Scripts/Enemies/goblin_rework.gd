@@ -69,4 +69,6 @@ func on_state_transition(state, new_state_name : String):
 func receive_damage(damage):
 	hp -= damage
 	if hp <= 0:
+		player.gold += gold
+		player.updateUI()
 		queue_free()

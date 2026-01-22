@@ -3,10 +3,8 @@ extends Node2D
 signal new_wave()
 
 @export_group("Dev Tools")
-@export var getFreeGold : bool = false ## Press G to get 100 gold
-@export var canKillAll : bool = false ## Press K to kill al goblins
-@export var canGoInmortal : bool = false ## Press Y to go inmortal
-@export var canDisableCollision : bool = false ## Press P to disable collision
+@export var devMode : bool = false ## Enables developer tools
+@export_multiline var devControls : String
 @export var showShop : bool = false ## Shows shop at the start of the scene
 @export_subgroup("Starter Wave")
 @export var hasStarterWave = false ## If true, will begin the game at a wave equal to starterWave
@@ -20,6 +18,9 @@ preload("res://Scenes/Main/Enemies/thrower.tscn")]
 @export var goblin_prices : Array[int] = [1, 3] ## Asign prices in the order of the goblins list
 #var prices : Array[int] = [20,15,7,4,3,1] # 1-Goblin 2-Thrower 3-Buffed Goblin 4-Guard 5-Wizard 6-Boss
 @export var events : Array[waveEvent] ## Priority is established from top to bottom (so the lower, the higher priority)
+
+@export_group("Shop")
+@export var Upgrades : Array[Upgrade] = [preload("res://Scripts/Upgrades/electricsword.tres")]
 
 var inStock : bool = true
 var playing_music = true
@@ -92,7 +93,7 @@ func restock():
 		get_tree().get_nodes_in_group("On Victory")[loop].show()
 	for upgrades in get_tree().get_node_count_in_group("Upgrades"):
 		get_tree().get_nodes_in_group("Upgrades")[upgrades].\
-			load_item(load(GlobalVariables.upgrades.pick_random()))
+			load_item(Upgrades.pick_random())
 	$"Wave Button/Interaction Component".monitoring = true
 	$"Wave Button".set_collision_layer_value(1,true)
 	$Shop.set_collision_layer_value(1,true)
@@ -122,22 +123,23 @@ func hide_shop(hide_altar = true):
 # Dev tools
 
 func _unhandled_input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("k") and canKillAll:
-		for k in wave_container.get_child_count():
-			wave_container.get_child(k).receive_damage(100)
-	if Input.is_action_just_pressed("g") and getFreeGold:
-		$Player.gold += 100
-		$Player.updateUI()
-	if Input.is_action_just_pressed("y") and canGoInmortal:
-		if $Player.inmortal:
-			$Player.inmortal = false
-		else:
-			$Player.inmortal = true
-	if Input.is_action_just_pressed("p") and canDisableCollision:
-		if $Player/CollisionShape2D.disabled:
-			$Player/CollisionShape2D.disabled = false
-		else:
-			$Player/CollisionShape2D.disabled = true
+	if devMode:
+		if Input.is_action_just_pressed("k"):
+			for k in wave_container.get_child_count():
+				wave_container.get_child(k).receive_damage(100)
+		if Input.is_action_just_pressed("g"):
+			$Player.gold += 100
+			$Player.updateUI()
+		if Input.is_action_just_pressed("y"):
+			if $Player.inmortal:
+				$Player.inmortal = false
+			else:
+				$Player.inmortal = true
+		if Input.is_action_just_pressed("p"):
+			if $Player/CollisionShape2D.disabled:
+				$Player/CollisionShape2D.disabled = false
+			else:
+				$Player/CollisionShape2D.disabled = true
 
 func _on_restocker_interaction_interacted(user: Player) -> void:
 	if user.gold >= 15:

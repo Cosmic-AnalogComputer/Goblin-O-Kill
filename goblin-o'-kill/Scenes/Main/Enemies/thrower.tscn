@@ -217,7 +217,6 @@ script = ExtResource("1_b58ok")
 hp = 3
 speed = 300
 gold = 2
-damage = 2
 delay = 0.7
 cooldown = 1.2
 meleeAttack = false

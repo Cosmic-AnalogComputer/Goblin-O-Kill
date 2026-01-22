@@ -68,7 +68,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("shift") and state != STATES.ROLLING:
 		if rollDirection:
 			state = STATES.ROLLING
-			velocity = rollDirection.normalized() * 400
+			velocity = rollDirection.normalized() * 450
 			set_collision_layer_value(2, false)
 			set_collision_mask_value(3, false)
 			anim.play("roll")
@@ -81,7 +81,7 @@ func _physics_process(delta: float) -> void:
 	# ATTACK
 	if Input.is_action_pressed("C1") and state == STATES.IDLE:
 		attack()
-		speed = 250
+		speed = 300
 	
 
 func _on_i_frames_timeout() -> void:

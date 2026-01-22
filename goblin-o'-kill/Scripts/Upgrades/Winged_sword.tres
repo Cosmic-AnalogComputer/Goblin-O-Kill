@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="Upgrade" load_steps=4 format=3 uid="uid://6b8jttllcu6f"]
+
+[ext_resource type="Script" uid="uid://c2wxw55rruo72" path="res://Scripts/BaseUpgradeTemplate.gd" id="1_rq5c3"]
+[ext_resource type="Texture2D" uid="uid://bgnk58vy4ir8f" path="res://Sprites/Upgrades.png" id="2_x426x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qiixh"]
+atlas = ExtResource("2_x426x")
+region = Rect2(144, 32, 16, 16)
+
+[resource]
+script = ExtResource("1_rq5c3")
+texture = SubResource("AtlasTexture_qiixh")
+name = &"Winged Sword"
+description = "+5 Damage
++Small Knockback
++0.4 times damage on critical
+-0.04s cooldown in attack"
+price = 35
+max_health = 0
+health = 0
+damage = 5
+knockback = 1.0
+crit_chance = 0.0
+crit_mod = 0.4
+attack_speed = 0.04
+hasVisualEffect = false
+metadata/_custom_type_script = "uid://c2wxw55rruo72"

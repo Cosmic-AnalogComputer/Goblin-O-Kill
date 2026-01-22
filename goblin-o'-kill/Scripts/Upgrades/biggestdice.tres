@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Upgrade" load_steps=4 format=3 uid="uid://dwbxbile4l3d7"]
 
-[ext_resource type="Script" uid="uid://c2wxw55rruo72" path="res://Scripts/Upgrades/BaseUpgradeTemplate.gd" id="1_3env5"]
+[ext_resource type="Script" uid="uid://c2wxw55rruo72" path="res://Scripts/BaseUpgradeTemplate.gd" id="1_3env5"]
 [ext_resource type="Texture2D" uid="uid://bgnk58vy4ir8f" path="res://Sprites/Upgrades.png" id="2_jmu6y"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5ce02"]
@@ -20,4 +20,5 @@ crit_chance = 0.25
 crit_mod = 0.0
 attack_speed = 0.0
 hasVisualEffect = false
+description1 = ""
 metadata/_custom_type_script = "uid://c2wxw55rruo72"
