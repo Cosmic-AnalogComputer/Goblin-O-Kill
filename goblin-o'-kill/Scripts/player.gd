@@ -5,14 +5,15 @@ enum STATES {IDLE,ROLLING,DEAD,ATTACKING}
 var state : STATES = STATES.IDLE
 
 @export_group("Stats")
-@export var gold = 0
-@export var max_hp = 15
-@export var hp = 15
+@export var gold : int = 0
+@export var max_hp := 10
+@export var hp := 10
+@export var gold_gain : float = 1.0
 @export_subgroup("Combat")
 @export var strength = 1
 @export var crit_chance : float = 0.05 ## x 100 on attack
 @export var crit_mod : float = 1.5
-@export var cooldown : float = 0.5
+@export var cooldown : float = 1.0
 var too_fast = false
 @export var attackScene = preload("res://Scenes/Attacks/punch.tscn")
 
@@ -68,7 +69,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("shift") and state != STATES.ROLLING:
 		if rollDirection:
 			state = STATES.ROLLING
-			velocity = rollDirection.normalized() * 450
+			velocity = rollDirection.normalized() * startingSpeed
 			set_collision_layer_value(2, false)
 			set_collision_mask_value(3, false)
 			anim.play("roll")
@@ -160,7 +161,7 @@ func _on_restart_button_down() -> void:
 
 func get_attack_anim() -> String:
 	var rot = int(rad_to_deg(get_angle_to(get_global_mouse_position())) + 90)
-	print(rot)
+	#print(rot)
 	if rot in range(0,180):
 		anim.flip_h = false
 	else:

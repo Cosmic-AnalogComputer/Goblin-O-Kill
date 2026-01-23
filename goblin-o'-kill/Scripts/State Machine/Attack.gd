@@ -55,7 +55,7 @@ func _on_delay_timeout() -> void:
 		attack.set_collision_mask(2)
 	attack.damage = enemy.damage * GlobalVariables.difficulty
 	if attack is Punch:
-		attack.play = "null"
+		attack.play = enemy.punch_anim
 	if enemy.attackIsChild:
 		enemy.add_child(attack)
 	else:

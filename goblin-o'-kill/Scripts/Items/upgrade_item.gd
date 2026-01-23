@@ -32,6 +32,8 @@ func _upgrade(player):
 		elif player.too_fast == false:
 			player.too_fast = true
 			player.cooldown = 0.1
+		player.gold_gain += UPGRADE.gold_gain
+		
 		player.gold -= UPGRADE.price
 		
 		player.updateUI()

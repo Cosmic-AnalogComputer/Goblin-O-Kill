@@ -3,8 +3,8 @@ extends Node
 #Game
 var record : int
 var current_wave = 0
-var wave_dmg_mod : float = 1.0
-var difficulty = 3
+var wave_mod : float = 0.9
+var difficulty = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

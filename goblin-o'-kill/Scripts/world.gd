@@ -13,14 +13,13 @@ signal new_wave()
 var itemScene = preload("res://Scenes/Items/upgrade_item.tscn")
 
 @export_group("Wave System")
-@export var goblins : Array[PackedScene] = [preload("res://Scenes/Main/Enemies/goblin.tscn"),\
-preload("res://Scenes/Main/Enemies/thrower.tscn")]
-@export var goblin_prices : Array[int] = [1, 3] ## Asign prices in the order of the goblins list
+@export var goblins : Array[PackedScene]
+@export var goblin_prices : Array[int] ## Asigned prices in the order of the goblins list
 #var prices : Array[int] = [20,15,7,4,3,1] # 1-Goblin 2-Thrower 3-Buffed Goblin 4-Guard 5-Wizard 6-Boss
 @export var events : Array[waveEvent] ## Priority is established from top to bottom (so the lower, the higher priority)
 
 @export_group("Shop")
-@export var Upgrades : Array[Upgrade] = [preload("res://Scripts/Upgrades/electricsword.tres")]
+@export var Upgrades : Array[Upgrade]
 
 var inStock : bool = true
 var playing_music = true
@@ -30,6 +29,8 @@ var ivolume : float = 0.5
 @onready var musicStream = $AudioStreamPlayer
 
 func _ready() -> void:
+	for a in goblins:
+		goblin_prices.append(a.instantiate().price)
 	if !showShop:
 		hide_shop(false)
 	if hasStarterWave:
@@ -67,6 +68,8 @@ func make_new_wave():
 		for i in amounts[g]:
 			var goblin = goblins[g].instantiate()
 			goblin.position = Vector2(randi_range(50,1150),randi_range(50,1150))
+			goblin.hp = round(goblin.hp * GlobalVariables.wave_mod)
+			goblin.damage = round(goblin.damage * GlobalVariables.wave_mod)
 			wave_container.add_child(goblin)
 	inStock = false
 	#print(amounts)
@@ -101,6 +104,7 @@ func restock():
 
 func _on_interaction_component_interacted(user: Player) -> void:
 	GlobalVariables.current_wave += 1
+	GlobalVariables.wave_mod = 1 + (GlobalVariables.current_wave * 0.1)
 	make_new_wave()
 	$Tutorials.hide()
 
@@ -146,3 +150,9 @@ func _on_restocker_interaction_interacted(user: Player) -> void:
 		user.gold -= 15
 		user.updateUI()
 		restock()
+
+func _on_restocker_interaction_body_entered(body: Node2D) -> void:
+	$Shop/RestockerText.show()
+
+func _on_restocker_interaction_body_exited(body: Node2D) -> void:
+	$Shop/RestockerText.hide()

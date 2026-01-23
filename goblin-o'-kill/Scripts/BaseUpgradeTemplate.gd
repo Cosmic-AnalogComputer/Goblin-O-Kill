@@ -7,9 +7,10 @@ extends Resource
 @export_multiline var description : String = ""
 @export var price : int = 10
 @export_category("Bonuses")
-@export_subgroup("Health")
+@export_subgroup("Stats")
 @export var max_health : int
 @export var health : int
+@export var gold_gain : float ## x100
 @export_subgroup("Combat")
 @export var damage : int
 @export var knockback : float

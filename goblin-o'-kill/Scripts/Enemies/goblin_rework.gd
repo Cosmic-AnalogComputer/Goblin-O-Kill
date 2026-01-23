@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var hp = 10
 @export var speed = 200
 @export var gold = 1
+@export var price = 1
 @export_subgroup("Combat")
 @export var damage = 1
 @export var delay : float = 1.0 ## Time between the start of an attack and the hit
@@ -21,6 +22,7 @@ var player : Player
 @export var idle : Array[String] = ["idle","top_idle"]
 @export var walk : Array[String] = ["walk"] ## Minimun of 4
 @export var attack_anim : Array[String] = ["attack1"]
+@export var punch_anim : String = "null"
 
 @onready var startingSpeed = speed
 @onready var anim = $AnimatedSprite2D
@@ -69,6 +71,6 @@ func on_state_transition(state, new_state_name : String):
 func receive_damage(damage):
 	hp -= damage
 	if hp <= 0:
-		player.gold += gold
+		player.gold += round(gold * player.gold_gain)
 		player.updateUI()
 		queue_free()

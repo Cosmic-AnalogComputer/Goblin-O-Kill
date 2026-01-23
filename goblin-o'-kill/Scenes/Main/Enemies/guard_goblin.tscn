@@ -705,11 +705,13 @@ size = Vector2(46, 78)
 collision_layer = 4
 collision_mask = 9
 script = ExtResource("1_j00w2")
+price = 7
 delay = 0.5
 cooldown = 0.3
 hasSimetricAnimation = false
 walk = Array[String](["top_walk", "right_side_walk", "walk", "left_side_walk"])
 attack_anim = Array[String](["attacktest1", "attacktest2", "attacktest2_1", "attacktest2_2"])
+punch_anim = "slash"
 initial_state = NodePath("Chase")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
