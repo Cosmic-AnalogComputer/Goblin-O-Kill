@@ -5,7 +5,7 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nj1iu"]
 atlas = ExtResource("2_adafj")
-region = Rect2(144, 48, 16, 16)
+region = Rect2(64, 160, 16, 16)
 filter_clip = true
 
 [resource]
@@ -19,10 +19,15 @@ description = "Goblins rumour this sword comes from the same universe as the [co
 price = 50
 max_health = 0
 health = 0
+gold_gain = 0.0
 damage = 6
-knockback = 0.0
 crit_chance = 0.0
 crit_mod = 0.5
 attack_speed = 0.07
 hasVisualEffect = false
+p_max_health = 0.0
+p_health = 0.0
+p_damage = 0.0
+p_crit_mod = 0.0
+p_attack_speed = 0.0
 metadata/_custom_type_script = "uid://c2wxw55rruo72"

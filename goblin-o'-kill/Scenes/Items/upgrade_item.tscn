@@ -40,8 +40,10 @@ scale_bonus = 3.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_5kjme")
+disabled = true
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
+visible = false
 scale = Vector2(0.578125, 0.578125)
 texture = ExtResource("3_5kjme")
 

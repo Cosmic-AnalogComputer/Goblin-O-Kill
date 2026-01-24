@@ -5,23 +5,27 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qiixh"]
 atlas = ExtResource("2_x426x")
-region = Rect2(144, 32, 16, 16)
+region = Rect2(48, 160, 16, 16)
 
 [resource]
 script = ExtResource("1_rq5c3")
 texture = SubResource("AtlasTexture_qiixh")
 name = &"Winged Sword"
-description = "+5 Damage
-+Small Knockback
-+0.4 times damage on critical
+description = "+6 Damage
++0.6 times damage on critical
 -0.04s cooldown in attack"
 price = 35
 max_health = 0
 health = 0
-damage = 5
-knockback = 1.0
+gold_gain = 0.0
+damage = 6
 crit_chance = 0.0
-crit_mod = 0.4
+crit_mod = 0.6
 attack_speed = 0.04
 hasVisualEffect = false
+p_max_health = 0.0
+p_health = 0.0
+p_damage = 0.0
+p_crit_mod = 0.0
+p_attack_speed = 0.0
 metadata/_custom_type_script = "uid://c2wxw55rruo72"

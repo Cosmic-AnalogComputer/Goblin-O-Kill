@@ -1,6 +1,6 @@
 extends StaticBody2D
 
-@export var UPGRADE : Upgrade = preload("res://Scripts/Upgrades/dumbell.tres")
+@export var UPGRADE : Upgrade
 var usage = 0
 
 func load_item(new_upgrade : Upgrade):
@@ -13,7 +13,7 @@ func load_item(new_upgrade : Upgrade):
 	$PanelContainer/MarginContainer/VBoxContainer/Description.text = UPGRADE.description
 	$PanelContainer/MarginContainer/VBoxContainer/Price.text = "Price: $" + var_to_str(UPGRADE.price)
 
-func _upgrade(player):
+func _upgrade(player : Player):
 	usage += 1
 	if usage == 1:
 		player.max_hp += UPGRADE.max_health
@@ -34,8 +34,15 @@ func _upgrade(player):
 			player.cooldown = 0.1
 		player.gold_gain += UPGRADE.gold_gain
 		
-		player.gold -= UPGRADE.price
+		# Percentajes
+		player.max_hp += player.max_hp * UPGRADE.p_max_health
+		player.hp += player.hp * UPGRADE.p_health
+		player.strength += player.strength * UPGRADE.p_damage
+		player.crit_mod += player.crit_mod * UPGRADE.p_crit_mod
+		player.cooldown -= player.cooldown * UPGRADE.p_attack_speed
 		
+		#Closing
+		player.gold -= UPGRADE.price
 		player.updateUI()
 		
 		#Disabling

@@ -28,13 +28,15 @@ var inmortal = false
 @onready var hitbox = $CollisionShape2D
 @onready var anim = $AnimatedSprite2D
 
-#UI References
-@onready var hpbar = $CanvasLayer/Control/ColorRect/MarginContainer/ProgressBar
-@onready var gold_text = $CanvasLayer/Control/Panel/MarginContainer/VBoxContainer/GOLDDD/Label
-@onready var dmg_text = $CanvasLayer/Control/Panel/MarginContainer/VBoxContainer/DMG/Label
-@onready var attack_speed_text = $CanvasLayer/Control/Panel/MarginContainer/VBoxContainer/dmgspeed/Label
-@onready var crit_chance_text = $CanvasLayer/Control/Panel/MarginContainer/VBoxContainer/CritC/Label
-@onready var crit_mod_text = $CanvasLayer/Control/Panel/MarginContainer/VBoxContainer/CritM/Label
+@export_group("UI References")
+@export var wave_text : RichTextLabel
+@export var hpbar : ProgressBar
+@export var hp_text : Label
+@export var gold_text : Label
+@export var dmg_text : Label
+@export var attack_speed_text : Label
+@export var crit_chance_text : Label
+@export var crit_mod_text : Label
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -78,12 +80,12 @@ func _physics_process(delta: float) -> void:
 			$IFrames.start()
 	
 	move_and_slide()
-	
+
+func _process(delta: float) -> void:
 	# ATTACK
 	if Input.is_action_pressed("C1") and state == STATES.IDLE:
 		attack()
 		speed = 300
-	
 
 func _on_i_frames_timeout() -> void:
 	set_collision_layer_value(2, true)
@@ -96,7 +98,7 @@ func receive_damage(dmg):
 		hp -= dmg
 	if hp <= 0:
 		state = STATES.DEAD
-		$AnimatedSprite2D.hide()
+		anim.hide()
 		
 		$"CanvasLayer/Death Menu".show()
 		$"CanvasLayer/Death Menu/PanelContainer/MarginContainer/VBoxContainer/Death Text".text =\
@@ -136,10 +138,10 @@ func get_dmg() -> Vector2:
 
 func updateUI(new_wave = false):
 	if new_wave:
-		$CanvasLayer/Control/PanelContainer/RichTextLabel.text = "Wave " + var_to_str(GlobalVariables.current_wave)
+		wave_text.text = "Wave " + var_to_str(GlobalVariables.current_wave)
 	hpbar.max_value = max_hp
 	hpbar.value = hp
-	$CanvasLayer/Control/ColorRect/MarginContainer/ProgressBar/Label.text = var_to_str(hp) + "/" + var_to_str(max_hp)
+	hp_text.text = var_to_str(hp) + "/" + var_to_str(max_hp)
 	gold_text.text = "$" + var_to_str(gold)
 	dmg_text.text = var_to_str(strength)
 	if too_fast:
