@@ -5,8 +5,8 @@
 [resource]
 script = ExtResource("1_q8spf")
 name = ""
-appearOnce = false
-DoubleEachInstance = true
-wave = 9
+appearOnce = true
+DoubleEachInstance = false
+wave = 7
 goblins = Array[int]([0, 0, 1])
 metadata/_custom_type_script = "uid://dxta12hf8o11e"

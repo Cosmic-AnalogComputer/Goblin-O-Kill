@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=4 uid="uid://bhkyobjeljr7i"]
+[gd_scene load_steps=99 format=4 uid="uid://bhkyobjeljr7i"]
 
 [ext_resource type="Script" uid="uid://djnsrw0beuq3m" path="res://Scripts/world.gd" id="1_6w0a8"]
 [ext_resource type="PackedScene" uid="uid://b1cymn7dg72ea" path="res://Scenes/Main/Enemies/goblin.tscn" id="2_a8fjw"]
@@ -16,7 +16,9 @@
 [ext_resource type="PackedScene" uid="uid://5a56w426b3c2" path="res://Scenes/Items/bgbolin_3.tscn" id="5_wwef5"]
 [ext_resource type="PackedScene" uid="uid://c0ltolgyfraym" path="res://Scenes/Items/interaction_component.tscn" id="6_b4tvn"]
 [ext_resource type="PackedScene" uid="uid://b4pxd2dou17tb" path="res://Scenes/Items/bggoblinm_4.tscn" id="6_wwef5"]
+[ext_resource type="Resource" uid="uid://0ci5fjbwnul4" path="res://Scripts/Special Waves/thrower_intro.tres" id="7_1sird"]
 [ext_resource type="PackedScene" uid="uid://dscraullb0bah" path="res://Scenes/Items/upgrade_item.tscn" id="7_3id6w"]
+[ext_resource type="Resource" uid="uid://d2fm16e3m8c14" path="res://Scripts/Special Waves/guard test.tres" id="8_qtd7m"]
 [ext_resource type="Script" uid="uid://c2wxw55rruo72" path="res://Scripts/BaseUpgradeTemplate.gd" id="9_07pob"]
 [ext_resource type="Resource" uid="uid://6b8jttllcu6f" path="res://Scripts/Upgrades/Resource Upgrades/Winged_sword.tres" id="10_1gety"]
 [ext_resource type="Texture2D" uid="uid://d273j2bneec16" path="res://Sprites/Altar.png" id="10_wwef5"]
@@ -43,6 +45,9 @@
 [ext_resource type="Resource" uid="uid://0ummcfhtxq3k" path="res://Scripts/Upgrades/Resource Upgrades/biggerdice.tres" id="30_qrnlh"]
 [ext_resource type="Resource" uid="uid://bl5bhtklbgca5" path="res://Scripts/Upgrades/Resource Upgrades/piggy_bank.tres" id="31_1gety"]
 [ext_resource type="Resource" uid="uid://siqy4468fp0r" path="res://Scripts/Upgrades/Resource Upgrades/bigdice.tres" id="31_hw0a7"]
+[ext_resource type="Resource" uid="uid://cqutxc4geqaxp" path="res://Scripts/Upgrades/Resource Upgrades/sugar.tres" id="33_la7os"]
+[ext_resource type="Resource" uid="uid://bj3sl0nf8wcom" path="res://Scripts/Upgrades/Resource Upgrades/caffeine.tres" id="34_vgwtn"]
+[ext_resource type="Texture2D" uid="uid://bxjhch64puryw" path="res://Sprites/flashes.png" id="41_07pob"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8j60k"]
 texture = ExtResource("2_mkl45")
@@ -2320,6 +2325,37 @@ border_width_right = 1
 border_width_bottom = 1
 shadow_color = Color(0, 0, 0, 0)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_1gety"]
+atlas = ExtResource("41_07pob")
+region = Rect2(96, 0, 32, 16)
+
+[sub_resource type="Gradient" id="Gradient_emqye"]
+offsets = PackedFloat32Array(0.427273, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_43gjd"]
+gradient = SubResource("Gradient_emqye")
+
+[sub_resource type="Curve" id="Curve_qh8lc"]
+_limits = [3.0, 10.0, 0.0, 1.0]
+_data = [Vector2(0, 10), 0.0, -0.876872, 0, 0, Vector2(1, 3), -5.25281, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_1sird"]
+curve = SubResource("Curve_qh8lc")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qtd7m"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(0, 50, 0)
+direction = Vector3(0, -1, 0)
+spread = 90.0
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+linear_accel_min = -50.0
+linear_accel_max = 150.0
+scale_curve = SubResource("CurveTexture_1sird")
+color_ramp = SubResource("GradientTexture1D_43gjd")
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3id6w"]
 size = Vector2(59, 4)
 
@@ -4360,17 +4396,17 @@ border_width_right = 1
 border_width_bottom = 1
 shadow_color = Color(0, 0, 0, 0)
 
-[node name="World" type="Node2D"]
+[node name="World" type="Node2D" node_paths=PackedStringArray("shop_particles")]
 y_sort_enabled = true
 script = ExtResource("1_6w0a8")
-devMode = true
 devControls = "Press G to get 100 gold
 Press K to kill all goblins
 Press Y to go inmortal
 Press P to disable collision"
 goblins = Array[PackedScene]([ExtResource("2_a8fjw"), ExtResource("3_chlgq"), ExtResource("4_pndor")])
-events = Array[ExtResource("2_jnmjr")]([ExtResource("3_48xbc")])
-Upgrades = Array[ExtResource("9_07pob")]([ExtResource("10_1gety"), ExtResource("11_emqye"), ExtResource("12_qh8lc"), ExtResource("15_la7os"), ExtResource("16_vgwtn"), ExtResource("17_cp430"), ExtResource("18_tj2r8"), ExtResource("19_cfnrv"), ExtResource("20_r5nwu"), ExtResource("21_e1om2"), ExtResource("22_7cxoy"), ExtResource("23_8apgr"), ExtResource("24_pynn3"), ExtResource("25_wfir6"), ExtResource("26_01ioq"), ExtResource("27_xlwlw"), ExtResource("28_saw72"), ExtResource("29_m0uig"), ExtResource("30_qrnlh"), ExtResource("31_hw0a7"), ExtResource("30_07pob"), ExtResource("31_1gety"), ExtResource("30_pkevl")])
+events = Array[ExtResource("2_jnmjr")]([ExtResource("3_48xbc"), ExtResource("7_1sird"), ExtResource("8_qtd7m")])
+Upgrades = Array[ExtResource("9_07pob")]([ExtResource("10_1gety"), ExtResource("11_emqye"), ExtResource("12_qh8lc"), ExtResource("15_la7os"), ExtResource("16_vgwtn"), ExtResource("17_cp430"), ExtResource("18_tj2r8"), ExtResource("19_cfnrv"), ExtResource("20_r5nwu"), ExtResource("21_e1om2"), ExtResource("22_7cxoy"), ExtResource("23_8apgr"), ExtResource("24_pynn3"), ExtResource("25_wfir6"), ExtResource("26_01ioq"), ExtResource("27_xlwlw"), ExtResource("28_saw72"), ExtResource("29_m0uig"), ExtResource("30_qrnlh"), ExtResource("31_hw0a7"), ExtResource("30_07pob"), ExtResource("31_1gety"), ExtResource("30_pkevl"), ExtResource("33_la7os"), ExtResource("34_vgwtn")])
+shop_particles = NodePath("Shop/Spawn Particles")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 z_index = -2
@@ -4560,6 +4596,17 @@ theme_override_colors/font_color = Color(1, 0.784314, 0, 1)
 text = "$15"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Spawn Particles" type="GPUParticles2D" parent="Shop"]
+z_index = 1
+texture_filter = 1
+emitting = false
+amount = 16
+texture = SubResource("AtlasTexture_1gety")
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_qtd7m")
 
 [node name="Wave Button" type="StaticBody2D" parent="." groups=["On Victory"]]
 position = Vector2(605, 1300)

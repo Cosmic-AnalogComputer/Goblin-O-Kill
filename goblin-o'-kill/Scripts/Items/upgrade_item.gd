@@ -3,12 +3,17 @@ extends StaticBody2D
 @export var UPGRADE : Upgrade
 var usage = 0
 
+@onready var spawn_particles = $"Spawn Particles"
+@onready var sprite = $Sprite2D
+
 func load_item(new_upgrade : Upgrade):
 	$"Interaction Component".monitoring = true
 	UPGRADE = new_upgrade
 	usage = 0
-	$Sprite2D.show()
-	$Sprite2D.texture = UPGRADE.texture
+	spawn_particles.restart()
+	spawn_particles.emitting = true
+	sprite.show()
+	sprite.texture = UPGRADE.texture
 	$PanelContainer/MarginContainer/VBoxContainer/Name.text = UPGRADE.name
 	$PanelContainer/MarginContainer/VBoxContainer/Description.text = UPGRADE.description
 	$PanelContainer/MarginContainer/VBoxContainer/Price.text = "Price: $" + var_to_str(UPGRADE.price)
@@ -36,7 +41,7 @@ func _upgrade(player : Player):
 		
 		# Percentajes
 		player.max_hp += player.max_hp * UPGRADE.p_max_health
-		player.hp += player.hp * UPGRADE.p_health
+		player.hp += player.max_hp * UPGRADE.p_health
 		player.strength += player.strength * UPGRADE.p_damage
 		player.crit_mod += player.crit_mod * UPGRADE.p_crit_mod
 		player.cooldown -= player.cooldown * UPGRADE.p_attack_speed
@@ -46,7 +51,7 @@ func _upgrade(player : Player):
 		player.updateUI()
 		
 		#Disabling
-		$Sprite2D.hide()
+		sprite.hide()
 		$"Interaction Component".monitoring = false
 		$PanelContainer.hide()
 
@@ -62,3 +67,4 @@ func _on_interaction_component_body_exited(body: Node2D) -> void:
 
 func _on_visibility_changed() -> void:
 	set_collision_layer_value(1,visible)
+	$"Interaction Component".monitoring = visible

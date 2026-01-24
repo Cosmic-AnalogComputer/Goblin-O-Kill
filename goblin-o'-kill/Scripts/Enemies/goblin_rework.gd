@@ -1,6 +1,8 @@
 class_name Goblin
 extends CharacterBody2D
 
+signal death()
+
 @export_group("Stats")
 @export var hp = 10
 @export var speed = 200
@@ -72,5 +74,6 @@ func receive_damage(damage):
 	hp -= damage
 	if hp <= 0:
 		player.gold += round(gold * player.gold_gain)
+		player.kills += 1
 		player.updateUI()
 		queue_free()

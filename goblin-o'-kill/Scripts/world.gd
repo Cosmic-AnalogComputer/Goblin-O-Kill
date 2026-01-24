@@ -20,6 +20,7 @@ var itemScene = preload("res://Scenes/Items/upgrade_item.tscn")
 
 @export_group("Shop")
 @export var Upgrades : Array[Upgrade]
+@export var shop_particles : GPUParticles2D
 
 var inStock : bool = true
 var playing_music = true
@@ -56,7 +57,7 @@ func make_new_wave():
 	for event in events:
 		if event.appearOnce and GlobalVariables.current_wave == event.wave:
 			amounts = event.goblins
-		elif GlobalVariables.current_wave % event.wave == 0:
+		elif !event.appearOnce and GlobalVariables.current_wave % event.wave == 0:
 			amounts = event.goblins
 			if event.DoubleEachInstance:
 				for i in amounts.size():
@@ -88,19 +89,22 @@ func buy_goblins(num) -> Array[int]:
 	#print("bought goblins: ", amounts)
 	return amounts
 
-func restock():
-	if GlobalVariables.record < GlobalVariables.current_wave:
-		GlobalVariables.record = GlobalVariables.current_wave
-	playing_music = false
-	for loop in get_tree().get_node_count_in_group("On Victory"):
-		get_tree().get_nodes_in_group("On Victory")[loop].show()
+func restock(new_wave = true):
 	for upgrades in get_tree().get_node_count_in_group("Upgrades"):
 		get_tree().get_nodes_in_group("Upgrades")[upgrades].\
 			load_item(Upgrades.pick_random())
-	$"Wave Button/Interaction Component".monitoring = true
-	$"Wave Button".set_collision_layer_value(1,true)
-	$Shop.set_collision_layer_value(1,true)
-	$"Shop/Interaction Component".monitoring = true
+	if new_wave:
+		shop_particles.restart()
+		shop_particles.emitting = true
+		if GlobalVariables.record < GlobalVariables.current_wave:
+			GlobalVariables.record = GlobalVariables.current_wave
+		playing_music = false
+		for loop in get_tree().get_node_count_in_group("On Victory"):
+			get_tree().get_nodes_in_group("On Victory")[loop].show()
+		$"Wave Button/Interaction Component".monitoring = true
+		$"Wave Button".set_collision_layer_value(1,true)
+		$Shop.set_collision_layer_value(1,true)
+		$"Shop/Interaction Component".monitoring = true
 
 func _on_interaction_component_interacted(user: Player) -> void:
 	GlobalVariables.current_wave += 1
@@ -129,8 +133,9 @@ func hide_shop(hide_altar = true):
 func _unhandled_input(event: InputEvent) -> void:
 	if devMode:
 		if Input.is_action_just_pressed("k"):
-			for k in wave_container.get_child_count():
-				wave_container.get_child(k).receive_damage(100)
+			for k in wave_container.get_children():
+				if k is Goblin:
+					k.receive_damage(100)
 		if Input.is_action_just_pressed("g"):
 			$Player.gold += 100
 			$Player.updateUI()
@@ -149,7 +154,7 @@ func _on_restocker_interaction_interacted(user: Player) -> void:
 	if user.gold >= 15:
 		user.gold -= 15
 		user.updateUI()
-		restock()
+		restock(false)
 
 func _on_restocker_interaction_body_entered(body: Node2D) -> void:
 	$Shop/RestockerText.show()

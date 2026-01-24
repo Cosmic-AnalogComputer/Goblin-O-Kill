@@ -10,7 +10,7 @@ var state : STATES = STATES.IDLE
 @export var hp := 10
 @export var gold_gain : float = 1.0
 @export_subgroup("Combat")
-@export var strength = 1
+@export var strength := 1
 @export var crit_chance : float = 0.05 ## x 100 on attack
 @export var crit_mod : float = 1.5
 @export var cooldown : float = 1.0
@@ -29,14 +29,38 @@ var inmortal = false
 @onready var anim = $AnimatedSprite2D
 
 @export_group("UI References")
-@export var wave_text : RichTextLabel
+@export_subgroup("Stats")
+
 @export var hpbar : ProgressBar
 @export var hp_text : Label
 @export var gold_text : Label
+@export var gain_text : Label
 @export var dmg_text : Label
 @export var attack_speed_text : Label
 @export var crit_chance_text : Label
 @export var crit_mod_text : Label
+
+@export_subgroup("Other UI")
+@export var wave_text : RichTextLabel
+@export var game_timer : Label
+@export var kill_count : Label
+var game_timer_secs := 0:
+	set(value):
+		if value >= 60:
+			game_timer_secs = 0
+			game_timer_mins += 1
+		else:
+			game_timer_secs = value
+		if game_timer_mins:
+			game_timer.text = var_to_str(game_timer_mins) + ":" + var_to_str(game_timer_secs)
+		else:
+			game_timer.text = var_to_str(game_timer_secs)
+var game_timer_mins := 0
+
+var kills := 0:
+	set(value):
+		kills = value
+		kill_count.text = var_to_str(value)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -70,11 +94,18 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_pressed("shift") and state != STATES.ROLLING:
 		if rollDirection:
+			# Animation
+			if state != STATES.IDLE:
+				anim.flip_h = !rollDirection.x > 0
+			anim.play("roll")
+			
+			# State
 			state = STATES.ROLLING
 			velocity = rollDirection.normalized() * startingSpeed
 			set_collision_layer_value(2, false)
 			set_collision_mask_value(3, false)
-			anim.play("roll")
+			
+			# Timings
 			$CD.set_paused(true)
 			$RollAudio.play()
 			$IFrames.start()
@@ -143,6 +174,7 @@ func updateUI(new_wave = false):
 	hpbar.value = hp
 	hp_text.text = var_to_str(hp) + "/" + var_to_str(max_hp)
 	gold_text.text = "$" + var_to_str(gold)
+	gain_text.text = var_to_str(roundi(gold_gain * 100)) + "%"
 	dmg_text.text = var_to_str(strength)
 	if too_fast:
 		attack_speed_text.text = "Too fast!"
@@ -180,3 +212,6 @@ func get_attack_anim() -> String:
 			arc_2 += 90
 	
 	return attack_anim[2]
+
+func _on_sec_timer_timeout() -> void:
+	game_timer_secs += 1
