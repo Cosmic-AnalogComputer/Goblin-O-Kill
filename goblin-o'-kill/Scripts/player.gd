@@ -3,20 +3,67 @@ extends CharacterBody2D
 
 enum STATES {IDLE,ROLLING,DEAD,ATTACKING}
 var state : STATES = STATES.IDLE
+var gold_tween : Tween
 
 @export_group("Stats")
-@export var gold : int = 0
-@export var max_hp := 10
+@export var gold : int = 0:
+	set(value):
+		if value > gold:
+			gold = value
+			if gold_tween:
+				gold_tween.kill()
+			gold_tween = create_tween().set_ease(Tween.EASE_OUT)
+			gold_tween.tween_property(self, "animated_gold", gold, 0.5)
+		else:
+			gold = value # No tween - Purchase
+			animated_gold = gold
+			#gold_text.text = "$" + var_to_str(gold)
+var animated_gold : int:
+	set(value):
+		animated_gold = value
+		gold_text.text = "$" + var_to_str(animated_gold)
+
+@export var max_hp := 10:
+	set(value):
+		max_hp = value
+		hpbar.max_value = value
+		if hp > max_hp:
+			hp = clampi(hp,0,max_hp)
 @export var hp := 10:
 	set(value):
 		hp = clampi(value,0,max_hp)
-@export var gold_gain : float = 1.0
+		hp_text.text = var_to_str(hp) + "/" + var_to_str(max_hp)
+		hpbar.value = hp
+@export var gold_gain : float = 1.0:
+	set(value):
+		gold_gain = value
+		gain_text.text = "[i]" + var_to_str(roundi(gold_gain * 100)) + "% [/i]"
 @export_subgroup("Combat")
-@export var strength := 1
-@export var crit_chance : float = 0.05 ## x 100 on attack
-@export var crit_mod : float = 1.5
-@export var cooldown : float = 1.0
-var too_fast := false
+@export var strength := 1:
+	set(value):
+		strength = value
+		dmg_text.text = var_to_str(strength)
+@export var crit_chance : float = 0.05: ## x 100 on attack
+	set(value):
+		if value <= 1.0:
+			crit_chance = value
+			crit_chance_text.text = var_to_str(crit_chance * 100) + "%"
+		else:
+			crit_chance = 1.0
+			crit_chance_text.text = "Guaranteed"
+@export var crit_mod : float = 1.5:
+	set(value):
+		crit_mod = value
+		crit_mod_text.text = "x" + var_to_str(crit_mod)
+@export var cooldown : float = 1.0:
+	set(value):
+		cooldown = value
+		print(cooldown)
+		if cooldown <= 0.00054:
+			cooldown = 0.00054
+			attack_speed_text.text = "Too fast!"
+		else:
+			attack_speed_text.text = var_to_str(cooldown) + "s"
 @export var attackScene = preload("res://Scenes/Attacks/punch.tscn")
 
 var rollDirection : Vector2
@@ -33,7 +80,6 @@ var inmortal = false
 
 @export_group("UI References")
 @export_subgroup("Stats")
-
 @export var hpbar : ProgressBar
 @export var hp_text : Label
 @export var gold_text : Label
@@ -65,11 +111,6 @@ var kills := 0:
 		kills = value
 		kill_count.text = var_to_str(value)
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	updateUI(true)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta: float) -> void:
 	var direction = Input.get_vector("a","d","w","s")
 	if direction and state != STATES.ROLLING:
@@ -140,7 +181,6 @@ func receive_damage(dmg):
 		"[p][color=red]YOU DIED[/color][/p][p]At wave: " + var_to_str(GlobalVariables.current_wave)
 		GlobalVariables.current_wave = 0
 		get_tree().paused = true
-	updateUI()
 
 func attack():
 	state = STATES.ATTACKING
@@ -156,7 +196,6 @@ func attack():
 	anim.play(get_attack_anim())
 	add_child(attack)
 
-
 func _on_cd_timeout() -> void:
 	speed = startingSpeed
 	state = STATES.IDLE
@@ -171,24 +210,24 @@ func get_dmg() -> Vector2:
 	
 	return Vector2(dmg,float(crit))
 
-func updateUI(new_wave = false):
-	if new_wave:
-		wave_text.text = "Wave " + var_to_str(GlobalVariables.current_wave)
-	hpbar.max_value = max_hp
-	hpbar.value = hp
-	hp_text.text = var_to_str(hp) + "/" + var_to_str(max_hp)
-	gold_text.text = "$" + var_to_str(gold)
-	gain_text.text = "[i]" + var_to_str(roundi(gold_gain * 100)) + "% [/i]"
-	dmg_text.text = var_to_str(strength)
-	if too_fast:
-		attack_speed_text.text = "Too fast!"
-	else:
-		attack_speed_text.text = var_to_str(cooldown) + "s"
-	crit_chance_text.text = var_to_str(crit_chance * 100) + "%"
-	crit_mod_text.text = "x" + var_to_str(crit_mod)
+#func updateUI(new_wave = false):
+#	pass
+	#if new_wave:
+	#	wave_text.text = "Wave " + var_to_str(GlobalVariables.current_wave)
+	#hpbar.max_value = max_hp
+	#hpbar.value = hp
+	#gold_text.text = "$" + var_to_str(gold)
+	#gain_text.text = "[i]" + var_to_str(roundi(gold_gain * 100)) + "% [/i]"
+	#dmg_text.text = var_to_str(strength)
+	#if too_fast:
+	#	attack_speed_text.text = "Too fast!"
+	#else:
+	#	attack_speed_text.text = var_to_str(cooldown) + "s"
+	#crit_chance_text.text = var_to_str(crit_chance * 100) + "%"
+	#crit_mod_text.text = "x" + var_to_str(crit_mod)
 
 func _on_world_new_wave() -> void:
-	updateUI(true)
+	wave_text.text = "Wave " + var_to_str(GlobalVariables.current_wave)
 
 func _on_quit_to_desktop_button_down() -> void:
 	get_tree().quit()

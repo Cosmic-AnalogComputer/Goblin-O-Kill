@@ -88,7 +88,6 @@ func receive_damage(dmg):
 	if hp <= 0:
 		player.gold += round(gold * player.gold_gain)
 		player.kills += 1
-		player.updateUI()
 		$CollisionShape2D.call_deferred("set_disabled",true)
 		anim.hide()
 		death_particle.emitting = true

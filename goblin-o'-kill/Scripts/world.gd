@@ -137,7 +137,6 @@ func _unhandled_input(_event: InputEvent) -> void:
 					k.receive_damage(100)
 		if Input.is_action_just_pressed("g"):
 			$Player.gold += 100
-			$Player.updateUI()
 		if Input.is_action_just_pressed("y"):
 			if $Player.inmortal:
 				$Player.inmortal = false
@@ -152,7 +151,6 @@ func _unhandled_input(_event: InputEvent) -> void:
 func _on_restocker_interaction_interacted(user: Player) -> void:
 	if user.gold >= 15:
 		user.gold -= 15
-		user.updateUI()
 		restock(false)
 
 func _on_restocker_interaction_body_entered(_body: Node2D) -> void:

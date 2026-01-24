@@ -318,6 +318,7 @@ filter_clip = true
 [sub_resource type="AtlasTexture" id="AtlasTexture_5kuo1"]
 atlas = ExtResource("4_knxm8")
 region = Rect2(32, 128, 16, 16)
+filter_clip = true
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_g0kg6"]
 load_path = "res://.godot/imported/UI.png-0fa71ced25bc6f027cc7cfd18b10f10d.ctex"
@@ -343,11 +344,13 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ec3wd"]
 atlas = ExtResource("4_knxm8")
-region = Rect2(160, 0, 16, 16)
+region = Rect2(48, 112, 16, 16)
+filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6w3iv"]
 atlas = ExtResource("5_g0kg6")
 region = Rect2(193, 14, 7, 6)
+filter_clip = true
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_knxm8"]
 bg_color = Color(0, 0, 0, 0.498039)

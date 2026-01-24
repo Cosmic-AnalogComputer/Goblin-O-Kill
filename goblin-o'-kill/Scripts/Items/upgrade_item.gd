@@ -24,17 +24,9 @@ func _upgrade(player : Player):
 		player.max_hp += UPGRADE.max_health
 		player.receive_damage(-UPGRADE.health)
 		player.strength += UPGRADE.damage
-		if player.crit_chance + UPGRADE.crit_chance <= 1.0:
-			player.crit_chance += UPGRADE.crit_chance
-		else:
-			player.crit_chance = 1.0
+		player.crit_chance += UPGRADE.crit_chance
 		player.crit_mod += UPGRADE.crit_mod
-		
-		if player.cooldown > UPGRADE.attack_speed:
-			player.cooldown -= UPGRADE.attack_speed
-		elif player.too_fast == false:
-			player.too_fast = true
-			player.cooldown = 0.01
+		player.cooldown -= UPGRADE.attack_speed
 		
 		player.gold_gain += UPGRADE.gold_gain
 		
@@ -47,7 +39,6 @@ func _upgrade(player : Player):
 		
 		#Closing
 		player.gold -= UPGRADE.price
-		player.updateUI()
 		
 		#Disabling
 		sprite.hide()
