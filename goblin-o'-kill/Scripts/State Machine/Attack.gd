@@ -41,6 +41,7 @@ func _get_anim(num : int) -> String:
 func _on_delay_timeout() -> void:
 	cd.start(enemy.cooldown)
 	var attack_instance = enemy.attackScene.instantiate()
+	attack_instance.scale = Vector2(enemy.attack_size,enemy.attack_size)
 	if enemy.meleeAttack:
 		attack_instance.position = direction.normalized() * enemy.attack_range
 	else:

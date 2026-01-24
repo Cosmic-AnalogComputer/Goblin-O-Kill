@@ -400,7 +400,9 @@ texture_filter = 1
 material = SubResource("ShaderMaterial_5kuo1")
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_fkybt")
-animation = &"top_attack"
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.5946
 
 [node name="IFrames" type="Timer" parent="."]
 wait_time = 0.75

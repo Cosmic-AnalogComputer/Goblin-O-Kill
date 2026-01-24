@@ -14,6 +14,7 @@ signal death()
 @export var cooldown : float = 1.0 ## Time between the end of an attack and the beggining of the next
 @export var meleeAttack : bool = true
 @export var attack_range : float = 90
+@export var attack_size : float = 1.0
 @export var goodAim : bool = false
 @export var attackIsChild := true
 @export var attackScene : PackedScene = preload("res://Scenes/Attacks/punch.tscn")
