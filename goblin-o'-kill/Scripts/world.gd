@@ -30,10 +30,11 @@ var ivolume : float = 0.5
 func _ready() -> void:
 	for a in goblins:
 		goblin_prices.append(a.instantiate().price)
-	if !showShop:
-		hide_shop(false)
 	if starterWave:
 		GlobalVariables.current_wave = starterWave - 1
+	if !showShop:
+		hide_shop(false)
+		restock(false)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

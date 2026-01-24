@@ -471,7 +471,7 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 40
-text = "111"
+text = "10/10"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -543,7 +543,7 @@ theme_override_colors/font_color = Color(1, 0.913725, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 15
 theme_override_font_sizes/font_size = 35
-text = "$"
+text = "$0"
 vertical_alignment = 2
 
 [node name="Gold Gain" type="RichTextLabel" parent="CanvasLayer/Player UI/Stats/MarginContainer/VBoxContainer/GOLDDD/VBoxContainer"]
@@ -643,9 +643,10 @@ vertical_alignment = 1
 [node name="Game Info" type="PanelContainer" parent="CanvasLayer/Player UI"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.85
+anchor_left = 0.885
 anchor_right = 1.0
 anchor_bottom = 0.15
+offset_left = 17.2798
 grow_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_5kuo1")
 
