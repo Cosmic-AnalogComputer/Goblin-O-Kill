@@ -3400,12 +3400,10 @@ shadow_color = Color(0, 0, 0, 0)
 [node name="World" type="Node2D" node_paths=PackedStringArray("shop_particles")]
 y_sort_enabled = true
 script = ExtResource("1_6w0a8")
-devMode = true
 devControls = "Press G to get 100 gold
 Press K to kill all goblins
 Press Y to go inmortal
 Press P to disable collision"
-starterWave = 40
 goblins = Array[PackedScene]([ExtResource("2_a8fjw"), ExtResource("3_chlgq"), ExtResource("4_pndor")])
 events = Array[ExtResource("2_jnmjr")]([ExtResource("3_48xbc"), ExtResource("7_1sird"), ExtResource("8_qtd7m")])
 Upgrades = Array[ExtResource("9_07pob")]([ExtResource("10_1gety"), ExtResource("11_emqye"), ExtResource("12_qh8lc"), ExtResource("15_la7os"), ExtResource("16_vgwtn"), ExtResource("17_cp430"), ExtResource("18_tj2r8"), ExtResource("19_cfnrv"), ExtResource("20_r5nwu"), ExtResource("21_e1om2"), ExtResource("22_7cxoy"), ExtResource("23_8apgr"), ExtResource("24_pynn3"), ExtResource("25_wfir6"), ExtResource("26_01ioq"), ExtResource("27_xlwlw"), ExtResource("28_saw72"), ExtResource("29_m0uig"), ExtResource("30_qrnlh"), ExtResource("31_hw0a7"), ExtResource("30_07pob"), ExtResource("31_1gety"), ExtResource("30_pkevl"), ExtResource("33_la7os"), ExtResource("34_vgwtn")])
@@ -3694,8 +3692,6 @@ parameters/looping = true
 
 [node name="Player" parent="." instance=ExtResource("3_kxy5q")]
 position = Vector2(622, 1037)
-strength = 10
-cooldown = 0.1
 metadata/_edit_lock_ = true
 
 [node name="Tutorials" type="Control" parent="."]
