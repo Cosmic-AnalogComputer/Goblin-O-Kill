@@ -40,26 +40,26 @@ func _get_anim(num : int) -> String:
 
 func _on_delay_timeout() -> void:
 	cd.start(enemy.cooldown)
-	var attack = enemy.attackScene.instantiate()
+	var attack_instance = enemy.attackScene.instantiate()
 	if enemy.meleeAttack:
-		attack.position = direction.normalized() * enemy.range
+		attack_instance.position = direction.normalized() * enemy.attack_range
 	else:
-		attack.position = enemy.position
+		attack_instance.position = enemy.position
 	
 	if enemy.goodAim:
-		attack.look_at(target.global_position)
+		attack_instance.look_at(target.global_position)
 	else:
-		attack.look_at(direction * 60)
+		attack_instance.look_at(direction * 60)
 	
-	if attack is Punch:
-		attack.set_collision_mask(2)
-	attack.damage = enemy.damage * GlobalVariables.difficulty
-	if attack is Punch:
-		attack.play = enemy.punch_anim
+	if attack_instance is Punch:
+		attack_instance.set_collision_mask(2)
+	attack_instance.damage = enemy.damage * GlobalVariables.difficulty
+	if attack_instance is Punch:
+		attack_instance.play = enemy.punch_anim
 	if enemy.attackIsChild:
-		enemy.add_child(attack)
+		enemy.add_child(attack_instance)
 	else:
-		get_parent().get_parent().add_child(attack)
+		get_parent().get_parent().add_child(attack_instance)
 
 func attack():
 	enemy.anim.play(_get_anim(enemy.attack_anim.size()))
@@ -67,7 +67,7 @@ func attack():
 
 func _on_cd_timeout() -> void:
 	direction = target.global_position - enemy.position
-	if direction.length() > enemy.range:
+	if direction.length() > enemy.attack_range:
 		emit_signal("transitioned", self, "chase")
 	else:
 		attack()

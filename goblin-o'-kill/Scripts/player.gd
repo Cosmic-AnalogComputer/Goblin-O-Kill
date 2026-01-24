@@ -7,14 +7,16 @@ var state : STATES = STATES.IDLE
 @export_group("Stats")
 @export var gold : int = 0
 @export var max_hp := 10
-@export var hp := 10
+@export var hp := 10:
+	set(value):
+		hp = clampi(value,0,max_hp)
 @export var gold_gain : float = 1.0
 @export_subgroup("Combat")
 @export var strength := 1
 @export var crit_chance : float = 0.05 ## x 100 on attack
 @export var crit_mod : float = 1.5
 @export var cooldown : float = 1.0
-var too_fast = false
+var too_fast := false
 @export var attackScene = preload("res://Scenes/Attacks/punch.tscn")
 
 var rollDirection : Vector2
@@ -25,8 +27,9 @@ var speed = 375
 var inmortal = false
 
 @onready var startingSpeed = speed
-@onready var hitbox = $CollisionShape2D
-@onready var anim = $AnimatedSprite2D
+@onready var hitbox : CollisionShape2D = $CollisionShape2D
+@onready var anim : AnimatedSprite2D = $AnimatedSprite2D
+@onready var hit_flash_timer : Timer = $"Hit Flash Timer"
 
 @export_group("UI References")
 @export_subgroup("Stats")
@@ -34,7 +37,7 @@ var inmortal = false
 @export var hpbar : ProgressBar
 @export var hp_text : Label
 @export var gold_text : Label
-@export var gain_text : Label
+@export var gain_text : RichTextLabel
 @export var dmg_text : Label
 @export var attack_speed_text : Label
 @export var crit_chance_text : Label
@@ -51,10 +54,10 @@ var game_timer_secs := 0:
 			game_timer_mins += 1
 		else:
 			game_timer_secs = value
-		if game_timer_mins:
+		if game_timer_secs >= 10:
 			game_timer.text = var_to_str(game_timer_mins) + ":" + var_to_str(game_timer_secs)
 		else:
-			game_timer.text = var_to_str(game_timer_secs)
+			game_timer.text = var_to_str(game_timer_mins) + ":0" + var_to_str(game_timer_secs)
 var game_timer_mins := 0
 
 var kills := 0:
@@ -66,9 +69,8 @@ var kills := 0:
 func _ready() -> void:
 	updateUI(true)
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var direction = Input.get_vector("a","d","w","s")
 	if direction and state != STATES.ROLLING:
 		velocity = direction.normalized() * speed
@@ -112,7 +114,7 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	# ATTACK
 	if Input.is_action_pressed("C1") and state == STATES.IDLE:
 		attack()
@@ -127,6 +129,8 @@ func _on_i_frames_timeout() -> void:
 func receive_damage(dmg):
 	if !inmortal:
 		hp -= dmg
+		anim.material.set_shader_parameter("Enabled", true)
+		hit_flash_timer.start()
 	if hp <= 0:
 		state = STATES.DEAD
 		anim.hide()
@@ -162,7 +166,7 @@ func get_dmg() -> Vector2:
 	var crit : bool
 	dmg = strength
 	if randf() <= crit_chance:
-		dmg * crit_mod
+		dmg *= crit_mod
 		crit = true
 	
 	return Vector2(dmg,float(crit))
@@ -174,7 +178,7 @@ func updateUI(new_wave = false):
 	hpbar.value = hp
 	hp_text.text = var_to_str(hp) + "/" + var_to_str(max_hp)
 	gold_text.text = "$" + var_to_str(gold)
-	gain_text.text = var_to_str(roundi(gold_gain * 100)) + "%"
+	gain_text.text = "[i]" + var_to_str(roundi(gold_gain * 100)) + "% [/i]"
 	dmg_text.text = var_to_str(strength)
 	if too_fast:
 		attack_speed_text.text = "Too fast!"
@@ -215,3 +219,6 @@ func get_attack_anim() -> String:
 
 func _on_sec_timer_timeout() -> void:
 	game_timer_secs += 1
+
+func _on_hit_flash_timer_timeout() -> void:
+	anim.material.set_shader_parameter("Enabled", false)

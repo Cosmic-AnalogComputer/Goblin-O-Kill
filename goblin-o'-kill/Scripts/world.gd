@@ -5,10 +5,8 @@ signal new_wave()
 @export_group("Dev Tools")
 @export var devMode : bool = false ## Enables developer tools
 @export_multiline var devControls : String
-@export var showShop : bool = false ## Shows shop at the start of the scene
-@export_subgroup("Starter Wave")
-@export var hasStarterWave = false ## If true, will begin the game at a wave equal to starterWave
 @export var starterWave : int ## Starts the game at this wave, if has starter wave is enabled
+@export var showShop : bool = false ## Shows shop at the start of the scene
 
 var itemScene = preload("res://Scenes/Items/upgrade_item.tscn")
 
@@ -34,7 +32,7 @@ func _ready() -> void:
 		goblin_prices.append(a.instantiate().price)
 	if !showShop:
 		hide_shop(false)
-	if hasStarterWave:
+	if starterWave:
 		GlobalVariables.current_wave = starterWave - 1
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -89,11 +87,11 @@ func buy_goblins(num) -> Array[int]:
 	#print("bought goblins: ", amounts)
 	return amounts
 
-func restock(new_wave = true):
+func restock(is_new_wave = true):
 	for upgrades in get_tree().get_node_count_in_group("Upgrades"):
 		get_tree().get_nodes_in_group("Upgrades")[upgrades].\
 			load_item(Upgrades.pick_random())
-	if new_wave:
+	if is_new_wave:
 		shop_particles.restart()
 		shop_particles.emitting = true
 		if GlobalVariables.record < GlobalVariables.current_wave:
@@ -106,7 +104,7 @@ func restock(new_wave = true):
 		$Shop.set_collision_layer_value(1,true)
 		$"Shop/Interaction Component".monitoring = true
 
-func _on_interaction_component_interacted(user: Player) -> void:
+func _on_interaction_component_interacted(_user: Player) -> void:
 	GlobalVariables.current_wave += 1
 	GlobalVariables.wave_mod = 1 + (GlobalVariables.current_wave * 0.1)
 	make_new_wave()
@@ -130,7 +128,7 @@ func hide_shop(hide_altar = true):
 
 # Dev tools
 
-func _unhandled_input(event: InputEvent) -> void:
+func _unhandled_input(_event: InputEvent) -> void:
 	if devMode:
 		if Input.is_action_just_pressed("k"):
 			for k in wave_container.get_children():
@@ -156,8 +154,8 @@ func _on_restocker_interaction_interacted(user: Player) -> void:
 		user.updateUI()
 		restock(false)
 
-func _on_restocker_interaction_body_entered(body: Node2D) -> void:
+func _on_restocker_interaction_body_entered(_body: Node2D) -> void:
 	$Shop/RestockerText.show()
 
-func _on_restocker_interaction_body_exited(body: Node2D) -> void:
+func _on_restocker_interaction_body_exited(_body: Node2D) -> void:
 	$Shop/RestockerText.hide()

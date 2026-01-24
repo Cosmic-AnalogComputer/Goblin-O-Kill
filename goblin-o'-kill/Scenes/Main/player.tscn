@@ -1,7 +1,8 @@
-[gd_scene load_steps=59 format=3 uid="uid://crn3fw2rb4s8i"]
+[gd_scene load_steps=61 format=3 uid="uid://crn3fw2rb4s8i"]
 
 [ext_resource type="Script" uid="uid://c7f533jd3dx" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://ctvjr0t77hpnc" path="res://Sprites/Knight.png" id="2_6t5aa"]
+[ext_resource type="Shader" uid="uid://b0mey6i0yttu1" path="res://Sprites/Shaders/hit_flash.tres" id="2_y7tpv"]
 [ext_resource type="AudioStream" uid="uid://brtx0djon3oc4" path="res://Audios/Dodgeroll.wav" id="3_6t5aa"]
 [ext_resource type="Texture2D" uid="uid://bgnk58vy4ir8f" path="res://Sprites/Upgrades.png" id="4_knxm8"]
 [ext_resource type="Texture2D" uid="uid://b203f415igtq2" path="res://Sprites/UI.png" id="4_yhj4d"]
@@ -10,6 +11,12 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nmmoa"]
 size = Vector2(24.8, 30)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5kuo1"]
+resource_local_to_scene = true
+shader = ExtResource("2_y7tpv")
+shader_parameter/Enabled = false
+shader_parameter/tint = Color(1, 1, 1, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yhj4d"]
 atlas = ExtResource("2_6t5aa")
@@ -328,18 +335,15 @@ filter_clip = true
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5kuo1"]
 bg_color = Color(0, 0, 0, 0.752941)
 border_width_left = 3
-border_width_top = 3
-border_width_right = 3
 border_width_bottom = 3
 border_color = Color(1, 1, 1, 1)
-corner_radius_bottom_right = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aetxq"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ec3wd"]
 atlas = ExtResource("4_knxm8")
 region = Rect2(160, 0, 16, 16)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aetxq"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6w3iv"]
 atlas = ExtResource("5_g0kg6")
@@ -393,6 +397,7 @@ debug_color = Color(0, 1, 0.235294, 0.419608)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+material = SubResource("ShaderMaterial_5kuo1")
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_fkybt")
 animation = &"top_attack"
@@ -535,17 +540,24 @@ layout_mode = 2
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(1, 0.913725, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 15
 theme_override_font_sizes/font_size = 35
 text = "$"
 vertical_alignment = 2
 
-[node name="Gold Gain" type="Label" parent="CanvasLayer/Player UI/Stats/MarginContainer/VBoxContainer/GOLDDD/VBoxContainer"]
+[node name="Gold Gain" type="RichTextLabel" parent="CanvasLayer/Player UI/Stats/MarginContainer/VBoxContainer/GOLDDD/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.5
-theme_override_colors/font_color = Color(1, 0.913725, 0, 1)
-theme_override_font_sizes/font_size = 15
-text = "100%"
+theme_override_colors/default_color = Color(1, 0.67451, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 15
+bbcode_enabled = true
+text = "[i]100% [/i]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
 
 [node name="DMG" type="HBoxContainer" parent="CanvasLayer/Player UI/Stats/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -562,6 +574,8 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 1
 theme_override_colors/font_color = Color(1, 0.415686, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 15
 theme_override_font_sizes/font_size = 35
 text = "1"
 vertical_alignment = 1
@@ -580,6 +594,8 @@ expand_mode = 2
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_colors/font_color = Color(0, 0.529412, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 15
 theme_override_font_sizes/font_size = 35
 text = "1s"
 vertical_alignment = 1
@@ -598,6 +614,8 @@ expand_mode = 2
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_colors/font_color = Color(0.682353, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 15
 theme_override_font_sizes/font_size = 35
 text = "10%"
 vertical_alignment = 1
@@ -616,6 +634,8 @@ expand_mode = 2
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 15
 theme_override_font_sizes/font_size = 35
 text = "x1.5"
 vertical_alignment = 1
@@ -623,8 +643,10 @@ vertical_alignment = 1
 [node name="Game Info" type="PanelContainer" parent="CanvasLayer/Player UI"]
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 0.2
-anchor_bottom = 0.19
+anchor_left = 0.85
+anchor_right = 1.0
+anchor_bottom = 0.15
+grow_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_5kuo1")
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Player UI/Game Info"]
@@ -641,53 +663,57 @@ layout_mode = 2
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Player UI/Game Info/MarginContainer/VBoxContainer/HBoxContainer"]
-texture_filter = 1
+[node name="Game Time" type="Label" parent="CanvasLayer/Player UI/Game Info/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
-texture = SubResource("AtlasTexture_ec3wd")
-expand_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 30
+text = "0:00"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="secTimer" type="Timer" parent="CanvasLayer/Player UI/Game Info/MarginContainer/VBoxContainer/HBoxContainer/Game Time"]
+autostart = true
 
 [node name="VSeparator" type="VSeparator" parent="CanvasLayer/Player UI/Game Info/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
 theme_override_styles/separator = SubResource("StyleBoxFlat_aetxq")
 
-[node name="Game Time" type="Label" parent="CanvasLayer/Player UI/Game Info/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Player UI/Game Info/MarginContainer/VBoxContainer/HBoxContainer"]
+texture_filter = 1
 layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/outline_size = 10
-theme_override_font_sizes/font_size = 30
-text = "0"
-vertical_alignment = 1
-
-[node name="secTimer" type="Timer" parent="CanvasLayer/Player UI/Game Info/MarginContainer/VBoxContainer/HBoxContainer/Game Time"]
-autostart = true
+size_flags_horizontal = 8
+texture = SubResource("AtlasTexture_ec3wd")
+expand_mode = 2
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/Player UI/Game Info/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Player UI/Game Info/MarginContainer/VBoxContainer/HBoxContainer2"]
-texture_filter = 1
+[node name="Kill count" type="Label" parent="CanvasLayer/Player UI/Game Info/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-size_flags_horizontal = 4
-texture = SubResource("AtlasTexture_6w3iv")
-expand_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 30
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
 
 [node name="VSeparator" type="VSeparator" parent="CanvasLayer/Player UI/Game Info/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 theme_override_constants/separation = 10
 theme_override_styles/separator = SubResource("StyleBoxFlat_aetxq")
 
-[node name="Kill count" type="Label" parent="CanvasLayer/Player UI/Game Info/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Player UI/Game Info/MarginContainer/VBoxContainer/HBoxContainer2"]
+texture_filter = 1
 layout_mode = 2
-size_flags_vertical = 3
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_constants/outline_size = 10
-theme_override_font_sizes/font_size = 30
-text = "0"
-vertical_alignment = 1
+size_flags_horizontal = 8
+texture = SubResource("AtlasTexture_6w3iv")
+expand_mode = 2
 
 [node name="Pause Menu" parent="CanvasLayer" instance=ExtResource("5_knxm8")]
 visible = false
@@ -801,9 +827,14 @@ text = "Quit to desktop"
 stream = ExtResource("3_6t5aa")
 bus = &"SFX"
 
+[node name="Hit Flash Timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
 [connection signal="timeout" from="IFrames" to="." method="_on_i_frames_timeout"]
 [connection signal="timeout" from="CD" to="." method="_on_cd_timeout"]
 [connection signal="timeout" from="CanvasLayer/Player UI/Game Info/MarginContainer/VBoxContainer/HBoxContainer/Game Time/secTimer" to="." method="_on_sec_timer_timeout"]
 [connection signal="button_down" from="CanvasLayer/Death Menu/PanelContainer/MarginContainer/VBoxContainer/Restart" to="." method="_on_restart_button_down"]
 [connection signal="button_down" from="CanvasLayer/Death Menu/PanelContainer/MarginContainer/VBoxContainer/Quit" to="CanvasLayer/Pause Menu" method="_on_quit_button_down"]
 [connection signal="button_down" from="CanvasLayer/Death Menu/PanelContainer/MarginContainer/VBoxContainer/Quit to desktop" to="." method="_on_quit_to_desktop_button_down"]
+[connection signal="timeout" from="Hit Flash Timer" to="." method="_on_hit_flash_timer_timeout"]

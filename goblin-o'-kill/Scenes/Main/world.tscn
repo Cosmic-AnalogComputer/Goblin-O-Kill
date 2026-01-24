@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bkexd0hd5l4ap" path="res://Sprites/TestTiles0.png" id="2_mkl45"]
 [ext_resource type="Script" uid="uid://s4ladhyofkn2" path="res://Scripts/shop.gd" id="3_6ki3h"]
 [ext_resource type="Resource" uid="uid://70g4m7sbgqh5" path="res://Scripts/Special Waves/40goblins.tres" id="3_48xbc"]
-[ext_resource type="PackedScene" uid="uid://dlgeaqttixnn" path="res://Scenes/Main/Enemies/thrower.tscn" id="3_chlgq"]
+[ext_resource type="PackedScene" uid="uid://dlgeaqttixnn" path="res://Scenes/Main/Enemies/slinger.tscn" id="3_chlgq"]
 [ext_resource type="PackedScene" uid="uid://ooookqil64u4" path="res://Scenes/Items/bgg_oblin.tscn" id="3_kvnx8"]
 [ext_resource type="PackedScene" uid="uid://crn3fw2rb4s8i" path="res://Scenes/Main/player.tscn" id="3_kxy5q"]
 [ext_resource type="PackedScene" uid="uid://evb4gsey03rd" path="res://Scenes/Items/bggoblinm_2.tscn" id="4_16r8v"]
@@ -4399,6 +4399,7 @@ shadow_color = Color(0, 0, 0, 0)
 [node name="World" type="Node2D" node_paths=PackedStringArray("shop_particles")]
 y_sort_enabled = true
 script = ExtResource("1_6w0a8")
+devMode = true
 devControls = "Press G to get 100 gold
 Press K to kill all goblins
 Press Y to go inmortal

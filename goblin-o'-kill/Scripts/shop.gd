@@ -16,5 +16,5 @@ func _on_dialogue_timer_timeout() -> void:
 	$PanelContainer.hide()
 	$ColorRect.hide()
 
-func _on_interaction_component_interacted(user: Player) -> void:
+func _on_interaction_component_interacted(_user: Player) -> void:
 	dialogue()

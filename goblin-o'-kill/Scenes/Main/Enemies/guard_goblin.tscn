@@ -1,9 +1,16 @@
-[gd_scene load_steps=97 format=3 uid="uid://l6jc7fhyvoo4"]
+[gd_scene load_steps=102 format=3 uid="uid://l6jc7fhyvoo4"]
 
+[ext_resource type="Shader" uid="uid://b0mey6i0yttu1" path="res://Sprites/Shaders/hit_flash.tres" id="1_e42da"]
 [ext_resource type="Script" uid="uid://dhejj6r063rc0" path="res://Scripts/Enemies/goblin_rework.gd" id="1_j00w2"]
 [ext_resource type="Texture2D" uid="uid://ctqgin3vairnb" path="res://Sprites/Guard Goblin Back Up2.png" id="2_hnxl0"]
 [ext_resource type="Script" uid="uid://lop8wx2r7exx" path="res://Scripts/State Machine/Attack.gd" id="4_e42da"]
 [ext_resource type="Script" uid="uid://cgl1dkmxrdath" path="res://Scripts/State Machine/EnemyChase.gd" id="4_j00w2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e42da"]
+resource_local_to_scene = true
+shader = ExtResource("1_e42da")
+shader_parameter/Enabled = false
+shader_parameter/tint = Color(1, 1, 1, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j00w2"]
 atlas = ExtResource("2_hnxl0")
@@ -701,9 +708,33 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k6yh4"]
 size = Vector2(46, 78)
 
-[node name="Guard Goblin" type="CharacterBody2D" node_paths=PackedStringArray("initial_state")]
+[sub_resource type="Curve" id="Curve_e42da"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_l3r86"]
+curve = SubResource("Curve_e42da")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2p0ob"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 15.0
+initial_velocity_max = 20.0
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 100.0
+linear_accel_max = 100.0
+scale_min = 8.0
+scale_max = 12.0
+scale_curve = SubResource("CurveTexture_l3r86")
+color = Color(1, 0, 0, 1)
+hue_variation_min = -2.23517e-08
+hue_variation_max = 0.12
+
+[node name="Guard Goblin" type="CharacterBody2D" node_paths=PackedStringArray("death_particle", "initial_state")]
 collision_layer = 4
-collision_mask = 9
+collision_mask = 13
+platform_on_leave = 2
+platform_wall_layers = 5
 script = ExtResource("1_j00w2")
 hp = 7
 gold = 4
@@ -711,14 +742,17 @@ price = 7
 damage = 3
 delay = 0.5
 cooldown = 0.3
+attack_range = 125.0
 hasSimetricAnimation = false
 walk = Array[String](["top_walk", "right_side_walk", "walk", "left_side_walk"])
 attack_anim = Array[String](["attacktest1", "attacktest2", "attacktest2_1", "attacktest2_2"])
 punch_anim = "slash"
+death_particle = NodePath("Death Particles")
 initial_state = NodePath("Chase")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+material = SubResource("ShaderMaterial_e42da")
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_0jyaa")
 animation = &"attacktest2_2"
@@ -734,3 +768,17 @@ metadata/_custom_type_script = "uid://cgl1dkmxrdath"
 [node name="Attack" type="Node" parent="."]
 script = ExtResource("4_e42da")
 metadata/_custom_type_script = "uid://lop8wx2r7exx"
+
+[node name="Hit Flash Timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="Death Particles" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 16
+lifetime = 0.6
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_2p0ob")
+
+[connection signal="timeout" from="Hit Flash Timer" to="." method="_on_hit_flash_timer_timeout"]

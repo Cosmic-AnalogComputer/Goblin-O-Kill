@@ -9,7 +9,7 @@ var play = "slash"
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$Sprite2D.play(play)
-	var hit_audio = load(hit_sounds[randi_range(0,3)])
+	var hit_audio = load(hit_sounds.pick_random())
 	$Audio.stream = hit_audio
 
 func _on_body_entered(body: Node2D) -> void:

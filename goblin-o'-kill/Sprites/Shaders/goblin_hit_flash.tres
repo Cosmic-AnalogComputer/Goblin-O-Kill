@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bhekf6fpxo1rv"]
+
+[ext_resource type="Shader" uid="uid://b0mey6i0yttu1" path="res://Sprites/Shaders/hit_flash.tres" id="1_xywl8"]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource("1_xywl8")
+shader_parameter/Enabled = false
+shader_parameter/tint = Color(1, 1, 1, 1)

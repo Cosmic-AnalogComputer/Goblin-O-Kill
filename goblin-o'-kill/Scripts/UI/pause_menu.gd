@@ -4,7 +4,7 @@ extends Control
 @onready var options_menu = $"Options Menu"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("escape") and !get_tree().paused:
 		pause()
 	elif Input.is_action_just_pressed("escape") and get_tree().paused:

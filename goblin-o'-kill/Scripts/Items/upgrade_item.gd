@@ -22,21 +22,20 @@ func _upgrade(player : Player):
 	usage += 1
 	if usage == 1:
 		player.max_hp += UPGRADE.max_health
-		if player.hp <= (player.max_hp - UPGRADE.health):
-			player.receive_damage(-UPGRADE.health)
-		else:
-			player.receive_damage(-(player.max_hp - player.hp))
+		player.receive_damage(-UPGRADE.health)
 		player.strength += UPGRADE.damage
 		if player.crit_chance + UPGRADE.crit_chance <= 1.0:
 			player.crit_chance += UPGRADE.crit_chance
 		else:
 			player.crit_chance = 1.0
 		player.crit_mod += UPGRADE.crit_mod
-		if player.cooldown > 0.1 + UPGRADE.attack_speed:
+		
+		if player.cooldown > UPGRADE.attack_speed:
 			player.cooldown -= UPGRADE.attack_speed
 		elif player.too_fast == false:
 			player.too_fast = true
-			player.cooldown = 0.1
+			player.cooldown = 0.01
+		
 		player.gold_gain += UPGRADE.gold_gain
 		
 		# Percentajes
@@ -59,10 +58,10 @@ func _on_interaction_component_interacted(user: Player) -> void:
 	if user.gold >= UPGRADE.price:
 		_upgrade(user)
 
-func _on_interaction_component_body_entered(body: Node2D) -> void:
+func _on_interaction_component_body_entered(_body: Node2D) -> void:
 	$PanelContainer.show()
 
-func _on_interaction_component_body_exited(body: Node2D) -> void:
+func _on_interaction_component_body_exited(_body: Node2D) -> void:
 	$PanelContainer.hide()
 
 func _on_visibility_changed() -> void:

@@ -16,7 +16,7 @@ var keyPosition : Array[Vector2] = [Vector2(0,-1),Vector2(1,0),Vector2(0,1),Vect
 func _ready() -> void:
 	key_tip.scale = Vector2(scale_bonus,scale_bonus)
 
-func _unhandled_input(event: InputEvent) -> void:
+func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("e") and canInteract:
 		emit_signal("interacted", user)
 

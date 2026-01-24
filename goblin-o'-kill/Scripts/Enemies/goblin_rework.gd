@@ -4,30 +4,33 @@ extends CharacterBody2D
 signal death()
 
 @export_group("Stats")
-@export var hp = 10
-@export var speed = 200
-@export var gold = 1
-@export var price = 1
+@export var hp := 10
+@export var speed := 200
+@export var gold := 1
+@export var price := 1
 @export_subgroup("Combat")
-@export var damage = 1
+@export var damage := 1
 @export var delay : float = 1.0 ## Time between the start of an attack and the hit
 @export var cooldown : float = 1.0 ## Time between the end of an attack and the beggining of the next
 @export var meleeAttack : bool = true
-@export var range : float = 90
+@export var attack_range : float = 90
 @export var goodAim : bool = false
-@export var attackIsChild = true
+@export var attackIsChild := true
 @export var attackScene : PackedScene = preload("res://Scenes/Attacks/punch.tscn")
 
 var player : Player
 @export_group("Animations")
-@export var hasSimetricAnimation = true
+@export var hasSimetricAnimation := true
 @export var idle : Array[String] = ["idle","top_idle"]
 @export var walk : Array[String] = ["walk"] ## Minimun of 4
 @export var attack_anim : Array[String] = ["attack1"]
 @export var punch_anim : String = "null"
+@export var hit_flash_time : float = 0.1
+@export var death_particle : GPUParticles2D
 
-@onready var startingSpeed = speed
-@onready var anim = $AnimatedSprite2D
+@onready var startingSpeed := speed
+@onready var anim : AnimatedSprite2D = $AnimatedSprite2D
+@onready var hit_flash_timer : Timer = $"Hit Flash Timer"
 
 @export_group("AI")
 @export var initial_state : State
@@ -37,6 +40,12 @@ var states : Dictionary = {}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# Shader fail safe
+	if anim.material == null:
+		var shader_material = ShaderMaterial.new()
+		shader_material.shader = load("res://Sprites/Shaders/goblin_hit_flash.tres")
+		material.resource_local_to_scene = true
+	
 	player = get_tree().get_first_node_in_group("Player")
 	for child in get_children():
 		if child is State:
@@ -70,10 +79,20 @@ func on_state_transition(state, new_state_name : String):
 	
 	current_state = new_state
 
-func receive_damage(damage):
-	hp -= damage
+func receive_damage(dmg):
+	hp -= dmg
+	hit_flash_timer.start(hit_flash_time)
+	if anim.material:
+		anim.material.set_shader_parameter("Enabled", true)
 	if hp <= 0:
 		player.gold += round(gold * player.gold_gain)
 		player.kills += 1
 		player.updateUI()
+		$CollisionShape2D.call_deferred("set_disabled",true)
+		anim.hide()
+		death_particle.emitting = true
+		await get_tree().create_timer(0.6).timeout
 		queue_free()
+
+func _on_hit_flash_timer_timeout() -> void:
+	anim.material.set_shader_parameter("Enabled", false)

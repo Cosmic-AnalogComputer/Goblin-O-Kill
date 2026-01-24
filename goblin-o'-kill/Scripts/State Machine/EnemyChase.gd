@@ -3,12 +3,12 @@ extends State
 
 var direction : Vector2
 
-func physics_update(delta : float):
+func physics_update(_delta : float):
 	if target:
 		direction = target.global_position - enemy.position
 		enemy.anim.play(_get_anim())
 		
-		if direction.length() > enemy.range:
+		if direction.length() > enemy.attack_range:
 			enemy.velocity = direction.normalized() * enemy.speed
 		else:
 			emit_signal("transitioned",self,"attack")
