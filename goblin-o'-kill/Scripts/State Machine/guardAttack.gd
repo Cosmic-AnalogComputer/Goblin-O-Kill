@@ -1,9 +1,11 @@
-class_name Attack
+class_name guardAttack
 extends State
 
 var delay = Timer.new()
 var cd = Timer.new()
 var direction : Vector2
+
+var attackCount := 0
 
 func _ready() -> void:
 	delay.connect("timeout",_on_delay_timeout)
@@ -16,6 +18,7 @@ func _ready() -> void:
 
 func enter():
 	direction = target.global_position - enemy.position
+	attackCount = 1
 	attack()
 
 func _get_anim(num : int) -> String:
@@ -71,5 +74,8 @@ func _on_cd_timeout() -> void:
 	direction = target.global_position - enemy.position
 	if direction.length() > enemy.attack_range:
 		emit_signal("transitioned", self, "chase")
-	else:
+	elif attackCount < 2:
+		attackCount += 1
 		attack()
+	else:
+		emit_signal("transitioned", self, "roll")

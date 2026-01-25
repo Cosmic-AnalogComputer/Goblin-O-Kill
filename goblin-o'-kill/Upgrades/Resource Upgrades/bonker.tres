@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="Upgrade" load_steps=5 format=3 uid="uid://dqhhqr2h58d0c"]
+
+[ext_resource type="Script" uid="uid://c2wxw55rruo72" path="res://Upgrades/BaseUpgradeTemplate.gd" id="1_0ylde"]
+[ext_resource type="Script" uid="uid://cpwkd1grruetu" path="res://Upgrades/Strategy Upgrades/bonkerrrr.gd" id="1_plo7b"]
+[ext_resource type="Texture2D" uid="uid://byi41s0n2j5t3" path="res://Sprites/goblin_icon.png" id="3_u0ngv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s6gce"]
+atlas = ExtResource("3_u0ngv")
+
+[resource]
+script = ExtResource("1_0ylde")
+texture = SubResource("AtlasTexture_s6gce")
+name = &"Bonker"
+description = "[i]This is bonkers[/i]
+On a critical strike, has a 2% chance to multiply damage by 3.
+If you have multiple of these, the chance won't stack, but each bonker will roll differently"
+price = 50
+max_health = 0
+health = 0
+gold_gain = 0.0
+damage = 0
+crit_chance = 0.0
+crit_mod = 0.0
+attack_speed = 0.0
+p_max_health = 0.0
+p_health = 0.0
+p_damage = 0.0
+p_crit_mod = 0.0
+p_attack_speed = 0.0
+custom_upgrade = ExtResource("1_plo7b")
+metadata/_custom_type_script = "uid://c2wxw55rruo72"

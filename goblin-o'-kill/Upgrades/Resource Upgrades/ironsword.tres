@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="Upgrade" load_steps=4 format=3 uid="uid://dnyw3cai6wkl8"]
+
+[ext_resource type="Script" uid="uid://c2wxw55rruo72" path="res://Upgrades/BaseUpgradeTemplate.gd" id="1_6dcup"]
+[ext_resource type="Texture2D" uid="uid://bgnk58vy4ir8f" path="res://Upgrades/Upgrades.png" id="2_6dcup"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wcu20"]
+atlas = ExtResource("2_6dcup")
+region = Rect2(16, 160, 16, 16)
+filter_clip = true
+
+[resource]
+script = ExtResource("1_6dcup")
+texture = SubResource("AtlasTexture_wcu20")
+name = &"Iron Sword"
+description = "You're still hitting with your fists though...
++1 Damage
++0.2 times damage on critical strike"
+price = 15
+max_health = 0
+health = 0
+gold_gain = 0.0
+damage = 1
+crit_chance = 0.0
+crit_mod = 0.2
+attack_speed = 0.0
+p_max_health = 0.0
+p_health = 0.0
+p_damage = 0.0
+p_crit_mod = 0.0
+p_attack_speed = 0.0
+metadata/_custom_type_script = "uid://c2wxw55rruo72"

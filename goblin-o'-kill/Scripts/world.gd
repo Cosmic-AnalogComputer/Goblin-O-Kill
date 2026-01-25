@@ -6,6 +6,7 @@ signal new_wave()
 @export var devMode : bool = false ## Enables developer tools
 @export_multiline var devControls : String
 @export var starterWave : int ## Starts the game at this wave, if has starter wave is enabled
+@export var dummy : bool = false
 @export var showShop : bool = false ## Shows shop at the start of the scene
 
 var itemScene = preload("res://Scenes/Items/upgrade_item.tscn")
@@ -28,6 +29,9 @@ var ivolume : float = 0.5
 @onready var musicStream = $AudioStreamPlayer
 
 func _ready() -> void:
+	if not dummy:
+		$Dummy.queue_free()
+	
 	for a in goblins:
 		goblin_prices.append(a.instantiate().price)
 	if starterWave:
@@ -107,7 +111,7 @@ func restock(is_new_wave = true):
 
 func _on_interaction_component_interacted(_user: Player) -> void:
 	GlobalVariables.current_wave += 1
-	GlobalVariables.wave_mod = 1 + (GlobalVariables.current_wave * 0.1)
+	GlobalVariables.wave_mod = 0.9 + (GlobalVariables.current_wave * 0.1)
 	make_new_wave()
 	$Tutorials.hide()
 

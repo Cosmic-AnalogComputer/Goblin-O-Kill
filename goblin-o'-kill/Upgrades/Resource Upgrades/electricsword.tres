@@ -1,0 +1,52 @@
+[gd_resource type="Resource" script_class="Upgrade" load_steps=7 format=3 uid="uid://j7f8wnlp2txy"]
+
+[ext_resource type="Script" uid="uid://c2wxw55rruo72" path="res://Upgrades/BaseUpgradeTemplate.gd" id="1_adafj"]
+[ext_resource type="Texture2D" uid="uid://bgnk58vy4ir8f" path="res://Upgrades/Upgrades.png" id="2_adafj"]
+
+[sub_resource type="Gradient" id="Gradient_5kjme"]
+offsets = PackedFloat32Array(0.49999, 0.5)
+colors = PackedColorArray(1, 1, 1, 1, 1, 0.823529, 0, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_yat87"]
+gradient = SubResource("Gradient_5kjme")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ebor6"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(0, 5, 0)
+spread = 180.0
+initial_velocity_min = 15.0
+initial_velocity_max = 20.0
+gravity = Vector3(0, -98, 0)
+scale_min = 3.0
+scale_max = 6.0
+color_initial_ramp = SubResource("GradientTexture1D_yat87")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nj1iu"]
+atlas = ExtResource("2_adafj")
+region = Rect2(64, 160, 16, 16)
+filter_clip = true
+
+[resource]
+script = ExtResource("1_adafj")
+texture = SubResource("AtlasTexture_nj1iu")
+name = &"Electric Sword"
+description = "Goblins rumour this sword comes from the same universe as the [color=red]Fire Sword.[/color] But not much is known...
++4 Damage
++0.5 times damage on critical strike
+-0.05s cooldown in attack"
+price = 50
+item_particles = SubResource("ParticleProcessMaterial_ebor6")
+max_health = 0
+health = 0
+gold_gain = 0.0
+damage = 6
+crit_chance = 0.0
+crit_mod = 0.5
+attack_speed = 0.07
+p_max_health = 0.0
+p_health = 0.0
+p_damage = 0.0
+p_crit_mod = 0.0
+p_attack_speed = 0.0
+metadata/_custom_type_script = "uid://c2wxw55rruo72"

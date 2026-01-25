@@ -1,0 +1,56 @@
+[gd_resource type="Resource" script_class="Upgrade" load_steps=9 format=3 uid="uid://c0m2820m38jt6"]
+
+[ext_resource type="Script" uid="uid://c2wxw55rruo72" path="res://Upgrades/BaseUpgradeTemplate.gd" id="1_584q0"]
+[ext_resource type="Texture2D" uid="uid://bgnk58vy4ir8f" path="res://Upgrades/Upgrades.png" id="2_6ornb"]
+
+[sub_resource type="Curve" id="Curve_rpyn1"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.30961, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_o7gqt"]
+curve = SubResource("Curve_rpyn1")
+
+[sub_resource type="Gradient" id="Gradient_l5tdc"]
+offsets = PackedFloat32Array(0.00819672, 1)
+colors = PackedColorArray(0, 0.290196, 1, 1, 0, 0.878431, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_h60ao"]
+gradient = SubResource("Gradient_l5tdc")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2bjc7"]
+particle_flag_disable_z = true
+spread = 90.0
+initial_velocity_min = 15.0
+initial_velocity_max = 20.0
+gravity = Vector3(0, -98, 0)
+scale_min = 13.0
+scale_max = 13.0
+color_initial_ramp = SubResource("GradientTexture1D_h60ao")
+alpha_curve = SubResource("CurveTexture_o7gqt")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ornb"]
+atlas = ExtResource("2_6ornb")
+region = Rect2(32, 160, 16, 16)
+
+[resource]
+script = ExtResource("1_584q0")
+texture = SubResource("AtlasTexture_6ornb")
+name = &"Enchanted Sword"
+description = "+4 Damage
++0.35 times damage on critical
+-0.04s cooldown in attack"
+price = 25
+item_particles = SubResource("ParticleProcessMaterial_2bjc7")
+max_health = 0
+health = 0
+gold_gain = 0.0
+damage = 4
+crit_chance = 0.0
+crit_mod = 0.35
+attack_speed = 0.04
+p_max_health = 0.0
+p_health = 0.0
+p_damage = 0.0
+p_crit_mod = 0.0
+p_attack_speed = 0.0
+metadata/_custom_type_script = "uid://c2wxw55rruo72"

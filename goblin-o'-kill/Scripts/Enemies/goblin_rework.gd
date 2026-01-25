@@ -19,6 +19,8 @@ signal death()
 @export var attackIsChild := true
 @export var attackScene : PackedScene = preload("res://Scenes/Attacks/punch.tscn")
 
+var hit_count := 0
+
 var player : Player
 @export_group("Animations")
 @export var hasSimetricAnimation := true
@@ -31,6 +33,7 @@ var player : Player
 
 @onready var startingSpeed := speed
 @onready var anim : AnimatedSprite2D = $AnimatedSprite2D
+@onready var hitbox : CollisionShape2D = $CollisionShape2D
 @onready var hit_flash_timer : Timer = $"Hit Flash Timer"
 
 @export_group("AI")
@@ -81,6 +84,12 @@ func on_state_transition(state, new_state_name : String):
 	current_state = new_state
 
 func receive_damage(dmg):
+	if states.has("roll"):
+		hit_count += 1
+		if hit_count == 3:
+			current_state.emit_signal("transitioned",current_state,"roll")
+			hit_count = 0
+	
 	hp -= dmg
 	hit_flash_timer.start(hit_flash_time)
 	if anim.material:
@@ -88,6 +97,8 @@ func receive_damage(dmg):
 	if hp <= 0:
 		player.gold += round(gold * player.gold_gain)
 		player.kills += 1
+		velocity = Vector2.ZERO
+		attackScene = null
 		$CollisionShape2D.call_deferred("set_disabled",true)
 		anim.hide()
 		death_particle.emitting = true

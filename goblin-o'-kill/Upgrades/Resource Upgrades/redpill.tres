@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Upgrade" load_steps=4 format=3 uid="uid://dhk1wcbd1qlvq"]
+
+[ext_resource type="Script" uid="uid://c2wxw55rruo72" path="res://Upgrades/BaseUpgradeTemplate.gd" id="1_8ayvb"]
+[ext_resource type="Texture2D" uid="uid://bgnk58vy4ir8f" path="res://Upgrades/Upgrades.png" id="2_x6y5g"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gvfwo"]
+atlas = ExtResource("2_x6y5g")
+region = Rect2(64, 0, 16, 16)
+
+[resource]
+script = ExtResource("1_8ayvb")
+texture = SubResource("AtlasTexture_gvfwo")
+name = &"Red Pill"
+description = "+5 Max health
++Healts that same amount"
+price = 10
+max_health = 5
+health = 5
+gold_gain = 0.0
+damage = 0
+crit_chance = 0.0
+crit_mod = 0.0
+attack_speed = 0.0
+p_max_health = 0.0
+p_health = 0.0
+p_damage = 0.0
+p_crit_mod = 0.0
+p_attack_speed = 0.0
+metadata/_custom_type_script = "uid://c2wxw55rruo72"

@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Upgrade" load_steps=4 format=3 uid="uid://cqutxc4geqaxp"]
+
+[ext_resource type="Script" uid="uid://c2wxw55rruo72" path="res://Upgrades/BaseUpgradeTemplate.gd" id="1_vko7x"]
+[ext_resource type="Texture2D" uid="uid://bgnk58vy4ir8f" path="res://Upgrades/Upgrades.png" id="2_rwepk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1624g"]
+atlas = ExtResource("2_rwepk")
+region = Rect2(16, 0, 16, 16)
+
+[resource]
+script = ExtResource("1_vko7x")
+texture = SubResource("AtlasTexture_1624g")
+name = &"Sugar"
+description = "Candy wasn't enough. We gotta inject it
+-0.01s cooldown in attack"
+price = 3
+max_health = 0
+health = 0
+gold_gain = 0.0
+damage = 0
+crit_chance = 0.0
+crit_mod = 0.0
+attack_speed = 0.01
+p_max_health = 0.0
+p_health = 0.0
+p_damage = 0.0
+p_crit_mod = 0.0
+p_attack_speed = 0.0
+metadata/_custom_type_script = "uid://c2wxw55rruo72"

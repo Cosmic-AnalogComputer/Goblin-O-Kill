@@ -6,6 +6,8 @@ var state : STATES = STATES.IDLE
 var gold_tween : Tween
 
 @export_group("Stats")
+@export var strategy_upgrades : Array[GDScript]
+
 @export var gold : int = 0:
 	set(value):
 		if value > gold:
@@ -22,11 +24,10 @@ var animated_gold : int:
 	set(value):
 		animated_gold = value
 		gold_text.text = "$" + var_to_str(animated_gold)
-
 @export var max_hp := 10:
 	set(value):
 		max_hp = value
-		hpbar.max_value = value
+		hpbar.max_value = max_hp
 		if hp > max_hp:
 			hp = clampi(hp,0,max_hp)
 @export var hp := 10:
@@ -43,14 +44,15 @@ var animated_gold : int:
 	set(value):
 		strength = value
 		dmg_text.text = var_to_str(strength)
-@export var crit_chance : float = 0.05: ## x 100 on attack
+@export var crit_chance : float = 0.1:
 	set(value):
-		if value <= 1.0:
+		crit_chance = value
+		if crit_chance < 1.0:
 			crit_chance = value
 			crit_chance_text.text = var_to_str(crit_chance * 100) + "%"
 		else:
 			crit_chance = 1.0
-			crit_chance_text.text = "Guaranteed"
+			crit_chance_text.text = "MAX"
 @export var crit_mod : float = 1.5:
 	set(value):
 		crit_mod = value
@@ -58,10 +60,9 @@ var animated_gold : int:
 @export var cooldown : float = 1.0:
 	set(value):
 		cooldown = value
-		print(cooldown)
-		if cooldown <= 0.00054:
-			cooldown = 0.00054
-			attack_speed_text.text = "Too fast!"
+		if cooldown <= 0.01:
+			cooldown = 0.01
+			attack_speed_text.text = "MAX"
 		else:
 			attack_speed_text.text = var_to_str(cooldown) + "s"
 @export var attackScene = preload("res://Scenes/Attacks/punch.tscn")
@@ -167,11 +168,12 @@ func _on_i_frames_timeout() -> void:
 	state = STATES.IDLE
 	$CD.set_paused(false)
 
-func receive_damage(dmg):
+func receive_damage(dmg, hit_flash = true):
 	if !inmortal:
 		hp -= dmg
-		anim.material.set_shader_parameter("Enabled", true)
-		hit_flash_timer.start()
+		if hit_flash:
+			anim.material.set_shader_parameter("Enabled", true)
+			hit_flash_timer.start()
 	if hp <= 0:
 		state = STATES.DEAD
 		anim.hide()
@@ -192,8 +194,11 @@ func attack():
 	var hurt = get_dmg()
 	attack.damage = hurt.x
 	if hurt.y == 1.0:
+		attack.crit = true
 		attack.modulate = Color.DEEP_SKY_BLUE
 	anim.play(get_attack_anim())
+	for strat in strategy_upgrades:
+		strat.apply_upgrade(attack)
 	add_child(attack)
 
 func _on_cd_timeout() -> void:
@@ -209,22 +214,6 @@ func get_dmg() -> Vector2:
 		crit = true
 	
 	return Vector2(dmg,float(crit))
-
-#func updateUI(new_wave = false):
-#	pass
-	#if new_wave:
-	#	wave_text.text = "Wave " + var_to_str(GlobalVariables.current_wave)
-	#hpbar.max_value = max_hp
-	#hpbar.value = hp
-	#gold_text.text = "$" + var_to_str(gold)
-	#gain_text.text = "[i]" + var_to_str(roundi(gold_gain * 100)) + "% [/i]"
-	#dmg_text.text = var_to_str(strength)
-	#if too_fast:
-	#	attack_speed_text.text = "Too fast!"
-	#else:
-	#	attack_speed_text.text = var_to_str(cooldown) + "s"
-	#crit_chance_text.text = var_to_str(crit_chance * 100) + "%"
-	#crit_mod_text.text = "x" + var_to_str(crit_mod)
 
 func _on_world_new_wave() -> void:
 	wave_text.text = "Wave " + var_to_str(GlobalVariables.current_wave)

@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="Upgrade" load_steps=4 format=3 uid="uid://c5ir21mpgd44j"]
+
+[ext_resource type="Script" uid="uid://c2wxw55rruo72" path="res://Upgrades/BaseUpgradeTemplate.gd" id="1_8d052"]
+[ext_resource type="Texture2D" uid="uid://bgnk58vy4ir8f" path="res://Upgrades/Upgrades.png" id="2_fexmh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lhq2a"]
+atlas = ExtResource("2_fexmh")
+region = Rect2(128, 144, 16, 16)
+
+[resource]
+script = ExtResource("1_8d052")
+texture = SubResource("AtlasTexture_lhq2a")
+name = &"Laser Saber"
+description = "[i]*swoosh*[/i]
++2 Damage
+-0.04s cooldown in attack"
+price = 20
+max_health = 0
+health = 0
+gold_gain = 0.0
+damage = 2
+crit_chance = 0.0
+crit_mod = 0.0
+attack_speed = 0.04
+p_max_health = 0.0
+p_health = 0.0
+p_damage = 0.0
+p_crit_mod = 0.0
+p_attack_speed = 0.0
+metadata/_custom_type_script = "uid://c2wxw55rruo72"

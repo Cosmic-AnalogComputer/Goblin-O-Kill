@@ -29,13 +29,14 @@ window/size/mode=2
 
 folder_colors={
 "res://Audios/": "yellow",
+"res://Particles/": "gray",
 "res://Scenes/": "blue",
 "res://Scripts/": "green",
 "res://Scripts/Enemies/": "green",
 "res://Scripts/Special Waves/": "red",
 "res://Scripts/State Machine/": "pink",
-"res://Scripts/Upgrades/": "purple",
-"res://Sprites/": "red"
+"res://Sprites/": "red",
+"res://Upgrades/": "purple"
 }
 
 [global_group]

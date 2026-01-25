@@ -1,10 +1,11 @@
-[gd_scene load_steps=102 format=3 uid="uid://l6jc7fhyvoo4"]
+[gd_scene load_steps=103 format=3 uid="uid://l6jc7fhyvoo4"]
 
 [ext_resource type="Shader" uid="uid://b0mey6i0yttu1" path="res://Sprites/Shaders/hit_flash.tres" id="1_e42da"]
 [ext_resource type="Script" uid="uid://dhejj6r063rc0" path="res://Scripts/Enemies/goblin_rework.gd" id="1_j00w2"]
 [ext_resource type="Texture2D" uid="uid://ctqgin3vairnb" path="res://Sprites/Guard Goblin Back Up2.png" id="2_hnxl0"]
-[ext_resource type="Script" uid="uid://lop8wx2r7exx" path="res://Scripts/State Machine/Attack.gd" id="4_e42da"]
-[ext_resource type="Script" uid="uid://cgl1dkmxrdath" path="res://Scripts/State Machine/EnemyChase.gd" id="4_j00w2"]
+[ext_resource type="Script" uid="uid://di2jkvt4705t3" path="res://Scripts/State Machine/guardIdle.gd" id="4_2p0ob"]
+[ext_resource type="Script" uid="uid://dkqmiqqi8q4pd" path="res://Scripts/State Machine/guardAttack.gd" id="5_2p0ob"]
+[ext_resource type="Script" uid="uid://3x2c72x31k3d" path="res://Scripts/State Machine/Roll.gd" id="6_2p0ob"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e42da"]
 resource_local_to_scene = true
@@ -738,7 +739,7 @@ platform_wall_layers = 5
 script = ExtResource("1_j00w2")
 hp = 7
 gold = 4
-price = 7
+price = 10
 damage = 3
 delay = 0.5
 cooldown = 0.3
@@ -755,19 +756,24 @@ texture_filter = 1
 material = SubResource("ShaderMaterial_e42da")
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_0jyaa")
-animation = &"attacktest2_2"
+animation = &"idle"
 autoplay = "idle"
+frame_progress = 0.976541
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_k6yh4")
 
 [node name="Chase" type="Node" parent="."]
-script = ExtResource("4_j00w2")
-metadata/_custom_type_script = "uid://cgl1dkmxrdath"
+script = ExtResource("4_2p0ob")
+metadata/_custom_type_script = "uid://di2jkvt4705t3"
 
 [node name="Attack" type="Node" parent="."]
-script = ExtResource("4_e42da")
-metadata/_custom_type_script = "uid://lop8wx2r7exx"
+script = ExtResource("5_2p0ob")
+metadata/_custom_type_script = "uid://dkqmiqqi8q4pd"
+
+[node name="Roll" type="Node" parent="."]
+script = ExtResource("6_2p0ob")
+metadata/_custom_type_script = "uid://3x2c72x31k3d"
 
 [node name="Hit Flash Timer" type="Timer" parent="."]
 wait_time = 0.1
