@@ -140,7 +140,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 				if k is Goblin:
 					k.receive_damage(100)
 		if Input.is_action_just_pressed("g"):
-			$Player.gold += 100
+			$Player.gold += 250
 		if Input.is_action_just_pressed("y"):
 			if $Player.inmortal:
 				$Player.inmortal = false
