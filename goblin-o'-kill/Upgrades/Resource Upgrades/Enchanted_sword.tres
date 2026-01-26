@@ -36,9 +36,13 @@ region = Rect2(32, 160, 16, 16)
 script = ExtResource("1_584q0")
 texture = SubResource("AtlasTexture_6ornb")
 name = &"Enchanted Sword"
-description = "+4 Damage
+description = "[color=green]
++4 Damage
 +0.35 times damage on critical
--0.04s cooldown in attack"
+[/color]
+[color=red]
++0.04s cooldown in attack
+[/color]"
 price = 25
 item_particles = SubResource("ParticleProcessMaterial_2bjc7")
 max_health = 0
@@ -47,10 +51,11 @@ gold_gain = 0.0
 damage = 4
 crit_chance = 0.0
 crit_mod = 0.35
-attack_speed = 0.04
+attack_speed = -0.04
 p_max_health = 0.0
 p_health = 0.0
 p_damage = 0.0
 p_crit_mod = 0.0
 p_attack_speed = 0.0
+instantiate_custom_upgrade = false
 metadata/_custom_type_script = "uid://c2wxw55rruo72"

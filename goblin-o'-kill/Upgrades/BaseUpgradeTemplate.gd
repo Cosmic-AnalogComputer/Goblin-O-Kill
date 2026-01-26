@@ -25,4 +25,5 @@ extends Resource
 @export var p_crit_mod : float
 @export var p_attack_speed : float
 @export_category("Custom")
+@export var instantiate_custom_upgrade := false
 @export var custom_upgrade : GDScript

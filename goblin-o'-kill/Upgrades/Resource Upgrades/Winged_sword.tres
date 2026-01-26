@@ -11,9 +11,13 @@ region = Rect2(48, 160, 16, 16)
 script = ExtResource("1_rq5c3")
 texture = SubResource("AtlasTexture_qiixh")
 name = &"Winged Sword"
-description = "+6 Damage
+description = "[color=green]
++6 Damage
 +0.6 times damage on critical
--0.04s cooldown in attack"
+[/color]
+[color=red]
++0.04s cooldown in attack
+[/color]"
 price = 35
 max_health = 0
 health = 0
@@ -27,4 +31,5 @@ p_health = 0.0
 p_damage = 0.0
 p_crit_mod = 0.0
 p_attack_speed = 0.0
+instantiate_custom_upgrade = false
 metadata/_custom_type_script = "uid://c2wxw55rruo72"

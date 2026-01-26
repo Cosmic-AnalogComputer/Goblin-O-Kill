@@ -1,5 +1,7 @@
 extends Node
 
-static func apply_upgrade(attack : Punch) -> void:
+static func apply_upgrade(attack : Punch, level : int) -> void:
 	attack.modulate = Color(randf(),randf(),randf())
-	attack.attack_particles = load("uid://cogyjnnh18pct")
+	var particle = load("uid://cogyjnnh18pct")
+	if not particle in attack.attack_particles:
+		attack.attack_particles.append(particle)

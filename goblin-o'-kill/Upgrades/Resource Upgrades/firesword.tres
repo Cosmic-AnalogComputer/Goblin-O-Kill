@@ -16,9 +16,13 @@ texture = SubResource("AtlasTexture_2vf3a")
 name = &"Fire Sword"
 description = "[color=red]The mighty[/color][color=orange] Fire Sword[/color]
 Some say it's a sword from another universe entirely. Just from wielding it, you feel as if you could take down a giant.
+[color=green]
 +8 Damage
 +1 times damage on critical strike
--0.1s cooldown in attack"
+[/color]
+[color=red]
++0.1s cooldown in attack
+[/color]"
 price = 70
 item_particles = ExtResource("1_0sesw")
 max_health = 0
@@ -27,11 +31,12 @@ gold_gain = 0.0
 damage = 8
 crit_chance = 0.0
 crit_mod = 1.0
-attack_speed = 0.1
+attack_speed = -0.1
 p_max_health = 0.0
 p_health = 0.0
 p_damage = 0.0
 p_crit_mod = 0.0
 p_attack_speed = 0.0
+instantiate_custom_upgrade = false
 custom_upgrade = ExtResource("1_gv84a")
 metadata/_custom_type_script = "uid://c2wxw55rruo72"

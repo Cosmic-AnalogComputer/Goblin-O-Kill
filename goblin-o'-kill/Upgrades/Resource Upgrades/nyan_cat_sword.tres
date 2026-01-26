@@ -14,7 +14,8 @@ script = ExtResource("2_r7bsy")
 texture = SubResource("AtlasTexture_67i1h")
 name = &"Nyan Cat Sword"
 description = "yes
-attack is rainbow"
+attack is rainbow
+nothing else"
 price = 30
 item_particles = ExtResource("2_pnsxh")
 max_health = 0
@@ -29,5 +30,6 @@ p_health = 0.0
 p_damage = 0.0
 p_crit_mod = 0.0
 p_attack_speed = 0.0
+instantiate_custom_upgrade = false
 custom_upgrade = ExtResource("1_5507s")
 metadata/_custom_type_script = "uid://c2wxw55rruo72"

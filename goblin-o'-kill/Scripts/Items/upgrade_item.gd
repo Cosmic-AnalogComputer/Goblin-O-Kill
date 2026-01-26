@@ -50,8 +50,15 @@ func _upgrade(player : Player):
 		player.cooldown -= player.cooldown * UPGRADE.p_attack_speed
 		
 		# Custom
-		if UPGRADE.custom_upgrade:
-			player.strategy_upgrades.insert(player.strategy_upgrades.size(),UPGRADE.custom_upgrade)
+		if UPGRADE.instantiate_custom_upgrade:
+			var upgrade_node = Node.new()
+			upgrade_node.set_script(UPGRADE.custom_upgrade)
+			player.add_child(upgrade_node)
+		elif UPGRADE.custom_upgrade:
+			if player.strategy_upgrades.has(UPGRADE.custom_upgrade):
+				player.strategy_upgrades[UPGRADE.custom_upgrade] += 1
+			else:
+				player.strategy_upgrades.set(UPGRADE.custom_upgrade, 1)
 		
 		#Closing
 		player.gold -= UPGRADE.price

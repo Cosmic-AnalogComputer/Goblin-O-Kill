@@ -25,4 +25,5 @@ p_health = 0.4
 p_damage = 0.0
 p_crit_mod = 0.0
 p_attack_speed = 0.0
+instantiate_custom_upgrade = false
 metadata/_custom_type_script = "uid://c2wxw55rruo72"

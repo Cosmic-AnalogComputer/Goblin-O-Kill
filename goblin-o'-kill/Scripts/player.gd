@@ -1,12 +1,14 @@
 class_name Player
 extends CharacterBody2D
 
+signal damaged(dmg : int)
+
 enum STATES {IDLE,ROLLING,DEAD,ATTACKING}
 var state : STATES = STATES.IDLE
 var gold_tween : Tween
 
 @export_group("Stats")
-@export var strategy_upgrades : Array[GDScript]
+@export var strategy_upgrades : Dictionary[GDScript, int]
 
 @export var gold : int = 0:
 	set(value):
@@ -170,6 +172,7 @@ func _on_i_frames_timeout() -> void:
 
 func receive_damage(dmg, hit_flash = true):
 	if !inmortal:
+		emit_signal("damaged", dmg)
 		hp -= dmg
 		if hit_flash:
 			anim.material.set_shader_parameter("Enabled", true)
@@ -191,29 +194,17 @@ func attack():
 	attack.position = get_local_mouse_position().normalized() * 75
 	attack.look_at(get_local_mouse_position() * 75)
 	attack.set_collision_mask(4)
-	var hurt = get_dmg()
-	attack.damage = hurt.x
-	if hurt.y == 1.0:
-		attack.crit = true
-		attack.modulate = Color.DEEP_SKY_BLUE
+	attack.damage = strength
+	attack.crit_chance = crit_chance
+	attack.crit_mod = crit_mod
 	anim.play(get_attack_anim())
-	for strat in strategy_upgrades:
-		strat.apply_upgrade(attack)
+	for strat in strategy_upgrades.keys():
+		strat.apply_upgrade(attack,strategy_upgrades[strat])
 	add_child(attack)
 
 func _on_cd_timeout() -> void:
 	speed = startingSpeed
 	state = STATES.IDLE
-
-func get_dmg() -> Vector2:
-	var dmg : int
-	var crit : bool
-	dmg = strength
-	if randf() <= crit_chance:
-		dmg *= crit_mod
-		crit = true
-	
-	return Vector2(dmg,float(crit))
 
 func _on_world_new_wave() -> void:
 	wave_text.text = "Wave " + var_to_str(GlobalVariables.current_wave)

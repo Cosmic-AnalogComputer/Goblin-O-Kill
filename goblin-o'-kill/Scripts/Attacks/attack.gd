@@ -3,9 +3,11 @@ extends Area2D
 
 signal hit(goblin, attack_node)
 
-var hit_smth := false
+@export var hit_audio : AudioStreamPlayer2D
+@export var crit_particle : GPUParticles2D
 
 var damage : int
+var applied_damage : int
 var crit := false
 var crit_chance : float
 var crit_mod : float
@@ -18,31 +20,32 @@ var play = "slash"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if attack_particles:
+	for particle in attack_particles:
 		var particle_node = GPUParticles2D.new()
 		particle_node.process_material = attack_particles
 		particle_node.emitting = true
+		add_child(particle_node)
 	
 	$Sprite2D.play(play)
 	var hit_audio = load(hit_sounds.pick_random())
-	$Audio.stream = hit_audio
+	hit_audio.stream = hit_audio
 
 func _on_body_entered(body: Node2D) -> void:
+	applied_damage = damage
+	if randf() <= crit_chance:
+		crit = true
+		applied_damage = roundi(damage * crit_mod)
+		crit_particle.emitting = true
+	
 	emit_signal("hit", body, self)
-	hit_smth = true
 	$Timer.stop()
-	$Audio.play()
-	body.receive_damage(damage)
+	hit_audio.play()
+	body.receive_damage(applied_damage)
 	call_deferred("set_monitoring", false)
 
 func _on_timer_timeout() -> void:
-	call_deferred("set_monitoring", false)
-	
+	if not hit_audio.playing:
+		queue_free()
 
 func _on_audio_finished() -> void:
-	if hit_smth:
-		queue_free()
-
-func _on_particles_finished() -> void:
-	if !hit_smth:
-		queue_free()
+	queue_free()

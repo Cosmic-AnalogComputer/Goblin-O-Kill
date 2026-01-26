@@ -12,8 +12,8 @@ script = ExtResource("1_0ylde")
 texture = SubResource("AtlasTexture_s6gce")
 name = &"Bonker"
 description = "[i]This is bonkers[/i]
-On a critical strike, has a 2% chance to multiply damage by 3.
-If you have multiple of these, the chance won't stack, but each bonker will roll differently"
+On a critical strike, has a 2% chance to [color=green]multiply damage by 3.[/color]
+If you have multiple of these, the chance of bonk will increase 2% each one."
 price = 50
 max_health = 0
 health = 0
@@ -27,5 +27,6 @@ p_health = 0.0
 p_damage = 0.0
 p_crit_mod = 0.0
 p_attack_speed = 0.0
+instantiate_custom_upgrade = false
 custom_upgrade = ExtResource("1_plo7b")
 metadata/_custom_type_script = "uid://c2wxw55rruo72"

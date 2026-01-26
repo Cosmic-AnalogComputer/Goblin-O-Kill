@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=4 uid="uid://bhkyobjeljr7i"]
+[gd_scene load_steps=99 format=4 uid="uid://bhkyobjeljr7i"]
 
 [ext_resource type="Script" uid="uid://djnsrw0beuq3m" path="res://Scripts/world.gd" id="1_6w0a8"]
 [ext_resource type="PackedScene" uid="uid://b1cymn7dg72ea" path="res://Scenes/Main/Enemies/goblin.tscn" id="2_a8fjw"]
@@ -41,7 +41,6 @@
 [ext_resource type="Resource" uid="uid://d3h5iud3dguql" path="res://Upgrades/Resource Upgrades/bluepill.tres" id="28_saw72"]
 [ext_resource type="Resource" uid="uid://dwbxbile4l3d7" path="res://Upgrades/Resource Upgrades/biggestdice.tres" id="29_m0uig"]
 [ext_resource type="Resource" uid="uid://c5ted26sb8lau" path="res://Upgrades/Resource Upgrades/heaviestdumbell.tres" id="30_07pob"]
-[ext_resource type="Resource" uid="uid://c5ir21mpgd44j" path="res://Upgrades/Resource Upgrades/saber_sword.tres" id="30_pkevl"]
 [ext_resource type="Resource" uid="uid://0ummcfhtxq3k" path="res://Upgrades/Resource Upgrades/biggerdice.tres" id="30_qrnlh"]
 [ext_resource type="Resource" uid="uid://bl5bhtklbgca5" path="res://Upgrades/Resource Upgrades/piggy_bank.tres" id="31_1gety"]
 [ext_resource type="Resource" uid="uid://siqy4468fp0r" path="res://Upgrades/Resource Upgrades/bigdice.tres" id="31_hw0a7"]
@@ -3420,7 +3419,7 @@ starterWave = 7
 dummy = true
 goblins = Array[PackedScene]([ExtResource("2_a8fjw"), ExtResource("3_chlgq"), ExtResource("4_pndor")])
 events = Array[ExtResource("2_jnmjr")]([ExtResource("3_48xbc"), ExtResource("7_1sird"), ExtResource("8_qtd7m"), SubResource("Resource_1sird")])
-Upgrades = Array[ExtResource("9_07pob")]([ExtResource("10_1gety"), ExtResource("11_emqye"), ExtResource("12_qh8lc"), ExtResource("15_la7os"), ExtResource("16_vgwtn"), ExtResource("17_cp430"), ExtResource("18_tj2r8"), ExtResource("19_cfnrv"), ExtResource("20_r5nwu"), ExtResource("21_e1om2"), ExtResource("22_7cxoy"), ExtResource("23_8apgr"), ExtResource("24_pynn3"), ExtResource("25_wfir6"), ExtResource("26_01ioq"), ExtResource("27_xlwlw"), ExtResource("28_saw72"), ExtResource("29_m0uig"), ExtResource("30_qrnlh"), ExtResource("31_hw0a7"), ExtResource("30_07pob"), ExtResource("31_1gety"), ExtResource("30_pkevl"), ExtResource("33_la7os"), ExtResource("34_vgwtn"), ExtResource("35_qtd7m"), ExtResource("36_la7os")])
+Upgrades = Array[ExtResource("9_07pob")]([ExtResource("10_1gety"), ExtResource("11_emqye"), ExtResource("12_qh8lc"), ExtResource("15_la7os"), ExtResource("16_vgwtn"), ExtResource("17_cp430"), ExtResource("18_tj2r8"), ExtResource("19_cfnrv"), ExtResource("20_r5nwu"), ExtResource("21_e1om2"), ExtResource("22_7cxoy"), ExtResource("23_8apgr"), ExtResource("24_pynn3"), ExtResource("25_wfir6"), ExtResource("26_01ioq"), ExtResource("27_xlwlw"), ExtResource("28_saw72"), ExtResource("29_m0uig"), ExtResource("30_qrnlh"), ExtResource("31_hw0a7"), ExtResource("30_07pob"), ExtResource("31_1gety"), ExtResource("33_la7os"), ExtResource("34_vgwtn"), ExtResource("35_qtd7m"), ExtResource("36_la7os")])
 shop_particles = NodePath("Shop/Spawn Particles")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]

@@ -13,7 +13,7 @@ texture = SubResource("AtlasTexture_gypso")
 name = &"Caffeine"
 description = "[i]coffe coffe coffe[/i]
 -0.02s cooldown in attack"
-price = 8
+price = 6
 max_health = 0
 health = 0
 gold_gain = 0.0
@@ -26,4 +26,5 @@ p_health = 0.0
 p_damage = 0.0
 p_crit_mod = 0.0
 p_attack_speed = 0.0
+instantiate_custom_upgrade = false
 metadata/_custom_type_script = "uid://c2wxw55rruo72"
