@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://crn3fw2rb4s8i"]
+[gd_scene load_steps=63 format=3 uid="uid://crn3fw2rb4s8i"]
 
 [ext_resource type="Script" uid="uid://c7f533jd3dx" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://ctvjr0t77hpnc" path="res://Sprites/Knight.png" id="2_6t5aa"]
@@ -316,6 +316,11 @@ atlas = ExtResource("4_knxm8")
 region = Rect2(96, 144, 16, 16)
 filter_clip = true
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_mfgkh"]
+atlas = ExtResource("4_knxm8")
+region = Rect2(112, 32, 16, 16)
+filter_clip = true
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_5kuo1"]
 atlas = ExtResource("4_knxm8")
 region = Rect2(32, 128, 16, 16)
@@ -377,7 +382,7 @@ border_width_right = 5
 border_width_bottom = 5
 border_color = Color(1, 1, 1, 1)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("hpbar", "hp_text", "gold_text", "gain_text", "dmg_text", "attack_speed_text", "crit_chance_text", "crit_mod_text", "wave_text", "game_timer", "kill_count") groups=["Player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("hpbar", "hp_text", "gold_text", "gain_text", "dmg_text", "health_regen_text", "attack_speed_text", "crit_chance_text", "crit_mod_text", "wave_text", "game_timer", "kill_count") groups=["Player"]]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_cvnsp")
@@ -386,6 +391,7 @@ hp_text = NodePath("CanvasLayer/Player UI/Health bar/MarginContainer/ProgressBar
 gold_text = NodePath("CanvasLayer/Player UI/Stats/MarginContainer/VBoxContainer/GOLDDD/VBoxContainer/Gold")
 gain_text = NodePath("CanvasLayer/Player UI/Stats/MarginContainer/VBoxContainer/GOLDDD/VBoxContainer/Gold Gain")
 dmg_text = NodePath("CanvasLayer/Player UI/Stats/MarginContainer/VBoxContainer/DMG/Label")
+health_regen_text = NodePath("CanvasLayer/Player UI/Stats/MarginContainer/VBoxContainer/hpregen/Label")
 attack_speed_text = NodePath("CanvasLayer/Player UI/Stats/MarginContainer/VBoxContainer/dmgspeed/Label")
 crit_chance_text = NodePath("CanvasLayer/Player UI/Stats/MarginContainer/VBoxContainer/CritC/Label")
 crit_mod_text = NodePath("CanvasLayer/Player UI/Stats/MarginContainer/VBoxContainer/CritM/Label")
@@ -560,7 +566,7 @@ theme_override_colors/default_color = Color(1, 0.67451, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 15
 bbcode_enabled = true
-text = "[i]100% [/i]"
+text = "[i]0% [/i]"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
@@ -584,6 +590,26 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 15
 theme_override_font_sizes/font_size = 35
 text = "1"
+vertical_alignment = 1
+
+[node name="hpregen" type="HBoxContainer" parent="CanvasLayer/Player UI/Stats/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Player UI/Stats/MarginContainer/VBoxContainer/hpregen"]
+texture_filter = 1
+layout_mode = 2
+texture = SubResource("AtlasTexture_mfgkh")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Player UI/Stats/MarginContainer/VBoxContainer/hpregen"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 0.176471, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/font_size = 35
+text = "1.0s"
 vertical_alignment = 1
 
 [node name="dmgspeed" type="HBoxContainer" parent="CanvasLayer/Player UI/Stats/MarginContainer/VBoxContainer"]
@@ -838,6 +864,10 @@ bus = &"SFX"
 wait_time = 0.1
 one_shot = true
 
+[node name="Health Regen Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
 [node name="Cursor" parent="." instance=ExtResource("9_5kuo1")]
 process_mode = 3
 
@@ -848,3 +878,4 @@ process_mode = 3
 [connection signal="button_down" from="CanvasLayer/Death Menu/PanelContainer/MarginContainer/VBoxContainer/Quit" to="CanvasLayer/Pause Menu" method="_on_quit_button_down"]
 [connection signal="button_down" from="CanvasLayer/Death Menu/PanelContainer/MarginContainer/VBoxContainer/Quit to desktop" to="." method="_on_quit_to_desktop_button_down"]
 [connection signal="timeout" from="Hit Flash Timer" to="." method="_on_hit_flash_timer_timeout"]
+[connection signal="timeout" from="Health Regen Timer" to="." method="_on_health_regen_timer_timeout"]

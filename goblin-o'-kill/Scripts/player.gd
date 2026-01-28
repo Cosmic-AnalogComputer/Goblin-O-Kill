@@ -39,6 +39,11 @@ var animated_gold : int:
 		hp = clampi(value,0,max_hp)
 		hp_text.text = var_to_str(hp) + "/" + var_to_str(max_hp)
 		hpbar.value = hp
+@export var hp_regen := 5.0:
+	set(value):
+		hp_regen = clampf(value, 0.0, 1000.0)
+		health_regen_text.text = var_to_str(hp_regen) + "s"
+		health_regen_timer.wait_time = hp_regen
 @export var gold_gain : float = 0.0:
 	set(value):
 		gold_gain = value
@@ -82,6 +87,7 @@ var inmortal = false
 @onready var hitbox : CollisionShape2D = $CollisionShape2D
 @onready var anim : AnimatedSprite2D = $AnimatedSprite2D
 @onready var hit_flash_timer : Timer = $"Hit Flash Timer"
+@onready var health_regen_timer : Timer = $"Health Regen Timer"
 
 @export_group("UI References")
 @export_subgroup("Stats")
@@ -90,6 +96,7 @@ var inmortal = false
 @export var gold_text : Label
 @export var gain_text : RichTextLabel
 @export var dmg_text : Label
+@export var health_regen_text : Label
 @export var attack_speed_text : Label
 @export var crit_chance_text : Label
 @export var crit_mod_text : Label
@@ -175,6 +182,9 @@ func _on_i_frames_timeout() -> void:
 
 func receive_damage(dmg, hit_flash = true):
 	emit_signal("damaged", dmg)
+	if not health_regen_timer.time_left > 0:
+		health_regen_timer.start(hp_regen)
+	
 	hp -= dmg * int(!inmortal)
 	if hit_flash:
 		anim.material.set_shader_parameter("Enabled", true)
@@ -243,3 +253,8 @@ func _on_sec_timer_timeout() -> void:
 
 func _on_hit_flash_timer_timeout() -> void:
 	anim.material.set_shader_parameter("Enabled", false)
+
+func _on_health_regen_timer_timeout() -> void:
+	hp += 1
+	if hp < max_hp:
+		health_regen_timer.start(hp_regen)

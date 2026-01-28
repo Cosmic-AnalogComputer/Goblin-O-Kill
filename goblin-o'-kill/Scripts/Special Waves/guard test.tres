@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="waveEvent" load_steps=2 format=3 uid="uid://d2fm16e3m8c14"]
+[gd_resource type="Resource" script_class="waveEvent" load_steps=3 format=3 uid="uid://d2fm16e3m8c14"]
 
+[ext_resource type="PackedScene" uid="uid://l6jc7fhyvoo4" path="res://Scenes/Main/Enemies/guard_goblin.tscn" id="1_d4wxg"]
 [ext_resource type="Script" uid="uid://dxta12hf8o11e" path="res://Scripts/Special Waves/event_template.gd" id="1_q8spf"]
 
 [resource]
@@ -8,5 +9,7 @@ name = ""
 appearOnce = true
 DoubleEachInstance = false
 wave = 7
-goblins = Array[int]([0, 0, 1])
+goblins = Dictionary[PackedScene, int]({
+ExtResource("1_d4wxg"): 1
+})
 metadata/_custom_type_script = "uid://dxta12hf8o11e"

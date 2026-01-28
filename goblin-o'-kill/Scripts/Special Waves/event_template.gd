@@ -8,4 +8,4 @@ extends Resource
 @export var DoubleEachInstance : bool = false
 @export var wave : int
 @export_group("Goblins")
-@export var goblins : Array[int]
+@export var goblins : Dictionary[PackedScene, int]

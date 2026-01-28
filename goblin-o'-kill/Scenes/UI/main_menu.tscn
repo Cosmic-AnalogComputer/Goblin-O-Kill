@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cusy1hbayre3w"]
+[gd_scene load_steps=20 format=3 uid="uid://cusy1hbayre3w"]
 
 [ext_resource type="Script" uid="uid://c41yi7af8uq2l" path="res://Scripts/UI/main_menu.gd" id="1_5wsvm"]
 [ext_resource type="Texture2D" uid="uid://bnh1csywm5kry" path="res://Sprites/nekkkapfp.png" id="2_i2xx2"]
@@ -108,84 +108,6 @@ corner_radius_top_left = 15
 corner_radius_top_right = 15
 corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gih0s"]
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(1, 1, 1, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lrjdf"]
-bg_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
-shadow_color = Color(0, 1, 0, 0.6)
-shadow_size = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k33u3"]
-bg_color = Color(0.113725, 0.254902, 0.113725, 1)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
-shadow_color = Color(0, 1, 0, 0.6)
-shadow_size = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wqme5"]
-bg_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
-shadow_color = Color(1, 1, 0, 0.6)
-shadow_size = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jewm6"]
-bg_color = Color(1, 0.682353, 0, 1)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
-shadow_color = Color(1, 1, 0, 0.6)
-shadow_size = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cejvf"]
-bg_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
-shadow_color = Color(1, 0, 0, 0.6)
-shadow_size = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ru8vt"]
-bg_color = Color(0.672503, 0.120843, 0, 1)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
-shadow_color = Color(1, 0, 0, 0.6)
-shadow_size = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xp0kt"]
-bg_color = Color(0.654232, 0.654232, 0.654232, 1)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
-shadow_size = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ypsd1"]
-bg_color = Color(0.654232, 0.654232, 0.654232, 1)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
-shadow_size = 10
 
 [node name="Main Menu" type="Control"]
 layout_mode = 3
@@ -482,7 +404,7 @@ theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_colors/font_color = Color(1, 0.843137, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 25
-text = "Link"
+text = "Cosmic AC"
 icon = ExtResource("3_u7lva")
 flat = true
 
@@ -638,112 +560,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_o14dv")
 action_mode = 0
 text = "Back"
 
-[node name="Difficulty Select" type="PanelContainer" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.268
-anchor_top = 0.122
-anchor_right = 0.732
-anchor_bottom = 0.878
-offset_left = 0.263977
-offset_top = -0.0560074
-offset_right = -0.264038
-offset_bottom = 0.0559692
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_gih0s")
-
-[node name="MarginContainer" type="MarginContainer" parent="Difficulty Select"]
-layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Difficulty Select/MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 15
-
-[node name="Label" type="Label" parent="Difficulty Select/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_shadow_color = Color(0.468327, 6.43749e-07, 1.68458e-07, 1)
-theme_override_colors/font_outline_color = Color(1, 0, 0, 1)
-theme_override_constants/shadow_offset_x = 2
-theme_override_constants/shadow_offset_y = 2
-theme_override_constants/outline_size = 10
-theme_override_constants/shadow_outline_size = 10
-theme_override_font_sizes/font_size = 60
-text = "Difficulty"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Easy" type="Button" parent="Difficulty Select/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-mouse_default_cursor_shape = 2
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 1, 0, 1)
-theme_override_colors/font_color = Color(0, 0.3868, 2.88785e-07, 1)
-theme_override_constants/outline_size = 10
-theme_override_font_sizes/font_size = 50
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_lrjdf")
-theme_override_styles/hover = SubResource("StyleBoxFlat_k33u3")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_lrjdf")
-theme_override_styles/normal = SubResource("StyleBoxFlat_k33u3")
-text = "Overpowered"
-
-[node name="Normal" type="Button" parent="Difficulty Select/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-mouse_default_cursor_shape = 2
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 0, 1)
-theme_override_colors/font_color = Color(1, 0.521569, 0, 1)
-theme_override_constants/outline_size = 10
-theme_override_font_sizes/font_size = 70
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_wqme5")
-theme_override_styles/hover = SubResource("StyleBoxFlat_jewm6")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_wqme5")
-theme_override_styles/normal = SubResource("StyleBoxFlat_jewm6")
-text = "Normal"
-
-[node name="Hard" type="Button" parent="Difficulty Select/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-mouse_default_cursor_shape = 2
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(1, 0, 0, 1)
-theme_override_colors/font_color = Color(1, 0.443137, 0, 1)
-theme_override_constants/outline_size = 10
-theme_override_font_sizes/font_size = 70
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_cejvf")
-theme_override_styles/hover = SubResource("StyleBoxFlat_ru8vt")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_cejvf")
-theme_override_styles/normal = SubResource("StyleBoxFlat_ru8vt")
-text = "GOBLIN"
-
-[node name="BackDifficulty" type="Button" parent="Difficulty Select/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-mouse_default_cursor_shape = 2
-theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_colors/font_color = Color(0.724643, 0.724643, 0.724643, 1)
-theme_override_constants/outline_size = 10
-theme_override_font_sizes/font_size = 70
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_xp0kt")
-theme_override_styles/hover = SubResource("StyleBoxFlat_xp0kt")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_xp0kt")
-theme_override_styles/normal = SubResource("StyleBoxFlat_ypsd1")
-text = "Back"
-
 [connection signal="button_down" from="Play Menu/VBoxContainer/Play" to="." method="_on_play_button_down"]
 [connection signal="button_down" from="Play Menu/VBoxContainer/Options" to="." method="_on_options_button_down"]
 [connection signal="button_down" from="Play Menu/VBoxContainer/Quit" to="." method="_on_quit_button_down"]
@@ -754,7 +570,3 @@ text = "Back"
 [connection signal="value_changed" from="Options Menu/PanelContainer/MarginContainer/VBoxContainer/SFX Volume/SFX Volume Slider" to="Options Menu" method="_on_sfx_volume_slider_value_changed"]
 [connection signal="toggled" from="Options Menu/PanelContainer/MarginContainer/VBoxContainer/CheckButton" to="Options Menu" method="_on_check_button_toggled"]
 [connection signal="pressed" from="Options Menu/PanelContainer/MarginContainer/VBoxContainer/Back Button" to="." method="_on_back_button_pressed"]
-[connection signal="button_down" from="Difficulty Select/MarginContainer/VBoxContainer/Easy" to="." method="_on_easy_button_down"]
-[connection signal="button_down" from="Difficulty Select/MarginContainer/VBoxContainer/Normal" to="." method="_on_normal_button_down"]
-[connection signal="button_down" from="Difficulty Select/MarginContainer/VBoxContainer/Hard" to="." method="_on_hard_button_down"]
-[connection signal="button_down" from="Difficulty Select/MarginContainer/VBoxContainer/BackDifficulty" to="." method="_on_back_difficulty_button_down"]

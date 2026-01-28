@@ -14,8 +14,7 @@ func _process(delta: float) -> void:
 
 func _on_play_button_down() -> void:
 	$"Play Menu".hide()
-	$"Difficulty Select".show()
-	#get_tree().change_scene_to_file("res://Scenes/Main/world.tscn")
+	get_tree().change_scene_to_file("res://Scenes/Main/world.tscn")
 
 func _on_options_button_down() -> void:
 	$"Play Menu".hide()
@@ -36,18 +35,18 @@ func _on_button_button_down() -> void:
 func _on_cosmic_button_down() -> void:
 	OS.shell_open("https://www.youtube.com/@CosmicAnalogComputer")
 
-func _on_easy_button_down() -> void:
-	GlobalVariables.difficulty = 1
-	get_tree().change_scene_to_file("res://Scenes/Main/world.tscn")
-
-func _on_normal_button_down() -> void:
-	GlobalVariables.difficulty = 2
-	get_tree().change_scene_to_file("res://Scenes/Main/world.tscn")
-
-func _on_hard_button_down() -> void:
-	GlobalVariables.difficulty = 3
-	get_tree().change_scene_to_file("res://Scenes/Main/world.tscn")
-
-func _on_back_difficulty_button_down() -> void:
-	$"Play Menu".show()
-	$"Difficulty Select".hide()
+#func _on_easy_button_down() -> void:
+#	GlobalVariables.difficulty = 1
+#	get_tree().change_scene_to_file("res://Scenes/Main/world.tscn")
+#
+#func _on_normal_button_down() -> void:
+#	GlobalVariables.difficulty = 2
+#	get_tree().change_scene_to_file("res://Scenes/Main/world.tscn")
+#
+#func _on_hard_button_down() -> void:
+#	GlobalVariables.difficulty = 3
+#	get_tree().change_scene_to_file("res://Scenes/Main/world.tscn")
+#
+#func _on_back_difficulty_button_down() -> void:
+#	$"Play Menu".show()
+#	$"Difficulty Select".hide()

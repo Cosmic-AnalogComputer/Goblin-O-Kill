@@ -1,4 +1,4 @@
-[gd_scene load_steps=102 format=4 uid="uid://bhkyobjeljr7i"]
+[gd_scene load_steps=98 format=4 uid="uid://bhkyobjeljr7i"]
 
 [ext_resource type="Script" uid="uid://djnsrw0beuq3m" path="res://Scripts/world.gd" id="1_6w0a8"]
 [ext_resource type="PackedScene" uid="uid://b1cymn7dg72ea" path="res://Scenes/Main/Enemies/goblin.tscn" id="2_a8fjw"]
@@ -23,7 +23,6 @@
 [ext_resource type="Resource" uid="uid://6b8jttllcu6f" path="res://Upgrades/Resource Upgrades/Winged_sword.tres" id="10_1gety"]
 [ext_resource type="Texture2D" uid="uid://d273j2bneec16" path="res://Sprites/Altar.png" id="10_wwef5"]
 [ext_resource type="Resource" uid="uid://c0m2820m38jt6" path="res://Upgrades/Resource Upgrades/Enchanted_sword.tres" id="11_emqye"]
-[ext_resource type="Resource" uid="uid://beovr1dytu0e1" path="res://Upgrades/Resource Upgrades/heart.tres" id="12_qh8lc"]
 [ext_resource type="Resource" uid="uid://bfdmiahqaa3os" path="res://Upgrades/Resource Upgrades/guantines.tres" id="15_la7os"]
 [ext_resource type="Resource" uid="uid://cn5omkx6rkvp5" path="res://Upgrades/Resource Upgrades/weightedDice.tres" id="16_vgwtn"]
 [ext_resource type="Resource" uid="uid://dnyw3cai6wkl8" path="res://Upgrades/Resource Upgrades/ironsword.tres" id="17_cp430"]
@@ -31,11 +30,9 @@
 [ext_resource type="Resource" uid="uid://blgqdjopguvbh" path="res://Upgrades/Resource Upgrades/fent.tres" id="18_tj2r8"]
 [ext_resource type="Resource" uid="uid://cb683fcks6m0k" path="res://Upgrades/Resource Upgrades/firesword.tres" id="19_cfnrv"]
 [ext_resource type="Resource" uid="uid://dhk1wcbd1qlvq" path="res://Upgrades/Resource Upgrades/redpill.tres" id="20_r5nwu"]
-[ext_resource type="Resource" uid="uid://daexf3mdn3i48" path="res://Upgrades/Resource Upgrades/medkit.tres" id="21_e1om2"]
 [ext_resource type="Resource" uid="uid://cihmhvd6s70nr" path="res://Upgrades/Resource Upgrades/heavydumbell.tres" id="22_7cxoy"]
 [ext_resource type="Resource" uid="uid://bpo3y4ui2b7o6" path="res://Upgrades/Resource Upgrades/adrenaline.tres" id="23_8apgr"]
 [ext_resource type="Resource" uid="uid://cyssxmlieqwx8" path="res://Upgrades/Resource Upgrades/goldpill.tres" id="24_pynn3"]
-[ext_resource type="Resource" uid="uid://os0gbxi6bk4x" path="res://Upgrades/Resource Upgrades/Bandage.tres" id="25_wfir6"]
 [ext_resource type="Resource" uid="uid://j7f8wnlp2txy" path="res://Upgrades/Resource Upgrades/electricsword.tres" id="26_01ioq"]
 [ext_resource type="Resource" uid="uid://dqd3pysm7vugr" path="res://Upgrades/Resource Upgrades/dumbell.tres" id="27_xlwlw"]
 [ext_resource type="Resource" uid="uid://d3h5iud3dguql" path="res://Upgrades/Resource Upgrades/bluepill.tres" id="28_saw72"]
@@ -52,15 +49,6 @@
 [ext_resource type="Resource" uid="uid://d2acpjxwwphaa" path="res://Upgrades/Resource Upgrades/victim_card.tres" id="37_cp430"]
 [ext_resource type="Resource" uid="uid://dyltlemw04tql" path="res://Upgrades/Resource Upgrades/golden_sword.tres" id="38_cp430"]
 [ext_resource type="Texture2D" uid="uid://bxjhch64puryw" path="res://Sprites/flashes.png" id="41_07pob"]
-
-[sub_resource type="Resource" id="Resource_1sird"]
-script = ExtResource("2_jnmjr")
-name = ""
-appearOnce = true
-DoubleEachInstance = false
-wave = 100
-goblins = Array[int]([0, 0, 1])
-metadata/_custom_type_script = "uid://dxta12hf8o11e"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_51068"]
 texture = ExtResource("2_mkl45")
@@ -3422,10 +3410,13 @@ devControls = "Press G to get 100 gold
 Press K to kill all goblins
 Press Y to go inmortal
 Press P to disable collision"
-dummy = true
-goblins = Array[PackedScene]([ExtResource("2_a8fjw"), ExtResource("3_chlgq"), ExtResource("4_pndor")])
-events = Array[ExtResource("2_jnmjr")]([ExtResource("3_48xbc"), ExtResource("7_1sird"), ExtResource("8_qtd7m"), SubResource("Resource_1sird")])
-Upgrades = Array[ExtResource("9_07pob")]([ExtResource("10_1gety"), ExtResource("11_emqye"), ExtResource("12_qh8lc"), ExtResource("15_la7os"), ExtResource("16_vgwtn"), ExtResource("17_cp430"), ExtResource("18_tj2r8"), ExtResource("19_cfnrv"), ExtResource("20_r5nwu"), ExtResource("21_e1om2"), ExtResource("22_7cxoy"), ExtResource("23_8apgr"), ExtResource("24_pynn3"), ExtResource("25_wfir6"), ExtResource("26_01ioq"), ExtResource("27_xlwlw"), ExtResource("28_saw72"), ExtResource("29_m0uig"), ExtResource("30_qrnlh"), ExtResource("31_hw0a7"), ExtResource("30_07pob"), ExtResource("31_1gety"), ExtResource("33_la7os"), ExtResource("34_vgwtn"), ExtResource("35_qtd7m"), ExtResource("36_la7os"), ExtResource("36_vgwtn"), ExtResource("37_cp430"), ExtResource("38_cp430")])
+goblins = Dictionary[PackedScene, int]({
+ExtResource("2_a8fjw"): 0,
+ExtResource("3_chlgq"): 0,
+ExtResource("4_pndor"): 0
+})
+events = Array[ExtResource("2_jnmjr")]([ExtResource("7_1sird"), ExtResource("8_qtd7m"), ExtResource("3_48xbc")])
+Upgrades = Array[ExtResource("9_07pob")]([ExtResource("10_1gety"), ExtResource("11_emqye"), ExtResource("15_la7os"), ExtResource("16_vgwtn"), ExtResource("17_cp430"), ExtResource("18_tj2r8"), ExtResource("19_cfnrv"), ExtResource("20_r5nwu"), ExtResource("22_7cxoy"), ExtResource("23_8apgr"), ExtResource("24_pynn3"), ExtResource("26_01ioq"), ExtResource("27_xlwlw"), ExtResource("28_saw72"), ExtResource("29_m0uig"), ExtResource("30_qrnlh"), ExtResource("31_hw0a7"), ExtResource("30_07pob"), ExtResource("31_1gety"), ExtResource("33_la7os"), ExtResource("34_vgwtn"), ExtResource("35_qtd7m"), ExtResource("36_la7os"), ExtResource("36_vgwtn"), ExtResource("37_cp430"), ExtResource("38_cp430")])
 shop_particles = NodePath("Shop/Spawn Particles")
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="."]

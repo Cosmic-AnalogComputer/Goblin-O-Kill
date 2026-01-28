@@ -6,6 +6,7 @@ signal kill(goblin, attack_node)
 
 @export var hit_audio : AudioStreamPlayer2D
 @export var crit_particle : GPUParticles2D
+@export var anim : AnimatedSprite2D
 
 var damage : int
 var applied_damage : int
@@ -27,7 +28,7 @@ func _ready() -> void:
 		particle_node.emitting = true
 		add_child(particle_node)
 	
-	$Sprite2D.play(play)
+	anim.play(play)
 	hit_audio.stream = load(hit_sounds.pick_random())
 
 func _on_body_entered(body: Node2D) -> void:
@@ -54,3 +55,6 @@ func _on_timer_timeout() -> void:
 func _on_audio_finished() -> void:
 	if not crit:
 		queue_free()
+
+func _on_crit_particle_finished() -> void:
+	queue_free()

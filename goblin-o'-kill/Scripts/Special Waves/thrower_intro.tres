@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="waveEvent" load_steps=2 format=3 uid="uid://0ci5fjbwnul4"]
+[gd_resource type="Resource" script_class="waveEvent" load_steps=3 format=3 uid="uid://0ci5fjbwnul4"]
 
+[ext_resource type="PackedScene" uid="uid://dlgeaqttixnn" path="res://Scenes/Main/Enemies/slinger.tscn" id="1_2son1"]
 [ext_resource type="Script" uid="uid://dxta12hf8o11e" path="res://Scripts/Special Waves/event_template.gd" id="1_crr41"]
 
 [resource]
@@ -8,5 +9,7 @@ name = "Thower intro"
 appearOnce = true
 DoubleEachInstance = false
 wave = 3
-goblins = Array[int]([0, 1])
+goblins = Dictionary[PackedScene, int]({
+ExtResource("1_2son1"): 1
+})
 metadata/_custom_type_script = "uid://dxta12hf8o11e"

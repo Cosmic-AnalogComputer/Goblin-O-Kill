@@ -12,8 +12,7 @@ signal new_wave()
 var itemScene = preload("res://Scenes/Items/upgrade_item.tscn")
 
 @export_group("Wave System")
-@export var goblins : Array[PackedScene]
-@export var goblin_prices : Array[int] ## Asigned prices in the order of the goblins list
+@export var goblins : Dictionary[PackedScene,int] ## Goblin - Prices
 #var prices : Array[int] = [20,15,7,4,3,1] # 1-Goblin 2-Thrower 3-Buffed Goblin 4-Guard 5-Wizard 6-Boss
 @export var events : Array[waveEvent] ## Priority is established from top to bottom (so the lower, the higher priority)
 
@@ -34,8 +33,8 @@ func _ready() -> void:
 	if not dummy:
 		$Dummy.queue_free()
 	
-	for a in goblins:
-		goblin_prices.append(a.instantiate().price)
+	for a in goblins.keys():
+		goblins[a] = a.instantiate().price
 	if starterWave:
 		GlobalVariables.current_wave = starterWave - 1
 	if !showShop:
@@ -58,21 +57,21 @@ func make_new_wave():
 	hide_shop()
 	emit_signal("new_wave")
 	playing_music = true
-	var amounts : Array[int]
+	var amounts : Dictionary[PackedScene, int] # Goblins - Amount
 	for event in events:
 		if event.appearOnce and GlobalVariables.current_wave == event.wave:
 			amounts = event.goblins
 		elif !event.appearOnce and GlobalVariables.current_wave % event.wave == 0:
 			amounts = event.goblins
 			if event.DoubleEachInstance:
-				for i in amounts.size():
+				for i in amounts.keys():
 					amounts[i] *= GlobalVariables.current_wave / event.wave
 	if amounts.is_empty():
 		amounts = buy_goblins(GlobalVariables.current_wave)
 	#print(amounts)
-	for g in amounts.size():
+	for g in amounts.keys():
 		for i in amounts[g]:
-			var goblin = goblins[g].instantiate()
+			var goblin = g.instantiate()
 			goblin.position = Vector2(randi_range(50,1150),randi_range(50,1150))
 			goblin.hp = round(goblin.hp * GlobalVariables.wave_mod)
 			goblin.damage = round(goblin.damage * GlobalVariables.wave_mod)
@@ -82,14 +81,14 @@ func make_new_wave():
 	#print("goblinos: ", var_to_str(wave_container.get_child_count()), " oleada: ", \
 	#var_to_str(GlobalVariables.current_wave))
 
-func buy_goblins(num) -> Array[int]:
-	var amounts : Array[int]
-	for g in goblins.size():
-		amounts.append(0)
+func buy_goblins(num : int) -> Dictionary[PackedScene, int]:
+	var amounts : Dictionary[PackedScene, int]
+	for g in goblins.keys():
+		amounts[g] = 0
 	while num > 0:
-		var ran_goblin = randi_range(0,goblins.size() - 1)
-		if num - goblin_prices[ran_goblin] >= 0:
-			num -= goblin_prices[ran_goblin]
+		var ran_goblin = goblins.keys().pick_random()
+		if num - goblins[ran_goblin] >= 0:
+			num -= goblins[ran_goblin]
 			amounts[ran_goblin] += 1
 	#print("bought goblins: ", amounts)
 	return amounts

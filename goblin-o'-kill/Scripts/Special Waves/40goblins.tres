@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="waveEvent" load_steps=2 format=3 uid="uid://70g4m7sbgqh5"]
+[gd_resource type="Resource" script_class="waveEvent" load_steps=3 format=3 uid="uid://70g4m7sbgqh5"]
 
 [ext_resource type="Script" uid="uid://dxta12hf8o11e" path="res://Scripts/Special Waves/event_template.gd" id="1_gpd0m"]
+[ext_resource type="PackedScene" uid="uid://b1cymn7dg72ea" path="res://Scenes/Main/Enemies/goblin.tscn" id="1_nndjs"]
 
 [resource]
 script = ExtResource("1_gpd0m")
@@ -8,5 +9,7 @@ name = "40 GOBLINS"
 appearOnce = false
 DoubleEachInstance = true
 wave = 40
-goblins = Array[int]([40])
+goblins = Dictionary[PackedScene, int]({
+ExtResource("1_nndjs"): 40
+})
 metadata/_custom_type_script = "uid://dxta12hf8o11e"
