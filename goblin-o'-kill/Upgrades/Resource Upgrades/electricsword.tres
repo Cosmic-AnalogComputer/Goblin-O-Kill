@@ -32,12 +32,9 @@ script = ExtResource("1_adafj")
 texture = SubResource("AtlasTexture_nj1iu")
 name = &"Electric Sword"
 description = "Goblins rumour this sword comes from the same universe as the [color=red]Fire Sword.[/color] But not much is known...
-[color=green]
-+4 Damage
-+0.5 times damage on critical strike
-[/color]
-[color=red]
-+0.07s cooldown in attack
+[color=green]+4 Damage
++0.5 times damage on critical strike[/color]
+[color=red]+0.07s cooldown in attack
 [/color]"
 price = 50
 item_particles = SubResource("ParticleProcessMaterial_ebor6")

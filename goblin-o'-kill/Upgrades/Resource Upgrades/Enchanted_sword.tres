@@ -38,10 +38,8 @@ texture = SubResource("AtlasTexture_6ornb")
 name = &"Enchanted Sword"
 description = "[color=green]
 +4 Damage
-+0.35 times damage on critical
-[/color]
-[color=red]
-+0.04s cooldown in attack
++0.35 times damage on critical[/color]
+[color=red]+0.04s cooldown in attack
 [/color]"
 price = 25
 item_particles = SubResource("ParticleProcessMaterial_2bjc7")

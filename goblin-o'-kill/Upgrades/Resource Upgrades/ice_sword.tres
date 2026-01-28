@@ -13,7 +13,8 @@ region = Rect2(112, 160, 16, 16)
 script = ExtResource("1_5nnco")
 texture = SubResource("AtlasTexture_4mdo3")
 name = &"Ice Sword"
-description = "[color=sky_blue]20% chance to inflict Ice damage and freeze enemies on hit. Chance and damage stack (each time less).[/color]
+description = "Stats stolen from MEGABONK. Go play that game, it's awesome
+[color=sky_blue]20% chance to inflict Ice damage and freeze enemies on hit. Damage stacks each time less.[/color]
 [color=red]+0.1s cooldown in attack[/color]"
 price = 60
 item_particles = ExtResource("2_8p6he")

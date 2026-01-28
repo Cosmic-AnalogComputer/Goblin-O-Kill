@@ -13,8 +13,7 @@ script = ExtResource("1_6dcup")
 texture = SubResource("AtlasTexture_wcu20")
 name = &"Iron Sword"
 description = "You're still hitting with your fists though...
-[color=green]
-+1 Damage
+[color=green]+1 Damage
 +0.2 times damage on critical strike
 [/color]"
 price = 15

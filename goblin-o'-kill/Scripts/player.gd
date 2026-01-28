@@ -1,14 +1,16 @@
 class_name Player
 extends CharacterBody2D
 
-signal damaged(dmg : int)
+signal damaged(dmg)
+signal just_attacked(attack : Punch)
 
 enum STATES {IDLE,ROLLING,DEAD,ATTACKING}
 var state : STATES = STATES.IDLE
 var gold_tween : Tween
 
 @export_group("Stats")
-@export var strategy_upgrades : Dictionary[GDScript, int]
+@export var strategy_upgrades : Dictionary[GDScript, int] ## GDScript defining upgrade and level
+@export var instantiated_upgrades : Dictionary[String, InstantiatedUpgrade] ## Upgrade name and Upgrade Node
 
 @export var gold : int = 0:
 	set(value):
@@ -37,7 +39,7 @@ var animated_gold : int:
 		hp = clampi(value,0,max_hp)
 		hp_text.text = var_to_str(hp) + "/" + var_to_str(max_hp)
 		hpbar.value = hp
-@export var gold_gain : float = 1.0:
+@export var gold_gain : float = 0.0:
 	set(value):
 		gold_gain = value
 		gain_text.text = "[i]" + var_to_str(roundi(gold_gain * 100)) + "% [/i]"
@@ -114,7 +116,7 @@ var kills := 0:
 		kills = value
 		kill_count.text = var_to_str(value)
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	var direction = Input.get_vector("a","d","w","s")
 	if direction and state != STATES.ROLLING:
 		velocity = direction.normalized() * speed
@@ -138,7 +140,7 @@ func _physics_process(_delta: float) -> void:
 		if state == STATES.IDLE:
 			anim.play(idle)
 	
-	if Input.is_action_pressed("shift") and state != STATES.ROLLING:
+	if Input.is_action_pressed("shift") and not state == STATES.ROLLING:
 		if rollDirection:
 			# Animation
 			if state != STATES.IDLE:
@@ -159,6 +161,7 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 func _process(_delta: float) -> void:
+	wave_text.text = "Wave " + var_to_str(GlobalVariables.current_wave)
 	# ATTACK
 	if Input.is_action_pressed("C1") and state == STATES.IDLE:
 		attack()
@@ -171,12 +174,11 @@ func _on_i_frames_timeout() -> void:
 	$CD.set_paused(false)
 
 func receive_damage(dmg, hit_flash = true):
-	if !inmortal:
-		emit_signal("damaged", dmg)
-		hp -= dmg
-		if hit_flash:
-			anim.material.set_shader_parameter("Enabled", true)
-			hit_flash_timer.start()
+	emit_signal("damaged", dmg)
+	hp -= dmg * int(!inmortal)
+	if hit_flash:
+		anim.material.set_shader_parameter("Enabled", true)
+		hit_flash_timer.start()
 	if hp <= 0:
 		state = STATES.DEAD
 		anim.hide()
@@ -184,32 +186,32 @@ func receive_damage(dmg, hit_flash = true):
 		$"CanvasLayer/Death Menu".show()
 		$"CanvasLayer/Death Menu/PanelContainer/MarginContainer/VBoxContainer/Death Text".text =\
 		"[p][color=red]YOU DIED[/color][/p][p]At wave: " + var_to_str(GlobalVariables.current_wave)
-		GlobalVariables.current_wave = 0
 		get_tree().paused = true
 
 func attack():
 	state = STATES.ATTACKING
 	$CD.start(cooldown)
-	var attack = attackScene.instantiate()
-	attack.position = get_local_mouse_position().normalized() * 75
-	attack.look_at(get_local_mouse_position() * 75)
-	attack.set_collision_mask(4)
-	attack.damage = strength
-	attack.crit_chance = crit_chance
-	attack.crit_mod = crit_mod
+	var attack_instance = attackScene.instantiate()
+	attack_instance.position = get_local_mouse_position().normalized() * 75
+	attack_instance.look_at(get_local_mouse_position() * 75)
+	attack_instance.set_collision_mask(4)
+	attack_instance.damage = strength
+	attack_instance.crit_chance = crit_chance
+	attack_instance.crit_mod = crit_mod
 	anim.play(get_attack_anim())
 	for strat in strategy_upgrades.keys():
-		strat.apply_upgrade(attack,strategy_upgrades[strat])
-	add_child(attack)
+		strat.apply_upgrade(attack_instance,strategy_upgrades[strat])
+	for instance in instantiated_upgrades.keys():
+		instantiated_upgrades[instance].on_attack(attack_instance)
+	
+	add_child(attack_instance)
 
 func _on_cd_timeout() -> void:
 	speed = startingSpeed
 	state = STATES.IDLE
 
-func _on_world_new_wave() -> void:
-	wave_text.text = "Wave " + var_to_str(GlobalVariables.current_wave)
-
 func _on_quit_to_desktop_button_down() -> void:
+	GlobalVariables.save_record()
 	get_tree().quit()
 
 func _on_restart_button_down() -> void:

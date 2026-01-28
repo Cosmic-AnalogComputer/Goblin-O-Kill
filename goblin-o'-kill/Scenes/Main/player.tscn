@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://b203f415igtq2" path="res://Sprites/UI.png" id="4_yhj4d"]
 [ext_resource type="Texture2D" uid="uid://bxjhch64puryw" path="res://Sprites/flashes.png" id="5_g0kg6"]
 [ext_resource type="PackedScene" uid="uid://dfj2d30ayli7l" path="res://Scenes/UI/pause_menu.tscn" id="5_knxm8"]
+[ext_resource type="PackedScene" uid="uid://bm82qbokr468" path="res://Scenes/UI/cursor.tscn" id="9_5kuo1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nmmoa"]
 size = Vector2(24.8, 30)
@@ -352,10 +353,6 @@ atlas = ExtResource("5_g0kg6")
 region = Rect2(193, 14, 7, 6)
 filter_clip = true
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mfgkh"]
-atlas = ExtResource("4_knxm8")
-region = Rect2(0, 160, 16, 16)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_knxm8"]
 bg_color = Color(0, 0, 0, 0.498039)
 border_width_left = 5
@@ -382,7 +379,7 @@ border_color = Color(1, 1, 1, 1)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("hpbar", "hp_text", "gold_text", "gain_text", "dmg_text", "attack_speed_text", "crit_chance_text", "crit_mod_text", "wave_text", "game_timer", "kill_count") groups=["Player"]]
 collision_layer = 2
-collision_mask = 13
+collision_mask = 5
 script = ExtResource("1_cvnsp")
 hpbar = NodePath("CanvasLayer/Player UI/Health bar/MarginContainer/ProgressBar")
 hp_text = NodePath("CanvasLayer/Player UI/Health bar/MarginContainer/ProgressBar/Label")
@@ -725,32 +722,6 @@ size_flags_horizontal = 8
 texture = SubResource("AtlasTexture_6w3iv")
 expand_mode = 2
 
-[node name="Items Container" type="PanelContainer" parent="CanvasLayer/Player UI"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-grow_horizontal = 0
-grow_vertical = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Player UI/Items Container"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Player UI/Items Container/MarginContainer"]
-layout_mode = 2
-columns = 3
-
-[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Player UI/Items Container/MarginContainer/GridContainer"]
-texture_filter = 1
-layout_mode = 2
-texture = SubResource("AtlasTexture_mfgkh")
-
 [node name="Pause Menu" parent="CanvasLayer" instance=ExtResource("5_knxm8")]
 visible = false
 z_index = 6
@@ -866,6 +837,9 @@ bus = &"SFX"
 [node name="Hit Flash Timer" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
+
+[node name="Cursor" parent="." instance=ExtResource("9_5kuo1")]
+process_mode = 3
 
 [connection signal="timeout" from="IFrames" to="." method="_on_i_frames_timeout"]
 [connection signal="timeout" from="CD" to="." method="_on_cd_timeout"]

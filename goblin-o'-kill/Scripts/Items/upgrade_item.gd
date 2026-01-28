@@ -1,4 +1,4 @@
-extends StaticBody2D
+extends Node2D
 
 @export var UPGRADE : Upgrade
 @export var item_particles : GPUParticles2D
@@ -32,8 +32,7 @@ func _upgrade(player : Player):
 	usage += 1
 	if usage == 1:
 		player.max_hp += UPGRADE.max_health
-		if UPGRADE.health:
-			player.receive_damage(-(UPGRADE.health))
+		player.hp += UPGRADE.health
 		player.strength += UPGRADE.damage
 		player.crit_chance += UPGRADE.crit_chance
 		player.crit_mod += UPGRADE.crit_mod
@@ -43,8 +42,7 @@ func _upgrade(player : Player):
 		
 		# Percentajes
 		player.max_hp += player.max_hp * UPGRADE.p_max_health
-		if UPGRADE.p_health:
-			player.receive_damage(-(player.max_hp * UPGRADE.p_health))
+		player.hp += player.max_hp * UPGRADE.p_health
 		player.strength += player.strength * UPGRADE.p_damage
 		player.crit_mod += player.crit_mod * UPGRADE.p_crit_mod
 		player.cooldown -= player.cooldown * UPGRADE.p_attack_speed
@@ -53,7 +51,15 @@ func _upgrade(player : Player):
 		if UPGRADE.instantiate_custom_upgrade:
 			var upgrade_node = Node.new()
 			upgrade_node.set_script(UPGRADE.custom_upgrade)
-			player.add_child(upgrade_node)
+			upgrade_node.name = UPGRADE.name.to_lower()
+			
+			if upgrade_node.name in player.instantiated_upgrades.keys():
+				player.instantiated_upgrades[upgrade_node.name].level += 1
+			else:
+				player.instantiated_upgrades.set(upgrade_node.name, upgrade_node)
+				player.add_child(upgrade_node)
+			
+			
 		elif UPGRADE.custom_upgrade:
 			if player.strategy_upgrades.has(UPGRADE.custom_upgrade):
 				player.strategy_upgrades[UPGRADE.custom_upgrade] += 1
@@ -81,5 +87,4 @@ func _on_interaction_component_body_exited(_body: Node2D) -> void:
 	$PanelContainer.hide()
 
 func _on_visibility_changed() -> void:
-	set_collision_layer_value(1,visible)
 	$"Interaction Component".monitoring = visible

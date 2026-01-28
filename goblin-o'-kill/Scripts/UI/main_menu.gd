@@ -3,6 +3,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	GlobalVariables.load_data()
 	$"Play Menu/VBoxContainer/Record Wave".text = "Record: " + var_to_str(GlobalVariables.record)
 
 

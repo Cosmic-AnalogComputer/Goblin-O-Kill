@@ -8,6 +8,7 @@ signal death()
 @export var speed := 200
 @export var gold := 1
 @export var price := 1
+@export var debuffs : Dictionary[String, Timer]
 @export_subgroup("Combat")
 @export var damage := 1
 @export var delay : float = 1.0 ## Time between the start of an attack and the hit
@@ -95,7 +96,7 @@ func receive_damage(dmg):
 	if anim.material:
 		anim.material.set_shader_parameter("Enabled", true)
 	if hp <= 0:
-		player.gold += round(gold * player.gold_gain)
+		player.gold += roundi(gold * (1 + player.gold_gain))
 		player.kills += 1
 		velocity = Vector2.ZERO
 		attackScene = null
@@ -107,3 +108,28 @@ func receive_damage(dmg):
 
 func _on_hit_flash_timer_timeout() -> void:
 	anim.material.set_shader_parameter("Enabled", false)
+
+func debuff(debuff_name : String, Stats : Dictionary[StringName, float],DebuffTime : float,Visual = Color.WHITE) -> void:
+	if not debuff_name.to_lower() in debuffs.keys():
+		var debuff_timer = Timer.new()
+		debuff_timer.one_shot = true
+		debuff_timer.name = debuff_name.to_lower()
+		add_child(debuff_timer)
+		debuffs[debuff_name.to_lower()] = debuff_timer
+		debuff_timer.connect("timeout", Callable(on_debuff_end).bind(debuff_name, Stats))
+		debuff_timer.start(DebuffTime)
+		
+		modulate = Visual
+		for stat in Stats.keys():
+			var modified_stat = get(stat) # Retrieve the variable to change
+			set(stat, modified_stat - Stats[stat]) # Set that variable the original minus the debuff
+	else:
+		debuffs[debuff_name.to_lower()].start()
+
+func on_debuff_end(debuff_name : String, Stats : Dictionary[StringName, float]):
+	modulate = Color.WHITE
+	for stat in Stats.keys():
+		var modified_stat = get(stat) # Retrieve the variable to change
+		set(stat, modified_stat + Stats[stat]) # Set that variable the original PLUS the debuff to recover
+	debuffs.erase(debuff_name.to_lower())
+	

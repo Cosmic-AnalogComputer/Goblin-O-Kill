@@ -29,6 +29,8 @@ var ivolume : float = 0.5
 @onready var musicStream = $AudioStreamPlayer
 
 func _ready() -> void:
+	GlobalVariables.current_wave = 0
+	
 	if not dummy:
 		$Dummy.queue_free()
 	

@@ -10,7 +10,7 @@ region = Rect2(32, 16, 16, 16)
 [resource]
 script = ExtResource("1_t1byc")
 texture = SubResource("AtlasTexture_it0yu")
-name = &"Bigger Dice"
+name = &"Big Dice"
 description = "+ 10% Critical chance"
 price = 15
 max_health = 0

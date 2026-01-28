@@ -1,12 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://dscraullb0bah"]
+[gd_scene load_steps=16 format=3 uid="uid://dscraullb0bah"]
 
 [ext_resource type="Script" uid="uid://fymndo0lpif2" path="res://Scripts/Items/upgrade_item.gd" id="1_dbs7w"]
 [ext_resource type="PackedScene" uid="uid://c0ltolgyfraym" path="res://Scenes/Items/interaction_component.tscn" id="2_5kjme"]
 [ext_resource type="Texture2D" uid="uid://bgnk58vy4ir8f" path="res://Upgrades/Upgrades.png" id="3_yat87"]
 [ext_resource type="Texture2D" uid="uid://bxjhch64puryw" path="res://Sprites/flashes.png" id="4_5kjme"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5kjme"]
-size = Vector2(72, 6)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aehgt"]
 atlas = ExtResource("3_yat87")
@@ -70,19 +67,14 @@ scale_curve = SubResource("CurveTexture_tmn5x")
 color_ramp = SubResource("GradientTexture1D_43gjd")
 color_initial_ramp = SubResource("GradientTexture1D_38f2o")
 
-[node name="Upgrade Item" type="StaticBody2D" node_paths=PackedStringArray("item_particles")]
+[node name="Upgrade Item" type="Node2D" node_paths=PackedStringArray("item_particles")]
 y_sort_enabled = true
-collision_mask = 2
 script = ExtResource("1_dbs7w")
 item_particles = NodePath("Item Particles")
 
 [node name="Interaction Component" parent="." instance=ExtResource("2_5kjme")]
 scale = Vector2(1.5, 1.5)
 scale_bonus = 3.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_5kjme")
-disabled = true
 
 [node name="Item Particles" type="GPUParticles2D" parent="."]
 emitting = false
