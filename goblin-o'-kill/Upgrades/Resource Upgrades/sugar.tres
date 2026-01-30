@@ -5,7 +5,8 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1624g"]
 atlas = ExtResource("2_rwepk")
-region = Rect2(16, 0, 16, 16)
+region = Rect2(18, 0, 18, 18)
+filter_clip = true
 
 [resource]
 script = ExtResource("1_vko7x")
@@ -14,6 +15,9 @@ name = &"Sugar"
 description = "Candy wasn't enough. We gotta inject it
 -0.01s cooldown in attack"
 price = 3
+has_outline = false
+shader_color = Color(0, 0, 0, 1)
+particle_amount = 0
 max_health = 0
 health = 0
 gold_gain = 0.0

@@ -7,7 +7,8 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4mdo3"]
 atlas = ExtResource("2_aebae")
-region = Rect2(112, 160, 16, 16)
+region = Rect2(90, 72, 18, 18)
+filter_clip = true
 
 [resource]
 script = ExtResource("1_5nnco")
@@ -17,7 +18,11 @@ description = "Stats stolen from MEGABONK. Go play that game, it's awesome
 [color=sky_blue]20% chance to inflict Ice damage and slow enemies on hit. Damage stacks each time less.[/color]
 [color=red]+0.1s cooldown in attack[/color]"
 price = 60
+has_outline = true
+shader_color = Color(0.627451, 0.12549, 0.941176, 1)
+shader_thickness = 0.51
 item_particles = ExtResource("2_8p6he")
+particle_amount = 0
 max_health = 0
 health = 0
 gold_gain = 0.0

@@ -5,7 +5,8 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hmtju"]
 atlas = ExtResource("2_yhb87")
-region = Rect2(32, 48, 16, 16)
+region = Rect2(36, 36, 18, 18)
+filter_clip = true
 
 [resource]
 script = ExtResource("1_tbcrq")
@@ -13,6 +14,9 @@ texture = SubResource("AtlasTexture_hmtju")
 name = &"Weighted Dice"
 description = "+ 3% Critical chance"
 price = 4
+has_outline = false
+shader_color = Color(0, 0, 0, 1)
+particle_amount = 0
 max_health = 0
 health = 0
 gold_gain = 0.0

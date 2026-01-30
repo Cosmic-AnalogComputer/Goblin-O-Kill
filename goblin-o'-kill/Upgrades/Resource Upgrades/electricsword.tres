@@ -24,7 +24,7 @@ color_initial_ramp = SubResource("GradientTexture1D_yat87")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nj1iu"]
 atlas = ExtResource("2_adafj")
-region = Rect2(64, 160, 16, 16)
+region = Rect2(36, 72, 18, 18)
 filter_clip = true
 
 [resource]
@@ -37,7 +37,10 @@ description = "Goblins rumour this sword comes from the same universe as the [co
 [color=red]+0.07s cooldown in attack
 [/color]"
 price = 50
+has_outline = false
+shader_color = Color(0, 0, 0, 1)
 item_particles = SubResource("ParticleProcessMaterial_ebor6")
+particle_amount = 0
 max_health = 0
 health = 0
 gold_gain = 0.0

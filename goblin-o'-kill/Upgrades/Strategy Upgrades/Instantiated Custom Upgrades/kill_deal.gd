@@ -12,5 +12,6 @@ func on_attack(attack : Punch) -> void:
 func on_kill(enemy : Goblin, attack : Punch) -> void:
 	if level > 1:
 		upgrade_count += 50 * (level - 1)
+		level = 1
 	player.gold_gain += 0.01
 	upgrade_count -= 1

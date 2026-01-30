@@ -6,7 +6,12 @@ extends Resource
 @export var name : StringName = ""
 @export_multiline var description : String = ""
 @export var price : int = 10
+@export_subgroup("Visual")
+@export var has_outline : bool
+@export var shader_color : Color
+@export_range(0.01,1.0, 0.1, "or_greater") var shader_thickness := 1.0
 @export var item_particles : ParticleProcessMaterial
+@export var particle_amount : int
 @export_category("Bonuses")
 @export_group("Numerical")
 @export_subgroup("Stats")
@@ -27,4 +32,3 @@ extends Resource
 @export_category("Custom")
 @export var instantiate_custom_upgrade := false
 @export var custom_upgrade : GDScript
-@export var level_curve : Curve

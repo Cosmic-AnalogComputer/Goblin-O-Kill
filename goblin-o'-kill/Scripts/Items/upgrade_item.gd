@@ -6,7 +6,6 @@ var usage = 0
 
 @onready var spawn_particles = $"Spawn Particles"
 @export var sprite : Sprite2D
-@export var shader : Sprite2D
 
 func load_item(new_upgrade : Upgrade):
 	$"Interaction Component".monitoring = true
@@ -17,9 +16,19 @@ func load_item(new_upgrade : Upgrade):
 	sprite.show()
 	if UPGRADE.texture:
 		sprite.texture = UPGRADE.texture
+		
 	$PanelContainer/MarginContainer/VBoxContainer/Name.text = UPGRADE.name
 	$PanelContainer/MarginContainer/VBoxContainer/Description.text = UPGRADE.description
 	$PanelContainer/MarginContainer/VBoxContainer/Price.text = "Price: $" + var_to_str(UPGRADE.price)
+	
+	# * VISUAL * 
+	
+	#Shader
+	sprite.material.set_shader_parameter("outline_color", UPGRADE.shader_color)
+	sprite.material.set_shader_parameter("thickness", UPGRADE.shader_thickness)
+	sprite.material.set_shader_parameter("visible", UPGRADE.has_outline)
+	
+	#Particles
 	if UPGRADE.item_particles:
 		item_particles.restart()
 		item_particles.process_material = UPGRADE.item_particles
@@ -28,6 +37,11 @@ func load_item(new_upgrade : Upgrade):
 		item_particles.restart()
 		item_particles.emitting = false
 		item_particles.process_material = null
+	
+	if UPGRADE.particle_amount:
+		item_particles.amount = UPGRADE.particle_amount
+	else:
+		item_particles.amount = 16
 
 func _upgrade(player : Player):
 	usage += 1

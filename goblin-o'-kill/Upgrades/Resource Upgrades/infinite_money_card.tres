@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="Upgrade" load_steps=5 format=3 uid="uid://c25iahmwlk45k"]
+
+[ext_resource type="Script" uid="uid://bblhp6hi4g102" path="res://Upgrades/Strategy Upgrades/Instantiated Custom Upgrades/infinite_money_card.gd" id="1_s27kr"]
+[ext_resource type="Script" uid="uid://c2wxw55rruo72" path="res://Upgrades/BaseUpgradeTemplate.gd" id="1_yvqex"]
+[ext_resource type="Texture2D" uid="uid://bgnk58vy4ir8f" path="res://Upgrades/Upgrades.png" id="3_c3hx4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fyqen"]
+atlas = ExtResource("3_c3hx4")
+region = Rect2(252, 18, 18, 18)
+filter_clip = true
+
+[resource]
+script = ExtResource("1_yvqex")
+texture = SubResource("AtlasTexture_fyqen")
+name = &"Infinite Money Card"
+description = "[i]You idiot! You could have afforded your dreams with that![/i]
+2.5% chance for each to not lose gold on a purchase. [i][color=gray]Caps at 25%[/color][/i]"
+price = 70
+has_outline = true
+shader_color = Color(1, 0.843137, 0, 1)
+shader_thickness = 0.71
+particle_amount = 0
+max_health = 0
+health = 0
+gold_gain = 0.0
+damage = 0
+crit_chance = 0.0
+crit_mod = 0.0
+attack_speed = 0.0
+p_max_health = 0.0
+p_health = 0.0
+p_damage = 0.0
+p_crit_mod = 0.0
+p_attack_speed = 0.0
+instantiate_custom_upgrade = true
+custom_upgrade = ExtResource("1_s27kr")
+metadata/_custom_type_script = "uid://c2wxw55rruo72"

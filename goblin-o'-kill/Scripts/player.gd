@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 signal damaged(dmg)
 signal just_attacked(attack : Punch)
+signal purchase(gold : int)
 
 enum STATES {IDLE,ROLLING,DEAD,ATTACKING}
 var state : STATES = STATES.IDLE
@@ -21,6 +22,7 @@ var gold_tween : Tween
 			gold_tween = create_tween().set_ease(Tween.EASE_OUT)
 			gold_tween.tween_property(self, "animated_gold", gold, 0.5)
 		else:
+			emit_signal("purchase", gold)
 			gold = value # No tween - Purchase
 			animated_gold = gold
 			#gold_text.text = "$" + var_to_str(gold)

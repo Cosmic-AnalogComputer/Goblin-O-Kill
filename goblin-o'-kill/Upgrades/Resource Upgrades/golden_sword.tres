@@ -6,7 +6,8 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7qxv5"]
 atlas = ExtResource("3_6erwm")
-region = Rect2(32, 96, 16, 16)
+region = Rect2(180, 36, 18, 18)
+filter_clip = true
 
 [resource]
 script = ExtResource("1_swr26")
@@ -14,6 +15,10 @@ texture = SubResource("AtlasTexture_7qxv5")
 name = &"Kill Deal"
 description = "Will increase 1% gold gain when you kill a goblin. Done after 50 kills. If you unlock another one, it will last 50 more"
 price = 70
+has_outline = true
+shader_color = Color(1, 0.843137, 0, 1)
+shader_thickness = 1.0
+particle_amount = 0
 max_health = 0
 health = 0
 gold_gain = 0.0

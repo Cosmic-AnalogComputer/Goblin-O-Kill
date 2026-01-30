@@ -5,7 +5,8 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7swxt"]
 atlas = ExtResource("2_06j6x")
-region = Rect2(128, 0, 16, 15)
+region = Rect2(144, 0, 18, 18)
+filter_clip = true
 
 [resource]
 script = ExtResource("1_23ahx")
@@ -14,6 +15,10 @@ name = &"Credit card"
 description = "[i]money money[/i]
 +10% Gold gain"
 price = 15
+has_outline = true
+shader_color = Color(0, 0.568627, 1, 1)
+shader_thickness = 1.0
+particle_amount = 0
 max_health = 0
 health = 0
 gold_gain = 0.1

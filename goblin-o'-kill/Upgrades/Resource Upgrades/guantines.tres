@@ -5,7 +5,8 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e6fen"]
 atlas = ExtResource("2_3s3bm")
-region = Rect2(80, 0, 16, 16)
+region = Rect2(90, 0, 18, 18)
+filter_clip = true
 
 [resource]
 script = ExtResource("1_6ubqw")
@@ -14,6 +15,9 @@ name = &"Mittens"
 description = "+4 Damage
 -0.02s cooldown in attack"
 price = 18
+has_outline = false
+shader_color = Color(0, 0, 0, 1)
+particle_amount = 0
 max_health = 0
 health = 0
 gold_gain = 0.0

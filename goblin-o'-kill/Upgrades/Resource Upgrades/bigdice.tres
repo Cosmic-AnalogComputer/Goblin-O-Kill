@@ -5,7 +5,8 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g8amf"]
 atlas = ExtResource("2_rve3v")
-region = Rect2(32, 0, 16, 16)
+region = Rect2(36, 0, 18, 18)
+filter_clip = true
 
 [resource]
 script = ExtResource("1_iac42")
@@ -13,6 +14,9 @@ texture = SubResource("AtlasTexture_g8amf")
 name = &"Dice"
 description = "+ 5% Critical chance"
 price = 10
+has_outline = false
+shader_color = Color(0, 0, 0, 1)
+particle_amount = 0
 max_health = 0
 health = 0
 gold_gain = 0.0

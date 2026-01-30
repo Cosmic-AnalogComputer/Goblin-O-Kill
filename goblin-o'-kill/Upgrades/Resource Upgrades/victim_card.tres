@@ -6,7 +6,8 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_phm3y"]
 atlas = ExtResource("3_dav0d")
-region = Rect2(128, 16, 16, 16)
+region = Rect2(72, 18, 18, 18)
+filter_clip = true
 
 [resource]
 script = ExtResource("1_vflka")
@@ -16,6 +17,10 @@ description = "[i]Total Karen[/i]
 [color=sky_blue]When hit, 15% chance to gain gold equal to the damage. Gold gain is not included
 [/color]"
 price = 75
+has_outline = true
+shader_color = Color(1, 0.843137, 0, 1)
+shader_thickness = 1.0
+particle_amount = 0
 max_health = 0
 health = 0
 gold_gain = 0.0

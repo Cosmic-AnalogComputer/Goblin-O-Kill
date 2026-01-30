@@ -6,16 +6,17 @@
 [ext_resource type="Texture2D" uid="uid://bxjhch64puryw" path="res://Sprites/flashes.png" id="4_5kjme"]
 [ext_resource type="Shader" uid="uid://cbnuvhxs6xrq7" path="res://Sprites/Shaders/item_outline_shader.gdshader" id="4_yat87"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_aehgt"]
-atlas = ExtResource("3_yat87")
-region = Rect2(0, 0, 16, 16)
-filter_clip = true
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_oybo2"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yat87"]
+resource_local_to_scene = true
 shader = ExtResource("4_yat87")
 shader_parameter/outline_color = Color(0, 0, 0, 1)
 shader_parameter/thickness = 1.0
 shader_parameter/visible = false
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oybo2"]
+atlas = ExtResource("3_yat87")
+region = Rect2(0, 0, 18, 18)
+filter_clip = true
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aehgt"]
 bg_color = Color(0, 0, 0, 1)
@@ -76,12 +77,11 @@ scale_curve = SubResource("CurveTexture_tmn5x")
 color_ramp = SubResource("GradientTexture1D_43gjd")
 color_initial_ramp = SubResource("GradientTexture1D_38f2o")
 
-[node name="Upgrade Item" type="Node2D" node_paths=PackedStringArray("item_particles", "sprite", "shader")]
+[node name="Upgrade Item" type="Node2D" node_paths=PackedStringArray("item_particles", "sprite")]
 y_sort_enabled = true
 script = ExtResource("1_dbs7w")
 item_particles = NodePath("Item Particles")
 sprite = NodePath("Sprite2D")
-shader = NodePath("Sprite2D/Shader")
 
 [node name="Interaction Component" parent="." instance=ExtResource("2_5kjme")]
 scale = Vector2(1.5, 1.5)
@@ -93,15 +93,11 @@ amount = 16
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
+material = SubResource("ShaderMaterial_yat87")
 scale = Vector2(3.5, 3.5)
-texture = SubResource("AtlasTexture_aehgt")
+texture = SubResource("AtlasTexture_oybo2")
 region_rect = Rect2(16, 0, 16, 15)
 region_filter_clip_enabled = true
-
-[node name="Shader" type="Sprite2D" parent="Sprite2D"]
-show_behind_parent = true
-material = SubResource("ShaderMaterial_oybo2")
-texture = SubResource("AtlasTexture_aehgt")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 visible = false

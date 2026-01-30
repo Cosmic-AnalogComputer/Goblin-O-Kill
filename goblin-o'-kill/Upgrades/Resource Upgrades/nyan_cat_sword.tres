@@ -7,7 +7,8 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_67i1h"]
 atlas = ExtResource("3_pnsxh")
-region = Rect2(96, 160, 16, 16)
+region = Rect2(72, 72, 18, 18)
+filter_clip = true
 
 [resource]
 script = ExtResource("2_r7bsy")
@@ -16,8 +17,12 @@ name = &"Nyan Cat Sword"
 description = "yes
 attack is rainbow
 nothing else"
-price = 30
+price = 15
+has_outline = false
+shader_color = Color(0, 0, 0, 1)
+shader_thickness = 1.0
 item_particles = ExtResource("2_pnsxh")
+particle_amount = 0
 max_health = 0
 health = 0
 gold_gain = 0.0

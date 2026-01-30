@@ -5,7 +5,8 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5rl6s"]
 atlas = ExtResource("2_yvbo0")
-region = Rect2(64, 16, 16, 16)
+region = Rect2(0, 18, 18, 18)
+filter_clip = true
 
 [resource]
 script = ExtResource("1_kolcf")
@@ -14,6 +15,9 @@ name = &"Blue pill"
 description = "+10 Max health
 +Heals that same amount"
 price = 15
+has_outline = false
+shader_color = Color(0, 0, 0, 1)
+particle_amount = 0
 max_health = 10
 health = 10
 gold_gain = 0.0

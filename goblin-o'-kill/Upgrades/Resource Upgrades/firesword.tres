@@ -7,7 +7,7 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2vf3a"]
 atlas = ExtResource("3_gv84a")
-region = Rect2(80, 160, 16, 16)
+region = Rect2(54, 72, 18, 18)
 filter_clip = true
 
 [resource]
@@ -21,7 +21,11 @@ Some say it's a sword from another universe entirely. Just from wielding it, you
 [color=red]+0.1s cooldown in attack
 [/color]"
 price = 70
+has_outline = true
+shader_color = Color(0.627451, 0.12549, 0.941176, 1)
+shader_thickness = 0.51
 item_particles = ExtResource("1_0sesw")
+particle_amount = 0
 max_health = 0
 health = 0
 gold_gain = 0.0

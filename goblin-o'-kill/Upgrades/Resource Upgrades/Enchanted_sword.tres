@@ -6,7 +6,8 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6ornb"]
 atlas = ExtResource("2_6ornb")
-region = Rect2(32, 160, 16, 16)
+region = Rect2(0, 72, 18, 18)
+filter_clip = true
 
 [resource]
 script = ExtResource("1_584q0")
@@ -18,7 +19,11 @@ description = "[color=green]
 [color=red]+0.04s cooldown in attack
 [/color]"
 price = 25
+has_outline = false
+shader_color = Color(0, 0, 0, 1)
+shader_thickness = 1.0
 item_particles = ExtResource("1_vrjim")
+particle_amount = 8
 max_health = 0
 health = 0
 gold_gain = 0.0

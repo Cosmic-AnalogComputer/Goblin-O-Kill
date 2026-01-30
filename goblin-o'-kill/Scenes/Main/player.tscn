@@ -313,17 +313,17 @@ filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y7tpv"]
 atlas = ExtResource("4_knxm8")
-region = Rect2(96, 144, 16, 16)
+region = Rect2(127, 55, 16, 16)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mfgkh"]
 atlas = ExtResource("4_knxm8")
-region = Rect2(112, 32, 16, 16)
+region = Rect2(235, 20, 16, 16)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5kuo1"]
 atlas = ExtResource("4_knxm8")
-region = Rect2(32, 128, 16, 16)
+region = Rect2(37, 55, 16, 16)
 filter_clip = true
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_g0kg6"]

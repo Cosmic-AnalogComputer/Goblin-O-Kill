@@ -5,7 +5,8 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_it0yu"]
 atlas = ExtResource("2_jbtwf")
-region = Rect2(32, 16, 16, 16)
+region = Rect2(252, 0, 18, 18)
+filter_clip = true
 
 [resource]
 script = ExtResource("1_t1byc")
@@ -13,6 +14,9 @@ texture = SubResource("AtlasTexture_it0yu")
 name = &"Big Dice"
 description = "+ 10% Critical chance"
 price = 15
+has_outline = false
+shader_color = Color(0, 0, 0, 1)
+particle_amount = 0
 max_health = 0
 health = 0
 gold_gain = 0.0
