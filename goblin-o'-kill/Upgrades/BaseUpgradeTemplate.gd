@@ -27,3 +27,4 @@ extends Resource
 @export_category("Custom")
 @export var instantiate_custom_upgrade := false
 @export var custom_upgrade : GDScript
+@export var level_curve : Curve

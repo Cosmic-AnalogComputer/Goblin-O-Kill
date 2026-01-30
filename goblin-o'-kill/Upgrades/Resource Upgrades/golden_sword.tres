@@ -1,18 +1,18 @@
 [gd_resource type="Resource" script_class="Upgrade" load_steps=5 format=3 uid="uid://dyltlemw04tql"]
 
 [ext_resource type="Script" uid="uid://c2wxw55rruo72" path="res://Upgrades/BaseUpgradeTemplate.gd" id="1_swr26"]
-[ext_resource type="Script" uid="uid://ctskimy8et2fo" path="res://Upgrades/Strategy Upgrades/Instantiated Custom Upgrades/golden_sword.gd" id="1_tpr6i"]
+[ext_resource type="Script" uid="uid://ctskimy8et2fo" path="res://Upgrades/Strategy Upgrades/Instantiated Custom Upgrades/kill_deal.gd" id="1_tpr6i"]
 [ext_resource type="Texture2D" uid="uid://bgnk58vy4ir8f" path="res://Upgrades/Upgrades.png" id="3_6erwm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7qxv5"]
 atlas = ExtResource("3_6erwm")
-region = Rect2(128, 160, 16, 16)
+region = Rect2(32, 96, 16, 16)
 
 [resource]
 script = ExtResource("1_swr26")
 texture = SubResource("AtlasTexture_7qxv5")
-name = &"Gold Sword"
-description = "Will increase 1% gold gain when you kill a goblin. But because gold is really soft, it will break after 50 kills. If you unlock another one, it will last 50 more"
+name = &"Kill Deal"
+description = "Will increase 1% gold gain when you kill a goblin. Done after 50 kills. If you unlock another one, it will last 50 more"
 price = 70
 max_health = 0
 health = 0

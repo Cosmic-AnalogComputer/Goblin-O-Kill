@@ -1,14 +1,21 @@
-[gd_scene load_steps=16 format=3 uid="uid://dscraullb0bah"]
+[gd_scene load_steps=18 format=3 uid="uid://dscraullb0bah"]
 
 [ext_resource type="Script" uid="uid://fymndo0lpif2" path="res://Scripts/Items/upgrade_item.gd" id="1_dbs7w"]
 [ext_resource type="PackedScene" uid="uid://c0ltolgyfraym" path="res://Scenes/Items/interaction_component.tscn" id="2_5kjme"]
 [ext_resource type="Texture2D" uid="uid://bgnk58vy4ir8f" path="res://Upgrades/Upgrades.png" id="3_yat87"]
 [ext_resource type="Texture2D" uid="uid://bxjhch64puryw" path="res://Sprites/flashes.png" id="4_5kjme"]
+[ext_resource type="Shader" uid="uid://cbnuvhxs6xrq7" path="res://Sprites/Shaders/item_outline_shader.gdshader" id="4_yat87"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aehgt"]
 atlas = ExtResource("3_yat87")
 region = Rect2(0, 0, 16, 16)
 filter_clip = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oybo2"]
+shader = ExtResource("4_yat87")
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/thickness = 1.0
+shader_parameter/visible = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aehgt"]
 bg_color = Color(0, 0, 0, 1)
@@ -56,6 +63,8 @@ curve = SubResource("Curve_h0pj8")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vwgwf"]
 particle_flag_disable_z = true
 emission_shape_offset = Vector3(0, 14, 0)
+emission_shape = 1
+emission_sphere_radius = 1.0
 direction = Vector3(0, -1, 0)
 initial_velocity_min = 50.0
 initial_velocity_max = 50.0
@@ -67,10 +76,12 @@ scale_curve = SubResource("CurveTexture_tmn5x")
 color_ramp = SubResource("GradientTexture1D_43gjd")
 color_initial_ramp = SubResource("GradientTexture1D_38f2o")
 
-[node name="Upgrade Item" type="Node2D" node_paths=PackedStringArray("item_particles")]
+[node name="Upgrade Item" type="Node2D" node_paths=PackedStringArray("item_particles", "sprite", "shader")]
 y_sort_enabled = true
 script = ExtResource("1_dbs7w")
 item_particles = NodePath("Item Particles")
+sprite = NodePath("Sprite2D")
+shader = NodePath("Sprite2D/Shader")
 
 [node name="Interaction Component" parent="." instance=ExtResource("2_5kjme")]
 scale = Vector2(1.5, 1.5)
@@ -78,12 +89,19 @@ scale_bonus = 3.0
 
 [node name="Item Particles" type="GPUParticles2D" parent="."]
 emitting = false
+amount = 16
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 scale = Vector2(3.5, 3.5)
 texture = SubResource("AtlasTexture_aehgt")
 region_rect = Rect2(16, 0, 16, 15)
+region_filter_clip_enabled = true
+
+[node name="Shader" type="Sprite2D" parent="Sprite2D"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_oybo2")
+texture = SubResource("AtlasTexture_aehgt")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 visible = false
@@ -141,6 +159,7 @@ texture = SubResource("AtlasTexture_yat87")
 one_shot = true
 explosiveness = 1.0
 randomness = 1.0
+visibility_rect = Rect2(0, 0, 0, 0)
 process_material = SubResource("ParticleProcessMaterial_vwgwf")
 metadata/_edit_lock_ = true
 

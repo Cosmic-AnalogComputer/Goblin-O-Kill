@@ -39,9 +39,11 @@ var animated_gold : int:
 		hp = clampi(value,0,max_hp)
 		hp_text.text = var_to_str(hp) + "/" + var_to_str(max_hp)
 		hpbar.value = hp
-@export var hp_regen := 5.0:
+@export var hp_regen := 3.0:
 	set(value):
-		hp_regen = clampf(value, 0.0, 1000.0)
+		hp_regen = value
+		if hp_regen < 0.0:
+			hp_regen = 0.0
 		health_regen_text.text = var_to_str(hp_regen) + "s"
 		health_regen_timer.wait_time = hp_regen
 @export var gold_gain : float = 0.0:
@@ -87,7 +89,7 @@ var inmortal = false
 @onready var hitbox : CollisionShape2D = $CollisionShape2D
 @onready var anim : AnimatedSprite2D = $AnimatedSprite2D
 @onready var hit_flash_timer : Timer = $"Hit Flash Timer"
-@onready var health_regen_timer : Timer = $"Health Regen Timer"
+
 
 @export_group("UI References")
 @export_subgroup("Stats")
@@ -100,6 +102,7 @@ var inmortal = false
 @export var attack_speed_text : Label
 @export var crit_chance_text : Label
 @export var crit_mod_text : Label
+@export var health_regen_timer : Timer
 
 @export_subgroup("Other UI")
 @export var wave_text : RichTextLabel
@@ -122,6 +125,21 @@ var kills := 0:
 	set(value):
 		kills = value
 		kill_count.text = var_to_str(value)
+
+func _ready() -> void:
+	gold_text.text = "$" + var_to_str(animated_gold)
+	gain_text.text = "[i]" + var_to_str(roundi(gold_gain * 100)) + "% [/i]"
+	
+	hpbar.max_value = max_hp
+	hpbar.value = hp
+	hp_text.text = var_to_str(hp) + "/" + var_to_str(max_hp)
+	
+	dmg_text.text = var_to_str(strength)
+	health_regen_text.text = var_to_str(hp_regen) + "s"
+	attack_speed_text.text = var_to_str(cooldown) + "s"
+	crit_chance_text.text = var_to_str(crit_chance * 100) + "%"
+	crit_mod_text.text = "x" + var_to_str(crit_mod)
+
 
 func _physics_process(delta: float) -> void:
 	var direction = Input.get_vector("a","d","w","s")

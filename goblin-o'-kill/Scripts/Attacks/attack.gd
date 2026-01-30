@@ -25,6 +25,7 @@ func _ready() -> void:
 	for particle in attack_particles:
 		var particle_node = GPUParticles2D.new()
 		particle_node.process_material = particle
+		particle_node.amount = 32
 		particle_node.emitting = true
 		add_child(particle_node)
 	

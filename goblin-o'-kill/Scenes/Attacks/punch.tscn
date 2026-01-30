@@ -74,35 +74,34 @@ atlas = ExtResource("2_jbxk5")
 region = Rect2(188, 3, 3, 3)
 filter_clip = true
 
-[sub_resource type="Curve" id="Curve_jbxk5"]
-_data = [Vector2(0, 1), 0.0, 1.4, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_una1k"]
-curve = SubResource("Curve_jbxk5")
-
 [sub_resource type="Gradient" id="Gradient_5w3es"]
-colors = PackedColorArray(1, 1, 0, 1, 1, 0, 0, 1)
+colors = PackedColorArray(1, 1, 0, 1, 1, 0.27451, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_xwvri"]
 gradient = SubResource("Gradient_5w3es")
+
+[sub_resource type="Gradient" id="Gradient_jbxk5"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_una1k"]
+gradient = SubResource("Gradient_jbxk5")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jbxk5"]
 particle_flag_disable_z = true
 angle_min = 45.0
 angle_max = 45.0
 spread = 180.0
-initial_velocity_min = 30.0
-initial_velocity_max = 30.0
+initial_velocity_min = 60.0
+initial_velocity_max = 60.0
 angular_velocity_min = -180.0
 angular_velocity_max = 180.0
 gravity = Vector3(0, 0, 0)
 linear_accel_min = -18.75
 linear_accel_max = -2.23517e-06
-scale_min = 6.0
-scale_max = 10.0
+scale_min = 3.0
+scale_max = 3.0
+color_ramp = SubResource("GradientTexture1D_una1k")
 color_initial_ramp = SubResource("GradientTexture1D_xwvri")
-alpha_curve = SubResource("CurveTexture_una1k")
 
 [node name="Punch" type="Area2D" node_paths=PackedStringArray("hit_audio", "crit_particle", "anim")]
 show_behind_parent = true
@@ -136,6 +135,7 @@ bus = &"SFX"
 texture_filter = 1
 position = Vector2(28, 0)
 emitting = false
+amount = 32
 texture = SubResource("AtlasTexture_8owjw")
 lifetime = 0.5
 one_shot = true

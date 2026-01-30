@@ -1,32 +1,8 @@
-[gd_resource type="Resource" script_class="Upgrade" load_steps=9 format=3 uid="uid://c0m2820m38jt6"]
+[gd_resource type="Resource" script_class="Upgrade" load_steps=5 format=3 uid="uid://c0m2820m38jt6"]
 
 [ext_resource type="Script" uid="uid://c2wxw55rruo72" path="res://Upgrades/BaseUpgradeTemplate.gd" id="1_584q0"]
+[ext_resource type="Material" uid="uid://cwnhqxjjwyb53" path="res://Particles/Upgrades/enchanted_sword_particles.tres" id="1_vrjim"]
 [ext_resource type="Texture2D" uid="uid://bgnk58vy4ir8f" path="res://Upgrades/Upgrades.png" id="2_6ornb"]
-
-[sub_resource type="Curve" id="Curve_rpyn1"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.30961, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_o7gqt"]
-curve = SubResource("Curve_rpyn1")
-
-[sub_resource type="Gradient" id="Gradient_l5tdc"]
-offsets = PackedFloat32Array(0.00819672, 1)
-colors = PackedColorArray(0, 0.290196, 1, 1, 0, 0.878431, 1, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_h60ao"]
-gradient = SubResource("Gradient_l5tdc")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2bjc7"]
-particle_flag_disable_z = true
-spread = 90.0
-initial_velocity_min = 15.0
-initial_velocity_max = 20.0
-gravity = Vector3(0, -98, 0)
-scale_min = 13.0
-scale_max = 13.0
-color_initial_ramp = SubResource("GradientTexture1D_h60ao")
-alpha_curve = SubResource("CurveTexture_o7gqt")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6ornb"]
 atlas = ExtResource("2_6ornb")
@@ -42,7 +18,7 @@ description = "[color=green]
 [color=red]+0.04s cooldown in attack
 [/color]"
 price = 25
-item_particles = SubResource("ParticleProcessMaterial_2bjc7")
+item_particles = ExtResource("1_vrjim")
 max_health = 0
 health = 0
 gold_gain = 0.0

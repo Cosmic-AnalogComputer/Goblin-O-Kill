@@ -16,6 +16,12 @@ gradient = SubResource("Gradient_kefup")
 [resource]
 particle_flag_disable_z = true
 emission_shape_offset = Vector3(0, 5, 0)
+emission_shape_scale = Vector3(20, 1, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+angle_min = 45.0
+angle_max = 45.0
+direction = Vector3(0, 0, 0)
 spread = 180.0
 initial_velocity_min = 15.0
 initial_velocity_max = 20.0

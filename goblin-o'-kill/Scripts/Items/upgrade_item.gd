@@ -5,7 +5,8 @@ extends Node2D
 var usage = 0
 
 @onready var spawn_particles = $"Spawn Particles"
-@onready var sprite = $Sprite2D
+@export var sprite : Sprite2D
+@export var shader : Sprite2D
 
 func load_item(new_upgrade : Upgrade):
 	$"Interaction Component".monitoring = true

@@ -16,7 +16,7 @@ texture = SubResource("AtlasTexture_2vf3a")
 name = &"Fire Sword"
 description = "[color=red]The mighty[/color][color=orange] Fire Sword[/color]
 Some say it's a sword from another universe entirely. Just from wielding it, you feel as if you could take down a giant.
-[color=green]+8 Damage
+[color=green]+10 Damage
 +1 times damage on critical strike[/color]
 [color=red]+0.1s cooldown in attack
 [/color]"

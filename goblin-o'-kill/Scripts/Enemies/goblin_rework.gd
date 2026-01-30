@@ -109,7 +109,7 @@ func receive_damage(dmg):
 func _on_hit_flash_timer_timeout() -> void:
 	anim.material.set_shader_parameter("Enabled", false)
 
-func debuff(debuff_name : String, Stats : Dictionary[StringName, float],DebuffTime : float,Visual = Color.WHITE) -> void:
+func debuff(debuff_name : String,Stats : Dictionary[StringName, float],DebuffTime : float,Visual = Color.WHITE) -> void:
 	if not debuff_name.to_lower() in debuffs.keys():
 		var debuff_timer = Timer.new()
 		debuff_timer.one_shot = true
@@ -132,4 +132,3 @@ func on_debuff_end(debuff_name : String, Stats : Dictionary[StringName, float]):
 		var modified_stat = get(stat) # Retrieve the variable to change
 		set(stat, modified_stat + Stats[stat]) # Set that variable the original PLUS the debuff to recover
 	debuffs.erase(debuff_name.to_lower())
-	
