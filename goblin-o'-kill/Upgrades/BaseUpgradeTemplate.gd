@@ -7,6 +7,7 @@ extends Resource
 @export_multiline var description : String = ""
 @export var price : int = 10
 @export_subgroup("Visual")
+@export var has_sprite_bobbing : bool
 @export var has_outline : bool
 @export var shader_color : Color
 @export_range(0.01,1.0, 0.1, "or_greater") var shader_thickness := 1.0

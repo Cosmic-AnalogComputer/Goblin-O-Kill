@@ -3636,7 +3636,6 @@ devControls = "Press G to get 100 gold
 Press K to kill all goblins
 Press Y to go inmortal
 Press P to disable collision"
-dummy = true
 goblins = Dictionary[PackedScene, int]({
 ExtResource("2_a8fjw"): 0,
 ExtResource("3_chlgq"): 0,

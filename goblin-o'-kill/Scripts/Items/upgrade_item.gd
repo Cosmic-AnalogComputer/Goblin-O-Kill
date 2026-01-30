@@ -2,10 +2,22 @@ extends Node2D
 
 @export var UPGRADE : Upgrade
 @export var item_particles : GPUParticles2D
-var usage = 0
+var usage := 0
+var bob_freq := 1.5
+var bob_amp := 10.0
+var item_bob := 0.0
 
 @onready var spawn_particles = $"Spawn Particles"
 @export var sprite : Sprite2D
+
+func _process(delta: float) -> void:
+	item_bob += delta
+	if UPGRADE.has_sprite_bobbing:
+		sprite.position.y = sin(item_bob * bob_freq) * bob_amp
+		item_particles.position.y = sprite.position.y
+	else:
+		sprite.position.y = 0.0
+		item_particles.position.y = 0.0
 
 func load_item(new_upgrade : Upgrade):
 	$"Interaction Component".monitoring = true
@@ -42,6 +54,8 @@ func load_item(new_upgrade : Upgrade):
 		item_particles.amount = UPGRADE.particle_amount
 	else:
 		item_particles.amount = 16
+	
+	item_bob = 0.0
 
 func _upgrade(player : Player):
 	usage += 1

@@ -19,6 +19,7 @@ If you have multiple of these, the chance of bonk will increase 2% each one."
 price = 50
 has_outline = true
 shader_color = Color(1, 0.843137, 0, 1)
+shader_thickness = 1.0
 particle_amount = 0
 max_health = 0
 health = 0

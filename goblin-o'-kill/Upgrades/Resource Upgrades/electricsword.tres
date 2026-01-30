@@ -39,6 +39,7 @@ description = "Goblins rumour this sword comes from the same universe as the [co
 price = 50
 has_outline = false
 shader_color = Color(0, 0, 0, 1)
+shader_thickness = 1.0
 item_particles = SubResource("ParticleProcessMaterial_ebor6")
 particle_amount = 0
 max_health = 0

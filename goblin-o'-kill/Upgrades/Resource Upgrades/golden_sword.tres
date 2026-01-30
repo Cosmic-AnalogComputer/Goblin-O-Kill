@@ -15,6 +15,7 @@ texture = SubResource("AtlasTexture_7qxv5")
 name = &"Kill Deal"
 description = "Will increase 1% gold gain when you kill a goblin. Done after 50 kills. If you unlock another one, it will last 50 more"
 price = 70
+has_sprite_bobbing = true
 has_outline = true
 shader_color = Color(1, 0.843137, 0, 1)
 shader_thickness = 1.0

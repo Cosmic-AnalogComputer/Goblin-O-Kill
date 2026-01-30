@@ -16,6 +16,7 @@ name = &"Infinite Money Card"
 description = "[i]You idiot! You could have afforded your dreams with that![/i]
 2.5% chance for each to not lose gold on a purchase. [i][color=gray]Caps at 25%[/color][/i]"
 price = 70
+has_sprite_bobbing = true
 has_outline = true
 shader_color = Color(1, 0.843137, 0, 1)
 shader_thickness = 0.71

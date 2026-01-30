@@ -21,6 +21,7 @@ Some say it's a sword from another universe entirely. Just from wielding it, you
 [color=red]+0.1s cooldown in attack
 [/color]"
 price = 70
+has_sprite_bobbing = true
 has_outline = true
 shader_color = Color(0.627451, 0.12549, 0.941176, 1)
 shader_thickness = 0.51

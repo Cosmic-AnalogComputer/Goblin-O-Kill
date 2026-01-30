@@ -17,6 +17,7 @@ description = "+5 Max health
 price = 10
 has_outline = false
 shader_color = Color(0, 0, 0, 1)
+shader_thickness = 1.0
 particle_amount = 0
 max_health = 5
 health = 5
