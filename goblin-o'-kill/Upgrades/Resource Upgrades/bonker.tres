@@ -13,8 +13,8 @@ filter_clip = true
 script = ExtResource("1_0ylde")
 texture = SubResource("AtlasTexture_s6gce")
 name = &"Bonker"
-description = "[i]This is bonkers[/i]
-On a critical strike, has a 2% chance to [color=green]multiply damage by 3.[/color]
+description = "[color=gray][i]This is bonkers[/i][/color]
+On a critical strike, has a 2% chance to [color=gold]multiply damage by 3.[/color]
 If you have multiple of these, the chance of bonk will increase 2% each one."
 price = 50
 has_sprite_bobbing = false
@@ -24,6 +24,7 @@ shader_thickness = 1.0
 particle_amount = 0
 max_health = 0
 health = 0
+hp_regen = 0.0
 gold_gain = 0.0
 damage = 0
 crit_chance = 0.0
@@ -31,6 +32,7 @@ crit_mod = 0.0
 attack_speed = 0.0
 p_max_health = 0.0
 p_health = 0.0
+p_hp_regen = 0.0
 p_damage = 0.0
 p_crit_mod = 0.0
 p_attack_speed = 0.0

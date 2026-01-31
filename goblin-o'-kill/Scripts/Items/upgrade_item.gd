@@ -3,8 +3,6 @@ extends Node2D
 @export var UPGRADE : Upgrade
 @export var item_particles : GPUParticles2D
 var usage := 0
-var bob_freq := 1.5
-var bob_amp := 10.0
 var item_bob := 0.0
 
 @onready var spawn_particles = $"Spawn Particles"
@@ -13,11 +11,8 @@ var item_bob := 0.0
 func _process(delta: float) -> void:
 	item_bob += delta
 	if UPGRADE.has_sprite_bobbing:
-		sprite.position.y = sin(item_bob * bob_freq) * bob_amp
+		sprite.position.y = (sin(item_bob * 1.5) * 10.0) - 25
 		item_particles.position.y = sprite.position.y
-	else:
-		sprite.position.y = 0.0
-		item_particles.position.y = 0.0
 
 func load_item(new_upgrade : Upgrade):
 	$"Interaction Component".monitoring = true
@@ -55,13 +50,18 @@ func load_item(new_upgrade : Upgrade):
 	else:
 		item_particles.amount = 16
 	
-	item_bob = 0.0
+	if UPGRADE.has_sprite_bobbing:
+		item_bob = 0.0
+	else:
+		sprite.position.y = 0.0
+		item_particles.position.y = 0.0
 
 func _upgrade(player : Player):
 	usage += 1
 	if usage == 1:
 		player.max_hp += UPGRADE.max_health
 		player.hp += UPGRADE.health
+		player.hp_regen -= UPGRADE.hp_regen
 		player.strength += UPGRADE.damage
 		player.crit_chance += UPGRADE.crit_chance
 		player.crit_mod += UPGRADE.crit_mod
@@ -72,6 +72,7 @@ func _upgrade(player : Player):
 		# Percentajes
 		player.max_hp += player.max_hp * UPGRADE.p_max_health
 		player.hp += player.max_hp * UPGRADE.p_health
+		player.hp_regen -= player.cooldown * UPGRADE.p_hp_regen
 		player.strength += player.strength * UPGRADE.p_damage
 		player.crit_mod += player.crit_mod * UPGRADE.p_crit_mod
 		player.cooldown -= player.cooldown * UPGRADE.p_attack_speed
@@ -87,8 +88,6 @@ func _upgrade(player : Player):
 			else:
 				player.instantiated_upgrades.set(upgrade_node.name, upgrade_node)
 				player.add_child(upgrade_node)
-			
-			
 		elif UPGRADE.custom_upgrade:
 			if player.strategy_upgrades.has(UPGRADE.custom_upgrade):
 				player.strategy_upgrades[UPGRADE.custom_upgrade] += 1

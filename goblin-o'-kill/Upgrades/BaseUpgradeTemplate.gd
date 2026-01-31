@@ -18,6 +18,7 @@ extends Resource
 @export_subgroup("Stats")
 @export var max_health : int
 @export var health : int
+@export var hp_regen : float
 @export var gold_gain : float ## x100
 @export_subgroup("Combat")
 @export var damage : int
@@ -27,6 +28,7 @@ extends Resource
 @export_group("Percentages")
 @export var p_max_health : float
 @export var p_health : float
+@export var p_hp_regen : float
 @export var p_damage : float
 @export var p_crit_mod : float
 @export var p_attack_speed : float

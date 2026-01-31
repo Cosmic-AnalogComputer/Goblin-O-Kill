@@ -1,4 +1,4 @@
-[gd_scene load_steps=119 format=4 uid="uid://bhkyobjeljr7i"]
+[gd_scene load_steps=121 format=4 uid="uid://bhkyobjeljr7i"]
 
 [ext_resource type="Script" uid="uid://djnsrw0beuq3m" path="res://Scripts/world.gd" id="1_6w0a8"]
 [ext_resource type="PackedScene" uid="uid://b1cymn7dg72ea" path="res://Scenes/Main/Enemies/goblin.tscn" id="2_a8fjw"]
@@ -48,6 +48,8 @@
 [ext_resource type="Resource" uid="uid://dqhhqr2h58d0c" path="res://Upgrades/Resource Upgrades/bonker.tres" id="36_la7os"]
 [ext_resource type="Resource" uid="uid://b6k56bqq2anwm" path="res://Upgrades/Resource Upgrades/ice_sword.tres" id="36_vgwtn"]
 [ext_resource type="Resource" uid="uid://d2acpjxwwphaa" path="res://Upgrades/Resource Upgrades/victim_card.tres" id="37_cp430"]
+[ext_resource type="Resource" uid="uid://bn5dvejcfsqvf" path="res://Upgrades/Resource Upgrades/ibuprofen.tres" id="37_tj2r8"]
+[ext_resource type="Resource" uid="uid://kjurv4adpk4k" path="res://Upgrades/Resource Upgrades/vitamins.tres" id="38_cfnrv"]
 [ext_resource type="Resource" uid="uid://dyltlemw04tql" path="res://Upgrades/Resource Upgrades/golden_sword.tres" id="38_cp430"]
 [ext_resource type="Texture2D" uid="uid://bxjhch64puryw" path="res://Sprites/flashes.png" id="41_07pob"]
 [ext_resource type="Texture2D" uid="uid://7l8dxyyxnwwc" path="res://Sprites/Shop_keeper2.png" id="44_la7os"]
@@ -3642,7 +3644,7 @@ ExtResource("3_chlgq"): 0,
 ExtResource("4_pndor"): 0
 })
 events = Array[ExtResource("2_jnmjr")]([ExtResource("7_1sird"), ExtResource("8_qtd7m"), ExtResource("3_48xbc")])
-Upgrades = Array[ExtResource("9_07pob")]([ExtResource("10_1gety"), ExtResource("11_emqye"), ExtResource("15_la7os"), ExtResource("16_vgwtn"), ExtResource("17_cp430"), ExtResource("18_tj2r8"), ExtResource("19_cfnrv"), ExtResource("20_r5nwu"), ExtResource("22_7cxoy"), ExtResource("23_8apgr"), ExtResource("24_pynn3"), ExtResource("26_01ioq"), ExtResource("27_xlwlw"), ExtResource("28_saw72"), ExtResource("29_m0uig"), ExtResource("30_qrnlh"), ExtResource("31_hw0a7"), ExtResource("30_07pob"), ExtResource("31_1gety"), ExtResource("33_la7os"), ExtResource("34_vgwtn"), ExtResource("35_qtd7m"), ExtResource("36_la7os"), ExtResource("36_vgwtn"), ExtResource("37_cp430"), ExtResource("38_cp430"), ExtResource("36_cp430")])
+Upgrades = Array[ExtResource("9_07pob")]([ExtResource("10_1gety"), ExtResource("11_emqye"), ExtResource("15_la7os"), ExtResource("16_vgwtn"), ExtResource("17_cp430"), ExtResource("18_tj2r8"), ExtResource("19_cfnrv"), ExtResource("20_r5nwu"), ExtResource("22_7cxoy"), ExtResource("23_8apgr"), ExtResource("24_pynn3"), ExtResource("26_01ioq"), ExtResource("27_xlwlw"), ExtResource("28_saw72"), ExtResource("29_m0uig"), ExtResource("30_qrnlh"), ExtResource("31_hw0a7"), ExtResource("30_07pob"), ExtResource("31_1gety"), ExtResource("33_la7os"), ExtResource("34_vgwtn"), ExtResource("35_qtd7m"), ExtResource("36_la7os"), ExtResource("36_vgwtn"), ExtResource("37_cp430"), ExtResource("38_cp430"), ExtResource("36_cp430"), ExtResource("37_tj2r8"), ExtResource("38_cfnrv")])
 shop_particles = NodePath("Shop/Spawn Particles")
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="."]
