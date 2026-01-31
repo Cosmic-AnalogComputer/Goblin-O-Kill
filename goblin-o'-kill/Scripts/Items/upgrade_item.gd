@@ -61,7 +61,6 @@ func _upgrade(player : Player):
 	if usage == 1:
 		player.max_hp += UPGRADE.max_health
 		player.hp += UPGRADE.health
-		player.hp_regen -= UPGRADE.hp_regen
 		player.strength += UPGRADE.damage
 		player.crit_chance += UPGRADE.crit_chance
 		player.crit_mod += UPGRADE.crit_mod
@@ -72,7 +71,6 @@ func _upgrade(player : Player):
 		# Percentajes
 		player.max_hp += player.max_hp * UPGRADE.p_max_health
 		player.hp += player.max_hp * UPGRADE.p_health
-		player.hp_regen -= player.cooldown * UPGRADE.p_hp_regen
 		player.strength += player.strength * UPGRADE.p_damage
 		player.crit_mod += player.crit_mod * UPGRADE.p_crit_mod
 		player.cooldown -= player.cooldown * UPGRADE.p_attack_speed

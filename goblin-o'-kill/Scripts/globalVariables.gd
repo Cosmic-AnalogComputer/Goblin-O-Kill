@@ -4,13 +4,15 @@ var record_path = "user://record.save"
 
 #Game
 var record := 0
-var current_wave = 0:
+var current_wave := 0:
 	set(value):
 		current_wave = value
 		if current_wave > record:
 			record = current_wave
 var wave_mod : float = 0.9
-var difficulty = 1
+var difficulty := 1.0
+var buffed_enemies_mod := 1.0
+var allow_buffs := true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

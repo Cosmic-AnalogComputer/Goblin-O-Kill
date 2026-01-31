@@ -12,9 +12,9 @@ static func on_hit(enemy : Goblin, attack : Punch):
 		attack.anim.self_modulate = Color.SKY_BLUE
 		var ice_time : float
 		for lvl in global_level:
-			ice_time += 0.4 * (1 / (lvl))
+			ice_time += 0.4 * (1 / (lvl + 1))
 		enemy.debuff("ice",{"speed" : 50},ice_time, Color.LIGHT_SKY_BLUE)
 		var ice_dmg : float
 		for lvl in global_level:
 			ice_dmg += 0.4 * (1 / (lvl + 1))
-		enemy.receive_damage(attack.damage * ice_dmg)
+		enemy.receive_damage(attack.damage * ice_dmg, Color.LIGHT_BLUE)

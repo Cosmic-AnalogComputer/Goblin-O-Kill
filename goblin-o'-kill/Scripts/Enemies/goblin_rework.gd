@@ -9,16 +9,20 @@ signal death()
 @export var gold := 1
 @export var price := 1
 @export var debuffs : Dictionary[String, Timer]
+@export var custom_stats : Node ## "buff_chance" for buff chance
+var dead := false
 @export_subgroup("Combat")
 @export var damage := 1
 @export var delay : float = 1.0 ## Time between the start of an attack and the hit
 @export var cooldown : float = 1.0 ## Time between the end of an attack and the beggining of the next
+@export var buffed := false
 @export var meleeAttack : bool = true
 @export var attack_range : float = 90
 @export var attack_size : float = 1.0
 @export var goodAim : bool = false
 @export var attackIsChild := true
 @export var attackScene : PackedScene = preload("res://Scenes/Attacks/punch.tscn")
+@onready var startingSpeed := speed
 
 var hit_count := 0
 
@@ -31,26 +35,36 @@ var player : Player
 @export var punch_anim : String = "null"
 @export var death_particle : GPUParticles2D
 
-@onready var startingSpeed := speed
-@onready var anim : AnimatedSprite2D = $AnimatedSprite2D
-@onready var hitbox : CollisionShape2D = $CollisionShape2D
-@onready var hit_flash_timer : Timer = $"Hit Flash Timer"
-
 @export_group("AI")
 @export var initial_state : State
 var current_state : State
 var states : Dictionary = {}
 
+@export_group("References")
+@export var anim : AnimatedSprite2D
+@export var hitbox : CollisionShape2D
+@export var buff_simbol : Sprite2D
+@export var hit_flash_timer : Timer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	player = get_tree().get_first_node_in_group("Player")
+	
+	# Buff
+	if custom_stats and GlobalVariables.allow_buffs:
+		var buff_chance = custom_stats.get_buff_chance()
+		if buff_chance:
+			if randf() <= buff_chance:
+				buffed = true
+				custom_stats.buff(self)
+	buff_simbol.visible = buffed
+	
 	# Shader fail safe
 	if anim.material == null:
 		var shader_material = ShaderMaterial.new()
 		shader_material.shader = load("res://Sprites/Shaders/goblin_hit_flash.tres")
 		material.resource_local_to_scene = true
 	
-	player = get_tree().get_first_node_in_group("Player")
 	for child in get_children():
 		if child is State:
 			states[child.name.to_lower()] = child
@@ -83,7 +97,7 @@ func on_state_transition(state, new_state_name : String):
 	
 	current_state = new_state
 
-func receive_damage(dmg):
+func receive_damage(dmg : int, flash_color = Color.WHITE):
 	if states.has("roll"):
 		hit_count += 1
 		if hit_count == 3:
@@ -91,22 +105,28 @@ func receive_damage(dmg):
 			hit_count = 0
 	
 	hp -= dmg
-	hit_flash_timer.start(0.1)
-	if anim.material:
-		anim.material.set_shader_parameter("Enabled", true)
+	hit_flash(true,flash_color,0.1)
+	
+	#Dev tool
+	if player.inmortal:
+		print("Goblin: ", dmg)
+	
+	#Death
 	if hp <= 0:
-		player.gold += roundi(gold * (1 + player.gold_gain))
-		player.kills += 1
+		if !dead:
+			player.gold += roundi(gold * (1 + player.gold_gain))
+			player.kills += 1
+			dead = true
 		velocity = Vector2.ZERO
 		attackScene = null
 		$CollisionShape2D.call_deferred("set_disabled",true)
-		anim.hide()
+		#anim.hide()
 		death_particle.emitting = true
-		await get_tree().create_timer(0.6).timeout
+		await get_tree().create_timer(0.1).timeout
 		queue_free()
 
 func _on_hit_flash_timer_timeout() -> void:
-	anim.material.set_shader_parameter("Enabled", false)
+	hit_flash(false,)
 
 func debuff(debuff_name : String,Stats : Dictionary[StringName, float],DebuffTime : float,Visual = Color.WHITE) -> void:
 	if not debuff_name.to_lower() in debuffs.keys():
@@ -131,3 +151,9 @@ func on_debuff_end(debuff_name : String, Stats : Dictionary[StringName, float]):
 		var modified_stat = get(stat) # Retrieve the variable to change
 		set(stat, modified_stat + Stats[stat]) # Set that variable the original PLUS the debuff to recover
 	debuffs.erase(debuff_name.to_lower())
+
+func hit_flash(enabled : bool, color = Color.WHITE, duration = 0.0) -> void:
+	anim.material.set_shader_parameter("tint", color)
+	anim.material.set_shader_parameter("Enabled", enabled)
+	if duration:
+		hit_flash_timer.start(duration)

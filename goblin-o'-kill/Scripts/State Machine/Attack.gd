@@ -64,6 +64,7 @@ func _on_delay_timeout() -> void:
 			get_parent().get_parent().add_child(attack_instance)
 
 func attack():
+	enemy.velocity = Vector2.ZERO
 	enemy.anim.play(_get_anim(enemy.attack_anim.size()))
 	delay.start(enemy.delay)
 

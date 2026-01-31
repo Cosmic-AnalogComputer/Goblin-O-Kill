@@ -2,7 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 signal damaged(dmg)
-signal just_attacked(attack : Punch)
+signal on_attack(attack : Punch)
 signal purchase(gold : int)
 
 enum STATES {IDLE,ROLLING,DEAD,ATTACKING}
@@ -41,31 +41,24 @@ var animated_gold : int:
 		hp = clampi(value,0,max_hp)
 		hp_text.text = var_to_str(hp) + "/" + var_to_str(max_hp)
 		hpbar.value = hp
-@export var hp_regen := 3.0:
-	set(value):
-		hp_regen = value
-		if hp_regen < 0.0:
-			hp_regen = 0.0
-		health_regen_text.text = var_to_str(hp_regen) + "s"
-		health_regen_timer.wait_time = hp_regen
 @export var gold_gain : float = 0.0:
 	set(value):
 		gold_gain = value
 		gain_text.text = "[i]" + var_to_str(roundi(gold_gain * 100)) + "% [/i]"
 @export_subgroup("Combat")
-@export var strength := 1:
+@export var strength := 1.0:
 	set(value):
 		strength = value
-		dmg_text.text = var_to_str(strength)
+		dmg_text.text = var_to_str(roundi(strength))
 @export var crit_chance : float = 0.1:
 	set(value):
 		crit_chance = value
 		if crit_chance < 1.0:
 			crit_chance = value
-			crit_chance_text.text = var_to_str(crit_chance * 100) + "%"
+			crit_chance_text.text = var_to_str(roundi(crit_chance * 100)) + "%"
 		else:
 			crit_chance = 1.0
-			crit_chance_text.text = "MAX"
+			crit_chance_text.text = "100%"
 @export var crit_mod : float = 1.5:
 	set(value):
 		crit_mod = value
@@ -101,11 +94,9 @@ var inmortal = false
 @export var gold_text : Label
 @export var gain_text : RichTextLabel
 @export var dmg_text : Label
-@export var health_regen_text : Label
 @export var attack_speed_text : Label
 @export var crit_chance_text : Label
 @export var crit_mod_text : Label
-@export var health_regen_timer : Timer
 
 @export_subgroup("Other UI")
 @export var wave_text : RichTextLabel
@@ -137,10 +128,9 @@ func _ready() -> void:
 	hpbar.value = hp
 	hp_text.text = var_to_str(hp) + "/" + var_to_str(max_hp)
 	
-	dmg_text.text = var_to_str(strength)
-	health_regen_text.text = var_to_str(hp_regen) + "s"
+	dmg_text.text = var_to_str(roundi(strength))
 	attack_speed_text.text = var_to_str(cooldown) + "s"
-	crit_chance_text.text = var_to_str(crit_chance * 100) + "%"
+	crit_chance_text.text = var_to_str(roundi(crit_chance * 100)) + "%"
 	crit_mod_text.text = "x" + var_to_str(crit_mod)
 
 
@@ -203,8 +193,6 @@ func _on_i_frames_timeout() -> void:
 
 func receive_damage(dmg, hit_flash = true):
 	emit_signal("damaged", dmg)
-	if not health_regen_timer.time_left > 0:
-		health_regen_timer.start(hp_regen)
 	
 	hp -= dmg * int(!inmortal)
 	if hit_flash:
@@ -229,14 +217,13 @@ func attack():
 	attack_instance.position = get_local_mouse_position().normalized() * 75
 	attack_instance.look_at(get_local_mouse_position() * 75)
 	attack_instance.set_collision_mask(4)
-	attack_instance.damage = strength
+	attack_instance.damage = roundi(strength)
 	attack_instance.crit_chance = crit_chance
 	attack_instance.crit_mod = crit_mod
 	anim.play(get_attack_anim())
 	for strat in strategy_upgrades.keys():
 		strat.apply_upgrade(attack_instance,strategy_upgrades[strat])
-	for instance in instantiated_upgrades.keys():
-		instantiated_upgrades[instance].on_attack(attack_instance)
+	emit_signal("on_attack", attack_instance)
 	
 	add_child(attack_instance)
 
@@ -278,10 +265,6 @@ func _on_sec_timer_timeout() -> void:
 func _on_hit_flash_timer_timeout() -> void:
 	anim.material.set_shader_parameter("Enabled", false)
 
-func _on_health_regen_timer_timeout() -> void:
-	hp += 1
-	if hp < max_hp:
-		health_regen_timer.start(hp_regen)
 
 func camera_shake(intensity : float) -> void: # Thanks to: Single-Minded Ryan on YT for this!
 	var cameraOffset = camera_shake_noise.get_noise_1d(Time.get_ticks_msec()) * intensity

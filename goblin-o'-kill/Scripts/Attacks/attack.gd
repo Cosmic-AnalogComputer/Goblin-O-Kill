@@ -46,7 +46,11 @@ func _on_body_entered(body: Node2D) -> void:
 	if body.hp - applied_damage <= 0:
 		emit_signal("kill",body, self)
 	
-	body.receive_damage(applied_damage)
+	var flash_color = Color.WHITE
+	if crit:
+		flash_color = Color.GOLD
+	
+	body.receive_damage(applied_damage,flash_color)
 	call_deferred("set_monitoring", false)
 
 func _on_timer_timeout() -> void:

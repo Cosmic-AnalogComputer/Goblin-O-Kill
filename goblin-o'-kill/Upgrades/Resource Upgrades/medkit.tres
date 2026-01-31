@@ -5,7 +5,7 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mjxaj"]
 atlas = ExtResource("2_5a71x")
-region = Rect2(112, 0, 16, 16)
+region = Rect2(126, 0, 18, 18)
 filter_clip = true
 
 [resource]
@@ -13,7 +13,12 @@ script = ExtResource("1_eaogu")
 texture = SubResource("AtlasTexture_mjxaj")
 name = &"Medkit"
 description = "Restores your health to it's maximum"
-price = 25
+price = 50
+has_sprite_bobbing = false
+has_outline = false
+shader_color = Color(0, 0, 0, 1)
+shader_thickness = 1.0
+particle_amount = 0
 max_health = 0
 health = 0
 gold_gain = 0.0

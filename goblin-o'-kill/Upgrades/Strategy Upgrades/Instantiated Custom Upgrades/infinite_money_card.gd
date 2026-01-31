@@ -5,6 +5,7 @@ extends InstantiatedUpgrade
 func _ready() -> void:
 	player.connect("purchase", on_purchase)
 	refund_sound.stream = load("uid://c6qce13ppnnek")
+	refund_sound.bus = "SFX"
 	add_child(refund_sound)
 
 func on_purchase(previous_gold : int) -> void:
@@ -14,5 +15,3 @@ func on_purchase(previous_gold : int) -> void:
 		player.gold = previous_gold
 		refund_sound.play()
 	
-	if player.inmortal:
-		print(refund_chance)

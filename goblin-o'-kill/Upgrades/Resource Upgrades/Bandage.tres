@@ -5,23 +5,28 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bb6af"]
 atlas = ExtResource("2_qpgt6")
-region = Rect2(112, 16, 16, 16)
+region = Rect2(54, 18, 18, 18)
 
 [resource]
 script = ExtResource("1_grg3w")
 texture = SubResource("AtlasTexture_bb6af")
 name = &"Bandages"
-description = "Restores 40% of your health"
-price = 10
+description = "Restores 40 health"
+price = 25
+has_sprite_bobbing = false
+has_outline = false
+shader_color = Color(0, 0, 0, 1)
+shader_thickness = 1.0
+particle_amount = 0
 max_health = 0
-health = 0
+health = 40
 gold_gain = 0.0
 damage = 0
 crit_chance = 0.0
 crit_mod = 0.0
 attack_speed = 0.0
 p_max_health = 0.0
-p_health = 0.4
+p_health = 0.0
 p_damage = 0.0
 p_crit_mod = 0.0
 p_attack_speed = 0.0

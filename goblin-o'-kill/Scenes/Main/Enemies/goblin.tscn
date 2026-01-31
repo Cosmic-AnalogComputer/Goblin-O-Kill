@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://b1cymn7dg72ea"]
+[gd_scene load_steps=39 format=3 uid="uid://b1cymn7dg72ea"]
 
 [ext_resource type="Script" uid="uid://dhejj6r063rc0" path="res://Scripts/Enemies/goblin_rework.gd" id="1_7nlfl"]
 [ext_resource type="Shader" uid="uid://b0mey6i0yttu1" path="res://Sprites/Shaders/hit_flash.tres" id="2_14l0p"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://cgl1dkmxrdath" path="res://Scripts/State Machine/EnemyChase.gd" id="3_14l0p"]
 [ext_resource type="Script" uid="uid://lop8wx2r7exx" path="res://Scripts/State Machine/Attack.gd" id="4_eqilx"]
 [ext_resource type="Material" uid="uid://ceiq1o0gfi7jx" path="res://Particles/Upgrades/bonker_particle.tres" id="6_eqilx"]
+[ext_resource type="Script" uid="uid://ryr1t6it0b87" path="res://Scripts/Enemies/Custom Variables/Goblin/goblin_buff_chance.gd" id="7_ipokw"]
+[ext_resource type="Texture2D" uid="uid://bxjhch64puryw" path="res://Sprites/flashes.png" id="7_u63pp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xcvi8"]
 size = Vector2(56, 80)
@@ -237,19 +239,28 @@ animations = [{
 "speed": 4.0
 }]
 
-[node name="Goblin" type="CharacterBody2D" node_paths=PackedStringArray("death_particle", "initial_state")]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ipokw"]
+atlas = ExtResource("7_u63pp")
+region = Rect2(194, 21, 6, 2)
+filter_clip = true
+
+[node name="Goblin" type="CharacterBody2D" node_paths=PackedStringArray("custom_stats", "death_particle", "initial_state", "anim", "hitbox", "buff_simbol", "hit_flash_timer")]
 collision_layer = 4
 collision_mask = 13
-platform_on_leave = 2
-platform_wall_layers = 5
+platform_wall_layers = 1
 script = ExtResource("1_7nlfl")
 hp = 3
+custom_stats = NodePath("Buff Chances")
 delay = 0.7
 cooldown = 0.8
 walk = Array[String](["top_walk", "walk", "walk", "walk"])
 attack_anim = Array[String](["top_attack", "attack", "attack", "attack"])
 death_particle = NodePath("Death Particles")
 initial_state = NodePath("chase")
+anim = NodePath("AnimatedSprite2D")
+hitbox = NodePath("CollisionShape2D")
+buff_simbol = NodePath("Buff Simbol")
+hit_flash_timer = NodePath("Hit Flash Timer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_xcvi8")
@@ -270,8 +281,6 @@ metadata/_custom_type_script = "uid://cgl1dkmxrdath"
 script = ExtResource("4_eqilx")
 metadata/_custom_type_script = "uid://lop8wx2r7exx"
 
-[node name="Shader test" type="Node" parent="."]
-
 [node name="Hit Flash Timer" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
@@ -283,5 +292,19 @@ lifetime = 0.6
 one_shot = true
 explosiveness = 1.0
 process_material = ExtResource("6_eqilx")
+
+[node name="Buff Chances" type="Node" parent="."]
+script = ExtResource("7_ipokw")
+chances = Dictionary[int, float]({
+15: 0.05,
+25: 0.1,
+40: 0.2
+})
+
+[node name="Buff Simbol" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -50)
+scale = Vector2(3, 3)
+texture = SubResource("AtlasTexture_ipokw")
 
 [connection signal="timeout" from="Hit Flash Timer" to="." method="_on_hit_flash_timer_timeout"]

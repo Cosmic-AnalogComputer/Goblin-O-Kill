@@ -59,6 +59,7 @@ func make_new_wave():
 	playing_music = true
 	var amounts : Dictionary[PackedScene, int] # Goblins - Amount
 	for event in events:
+		GlobalVariables.allow_buffs = event.allowBuffs
 		if event.appearOnce and GlobalVariables.current_wave == event.wave:
 			amounts = event.goblins
 		elif !event.appearOnce and GlobalVariables.current_wave % event.wave == 0:
@@ -67,6 +68,7 @@ func make_new_wave():
 				for i in amounts.keys():
 					amounts[i] *= GlobalVariables.current_wave / event.wave
 	if amounts.is_empty():
+		GlobalVariables.allow_buffs = true
 		amounts = buy_goblins(GlobalVariables.current_wave)
 	#print(amounts)
 	for g in amounts.keys():
@@ -75,6 +77,7 @@ func make_new_wave():
 			goblin.position = Vector2(randi_range(50,1150),randi_range(50,1150))
 			goblin.hp = round(goblin.hp * GlobalVariables.wave_mod)
 			goblin.damage = round(goblin.damage * GlobalVariables.wave_mod)
+			goblin.gold *= GlobalVariables.difficulty
 			wave_container.add_child(goblin)
 	inStock = false
 	#print(amounts)

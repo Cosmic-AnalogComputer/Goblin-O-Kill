@@ -1,4 +1,4 @@
-[gd_scene load_steps=103 format=3 uid="uid://l6jc7fhyvoo4"]
+[gd_scene load_steps=105 format=3 uid="uid://l6jc7fhyvoo4"]
 
 [ext_resource type="Shader" uid="uid://b0mey6i0yttu1" path="res://Sprites/Shaders/hit_flash.tres" id="1_e42da"]
 [ext_resource type="Script" uid="uid://dhejj6r063rc0" path="res://Scripts/Enemies/goblin_rework.gd" id="1_j00w2"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://di2jkvt4705t3" path="res://Scripts/State Machine/guardIdle.gd" id="4_2p0ob"]
 [ext_resource type="Script" uid="uid://dkqmiqqi8q4pd" path="res://Scripts/State Machine/guardAttack.gd" id="5_2p0ob"]
 [ext_resource type="Script" uid="uid://3x2c72x31k3d" path="res://Scripts/State Machine/Roll.gd" id="6_2p0ob"]
+[ext_resource type="Texture2D" uid="uid://bxjhch64puryw" path="res://Sprites/flashes.png" id="7_i2sa8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e42da"]
 resource_local_to_scene = true
@@ -731,11 +732,15 @@ color = Color(1, 0, 0, 1)
 hue_variation_min = -2.23517e-08
 hue_variation_max = 0.12
 
-[node name="Guard Goblin" type="CharacterBody2D" node_paths=PackedStringArray("death_particle", "initial_state")]
+[sub_resource type="AtlasTexture" id="AtlasTexture_05ug8"]
+atlas = ExtResource("7_i2sa8")
+region = Rect2(194, 21, 6, 2)
+filter_clip = true
+
+[node name="Guard Goblin" type="CharacterBody2D" node_paths=PackedStringArray("death_particle", "initial_state", "anim", "hitbox", "buff_simbol", "hit_flash_timer")]
 collision_layer = 4
 collision_mask = 13
-platform_on_leave = 2
-platform_wall_layers = 5
+platform_wall_layers = 1
 script = ExtResource("1_j00w2")
 hp = 7
 gold = 4
@@ -750,6 +755,10 @@ attack_anim = Array[String](["attacktest1", "attacktest2", "attacktest2_1", "att
 punch_anim = "slash"
 death_particle = NodePath("Death Particles")
 initial_state = NodePath("Chase")
+anim = NodePath("AnimatedSprite2D")
+hitbox = NodePath("CollisionShape2D")
+buff_simbol = NodePath("Buff Simbol")
+hit_flash_timer = NodePath("Hit Flash Timer")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -786,5 +795,12 @@ lifetime = 0.6
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_2p0ob")
+
+[node name="Buff Simbol" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(0, -50)
+scale = Vector2(3, 3)
+texture = SubResource("AtlasTexture_05ug8")
 
 [connection signal="timeout" from="Hit Flash Timer" to="." method="_on_hit_flash_timer_timeout"]
