@@ -14,6 +14,7 @@ texture = SubResource("AtlasTexture_iigoy")
 name = &"Dumbell"
 description = "+4 Damage"
 price = 14
+has_sprite_bobbing = false
 has_outline = false
 shader_color = Color(0, 0, 0, 1)
 shader_thickness = 1.0

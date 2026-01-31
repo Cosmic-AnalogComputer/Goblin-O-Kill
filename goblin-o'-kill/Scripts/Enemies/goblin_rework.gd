@@ -29,7 +29,6 @@ var player : Player
 @export var walk : Array[String] = ["walk"] ## Minimun of 4
 @export var attack_anim : Array[String] = ["attack1"]
 @export var punch_anim : String = "null"
-@export var hit_flash_time : float = 0.1
 @export var death_particle : GPUParticles2D
 
 @onready var startingSpeed := speed
@@ -92,7 +91,7 @@ func receive_damage(dmg):
 			hit_count = 0
 	
 	hp -= dmg
-	hit_flash_timer.start(hit_flash_time)
+	hit_flash_timer.start(0.1)
 	if anim.material:
 		anim.material.set_shader_parameter("Enabled", true)
 	if hp <= 0:

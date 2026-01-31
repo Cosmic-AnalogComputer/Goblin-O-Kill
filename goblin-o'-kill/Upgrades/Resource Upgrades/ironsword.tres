@@ -17,6 +17,7 @@ description = "You're still hitting with your fists though...
 +0.2 times damage on critical strike
 [/color]"
 price = 15
+has_sprite_bobbing = false
 has_outline = false
 shader_color = Color(0, 0, 0, 1)
 shader_thickness = 1.0

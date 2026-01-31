@@ -91,7 +91,8 @@ var inmortal = false
 @onready var hitbox : CollisionShape2D = $CollisionShape2D
 @onready var anim : AnimatedSprite2D = $AnimatedSprite2D
 @onready var hit_flash_timer : Timer = $"Hit Flash Timer"
-
+@onready var camera : Camera2D = $Camera2D
+@onready var camera_shake_noise : FastNoiseLite = FastNoiseLite.new()
 
 @export_group("UI References")
 @export_subgroup("Stats")
@@ -209,6 +210,9 @@ func receive_damage(dmg, hit_flash = true):
 	if hit_flash:
 		anim.material.set_shader_parameter("Enabled", true)
 		hit_flash_timer.start()
+	if camera:
+		var camera_tween = get_tree().create_tween()
+		camera_tween.tween_method(camera_shake, 7.5, 0.0, 0.25)
 	if hp <= 0:
 		state = STATES.DEAD
 		anim.hide()
@@ -278,3 +282,7 @@ func _on_health_regen_timer_timeout() -> void:
 	hp += 1
 	if hp < max_hp:
 		health_regen_timer.start(hp_regen)
+
+func camera_shake(intensity : float) -> void: # Thanks to: Single-Minded Ryan on YT for this!
+	var cameraOffset = camera_shake_noise.get_noise_1d(Time.get_ticks_msec()) * intensity
+	camera.offset = Vector2(cameraOffset,cameraOffset)

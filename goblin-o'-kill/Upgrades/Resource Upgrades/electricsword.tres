@@ -37,6 +37,7 @@ description = "Goblins rumour this sword comes from the same universe as the [co
 [color=red]+0.07s cooldown in attack
 [/color]"
 price = 50
+has_sprite_bobbing = false
 has_outline = false
 shader_color = Color(0, 0, 0, 1)
 shader_thickness = 1.0

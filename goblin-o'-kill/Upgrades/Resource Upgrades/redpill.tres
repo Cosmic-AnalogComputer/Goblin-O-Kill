@@ -15,6 +15,7 @@ name = &"Red Pill"
 description = "+5 Max health
 +Healts that same amount"
 price = 10
+has_sprite_bobbing = false
 has_outline = false
 shader_color = Color(0, 0, 0, 1)
 shader_thickness = 1.0

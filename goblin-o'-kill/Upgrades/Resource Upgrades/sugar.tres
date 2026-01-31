@@ -15,6 +15,7 @@ name = &"Sugar"
 description = "Candy wasn't enough. We gotta inject it
 -0.01s cooldown in attack"
 price = 3
+has_sprite_bobbing = false
 has_outline = false
 shader_color = Color(0, 0, 0, 1)
 shader_thickness = 1.0

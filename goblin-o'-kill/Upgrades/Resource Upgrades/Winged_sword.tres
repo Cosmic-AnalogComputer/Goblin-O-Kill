@@ -17,6 +17,7 @@ description = "[color=green]+7 Damage
 [color=red]+0.04s cooldown in attack
 [/color]"
 price = 35
+has_sprite_bobbing = false
 has_outline = true
 shader_color = Color(1, 1, 1, 1)
 shader_thickness = 0.51

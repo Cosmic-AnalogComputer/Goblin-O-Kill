@@ -15,6 +15,7 @@ name = &"Caffeine"
 description = "[i]coffe coffe coffe[/i]
 -0.02s cooldown in attack"
 price = 6
+has_sprite_bobbing = false
 has_outline = false
 shader_color = Color(0, 0, 0, 1)
 shader_thickness = 1.0

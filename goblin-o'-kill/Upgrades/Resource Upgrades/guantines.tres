@@ -15,6 +15,7 @@ name = &"Mittens"
 description = "+4 Damage
 -0.02s cooldown in attack"
 price = 18
+has_sprite_bobbing = false
 has_outline = false
 shader_color = Color(0, 0, 0, 1)
 shader_thickness = 1.0

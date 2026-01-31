@@ -17,6 +17,7 @@ description = "[i]Total Karen[/i]
 [color=sky_blue]When hit, 15% chance to gain gold equal to the damage. Gold gain is not included
 [/color]"
 price = 75
+has_sprite_bobbing = false
 has_outline = true
 shader_color = Color(1, 0.843137, 0, 1)
 shader_thickness = 1.0

@@ -14,6 +14,7 @@ texture = SubResource("AtlasTexture_g8amf")
 name = &"Dice"
 description = "+ 5% Critical chance"
 price = 10
+has_sprite_bobbing = false
 has_outline = false
 shader_color = Color(0, 0, 0, 1)
 shader_thickness = 1.0

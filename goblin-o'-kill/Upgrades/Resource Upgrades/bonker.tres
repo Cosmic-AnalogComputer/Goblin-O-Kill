@@ -17,6 +17,7 @@ description = "[i]This is bonkers[/i]
 On a critical strike, has a 2% chance to [color=green]multiply damage by 3.[/color]
 If you have multiple of these, the chance of bonk will increase 2% each one."
 price = 50
+has_sprite_bobbing = false
 has_outline = true
 shader_color = Color(1, 0.843137, 0, 1)
 shader_thickness = 1.0
